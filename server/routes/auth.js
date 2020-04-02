@@ -23,21 +23,12 @@ router.post("/signup", async (req, res, next) => {
     });
     //Directly login user
     req.logIn(newUser, err => {
-      res.json(
-        _.pick(req.user, [
-          "name",
-          "alias",
-          "username",
-          "_id",
-          "createdAt",
-          "updatedAt"
-        ])
-      );
+      res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
     });
-    console.log(name, "REGISTERED!");
+    console.log(name, "User registered!");
   } else {
     res.json({
-      status: "Not able to create newUser because user already exists"
+      status: "Not able to create a new user because this user already exists"
     });
   }
 });
@@ -58,18 +49,46 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return res.status(500).json({ message: "Session save went bad" });
       }
-      return res.json(
-        _.pick(req.user, [
-          "name",
-          "alias",
-          "username",
-          "_id",
-          "createdAt",
-          "updatedAt"
-        ])
-      );
+      return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
     });
   })(req, res, next);
+});
+
+/* AUTH Edit */
+
+router.post("/edit", isLoggedIn(), async (req, res, next) => {
+  try {
+    const id = req.user._id;
+    const { name, alias, username, password } = req.body;
+    await User.findByIdAndUpdate(id, {
+      name,
+      alias,
+      username,
+      password
+    });
+    return res.json({ status: "Profile updated" });
+  } catch (error) {
+    return res.status(401).json({ status: "Not Found" });
+  }
+});
+
+/* AUTH Logout */
+router.post("/logout", isLoggedIn(), async (req, res, next) => {
+  if (req.user) {
+    req.logout();
+    return res.json({ status: "Log out" });
+  } else {
+    return res
+      .status(401)
+      .json({ status: "You have to be logged in to logout" });
+  }
+});
+
+/* AUTH Whoami */
+router.post("/whoami", (req, res, next) => {
+  if (req.user)
+    return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+  else return res.status(401).json({ status: "No user session present" });
 });
 
 module.exports = router;
