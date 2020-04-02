@@ -6,19 +6,19 @@ const passport = require("passport");
 const { hashPassword, checkHashed } = require("../lib/hashing");
 const { isLoggedIn, isLoggedOut } = require("../lib/isLoggedMiddleware");
 
-/* POST signup */
+/* AUTH Signup */
 router.post("/signup", async (req, res, next) => {
-  const { name, alias, email, password } = req.body;
+  const { name, alias, username, password } = req.body;
 
-  console.log(name, alias, email, password);
+  console.log(name, alias, username);
 
   // Create the user
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ username });
   if (!existingUser) {
     const newUser = await User.create({
       name,
       alias,
-      email,
+      username,
       password
     });
     //Directly login user
@@ -27,7 +27,7 @@ router.post("/signup", async (req, res, next) => {
         _.pick(req.user, [
           "name",
           "alias",
-          "email",
+          "username",
           "_id",
           "createdAt",
           "updatedAt"
@@ -36,8 +36,40 @@ router.post("/signup", async (req, res, next) => {
     });
     console.log(name, "REGISTERED!");
   } else {
-    res.json({ status: "Not able to create because user already exists" });
+    res.json({
+      status: "Not able to create newUser because user already exists"
+    });
   }
+});
+
+/* AUTH Login */
+
+//Login
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, fealureDetails) => {
+    if (err) {
+      console.log(err);
+      return res.json({ status: 500, message: "Autentication Error" });
+    }
+    if (!user) {
+      return res.json({ status: 401, message: fealureDetails.message });
+    }
+    req.logIn(user, err => {
+      if (err) {
+        return res.status(500).json({ message: "Session save went bad" });
+      }
+      return res.json(
+        _.pick(req.user, [
+          "name",
+          "alias",
+          "username",
+          "_id",
+          "createdAt",
+          "updatedAt"
+        ])
+      );
+    });
+  })(req, res, next);
 });
 
 module.exports = router;
