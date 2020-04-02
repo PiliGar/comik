@@ -8,11 +8,11 @@ const issueSchema = new mongoose.Schema(
       index: true,
       required: "Title is required"
     },
-    issue_number: {
+    issueNumber: {
       type: String,
       required: "Issue number is required"
     },
-    cover_date: {
+    coverDate: {
       type: String,
       required: "Cover date is required"
     },

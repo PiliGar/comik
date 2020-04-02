@@ -11,7 +11,7 @@ const characterSchema = new mongoose.Schema(
     alias: {
       type: String
     },
-    original_name: {
+    originalName: {
       type: String
     },
     publisher: {
