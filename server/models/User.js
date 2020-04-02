@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const SALT_WORK_FACTOR = 10;
-const IMAGE_URL = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg)/g;
+const Schema = mongoose.Schema;
 const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/;
-const userSchema = new mongoose.Schema(
+const PASSWORD_PATTERN = /^[a-zA-Z]\w{3,14}$/;
+const { hashPassword } = require("../lib/hashing");
+const userSchema = new Schema(
   {
     name: {
       type: String,
@@ -16,12 +15,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: "Alias is required"
     },
-    email: {
+    username: {
       type: String,
       trim: true,
       match: [EMAIL_PATTERN, "Please fill a valid email address"],
       sparse: true,
-      unique: false,
+      unique: true,
+      index: true,
       default: null,
       lowercase: true
     },
@@ -36,15 +36,34 @@ const userSchema = new mongoose.Schema(
         "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
     },
     role: { type: String, default: "subscriber" },
-    wanted_issues: [{ type: Schema.Types.ObjectId, ref: "Issues" }],
-    favorites_issues: [{ type: Schema.Types.ObjectId, ref: "Issues" }],
-    favorites_professionals: [
-      { type: Schema.Types.ObjectId, ref: "Professionals" }
-    ],
-    favorite_publishers: [{ type: Schema.Types.ObjectId, ref: "Publishers" }],
-    favorites_characters: [{ type: Schema.Types.ObjectId, ref: "Characters" }],
-    favorite_issues: [{ type: Schema.Types.ObjectId, ref: "Issues" }],
-    contacts: [{ type: Schema.Types.ObjectId, ref: "Users" }],
+    wantedIssues: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
+      default: []
+    },
+    favoritesIssues: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
+      default: []
+    },
+    favoritesProfessionals: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Professional" }],
+      default: []
+    },
+    favoritesPublishers: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Publisher" }],
+      default: []
+    },
+    favoritesCharacters: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Character" }],
+      default: []
+    },
+    favoriteIssues: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
+      default: []
+    },
+    contacts: {
+      type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+      default: []
+    },
     visits: { type: Number, default: 0 }
   },
   {
@@ -62,20 +81,14 @@ const userSchema = new mongoose.Schema(
     }
   }
 );
-userSchema.pre("save", function(next) {
+
+userSchema.pre("save", async function(next) {
   const user = this;
   if (!user.isModified("password")) {
     return next();
   }
-  bcrypt
-    .genSalt(SALT_WORK_FACTOR)
-    .then(salt => {
-      bcrypt.hash(user.password, salt).then(hash => {
-        user.password = hash;
-        next();
-      });
-    })
-    .catch(error => next(error));
+  user.password = await hashPassword(user.password);
+  next();
 });
 
 const User = mongoose.model("User", userSchema);

@@ -8,15 +8,15 @@ const publisherSchema = new mongoose.Schema(
       index: true,
       required: "Name is required"
     },
-    location_address: {
+    locationAddress: {
       type: String,
       required: "Address is required"
     },
-    location_city: {
+    locationCity: {
       type: String,
       required: "City is required"
     },
-    location_state: {
+    locationState: {
       type: String,
       required: "State is required"
     },
