@@ -5,9 +5,15 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "DEBUG=server:* nodemon ./bin/www",
-    "dev-windows": "nodemon ./bin/www"
+    "dev-windows": "nodemon ./bin/www",
+    "seed-users": "node seeds/User.seed.js",
+    "seed-professionals": "node seeds/Professional.seed.js",
+    "seed-publishers": "node seeds/Publisher.seed.js",
+    "seed-issues": "node seeds/Issue.seed.js",
+    "seed-characters": "node seeds/Character.seed.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-mongo": "^3.2.0",

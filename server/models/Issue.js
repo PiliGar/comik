@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const issueSchema = new mongoose.Schema(
   {
+    _id: Number,
     title: {
       type: String,
       unique: true,
@@ -9,24 +10,19 @@ const issueSchema = new mongoose.Schema(
       required: "Title is required"
     },
     issueNumber: {
-      type: String,
-      required: "Issue number is required"
+      type: String
     },
     coverDate: {
-      type: String,
-      required: "Cover date is required"
+      type: String
     },
     volume: {
-      type: String,
-      required: "Volume of issue is required"
+      type: String
     },
     excerpt: {
-      type: String,
-      required: "Excerpt is required"
+      type: String
     },
     description: {
-      type: String,
-      required: "Description is required"
+      type: String
     },
     picture: {
       type: String,

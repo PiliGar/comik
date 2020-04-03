@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const professionalSchema = new mongoose.Schema(
   {
+    _id: Number,
     name: {
       type: String,
       unique: true,
@@ -9,27 +10,22 @@ const professionalSchema = new mongoose.Schema(
       required: "Name is required"
     },
     birth: {
-      type: String,
-      required: "Birth is required"
+      type: String
     },
     death: {
       type: String
     },
     country: {
-      type: String,
-      required: "Country is required"
+      type: String
     },
     hometown: {
-      type: String,
-      required: "Hometown is required"
+      type: String
     },
     excerpt: {
-      type: String,
-      required: "Excerpt is required"
+      type: String
     },
     description: {
-      type: String,
-      required: "Description is required"
+      type: String
     },
     picture: {
       type: String,

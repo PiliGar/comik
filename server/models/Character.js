@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const characterSchema = new mongoose.Schema(
   {
+    _id: Number,
     name: {
       type: String,
       unique: true,
@@ -11,20 +12,23 @@ const characterSchema = new mongoose.Schema(
     alias: {
       type: String
     },
-    originalName: {
+    realName: {
+      type: String
+    },
+    gender: {
       type: String
     },
     publisher: {
-      type: String,
-      required: "Publisher is required"
+      type: String
+    },
+    publisherId: {
+      type: Number
     },
     excerpt: {
-      type: String,
-      required: "Excerpt is required"
+      type: String
     },
     description: {
-      type: String,
-      required: "Description is required"
+      type: String
     },
     picture: {
       type: String,
