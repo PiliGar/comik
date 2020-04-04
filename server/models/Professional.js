@@ -26,6 +26,10 @@ const professionalSchema = new mongoose.Schema(
     description: {
       type: String
     },
+    issues: {
+      type: [{ type: ObjectId, ref: "Issue" }],
+      default: []
+    },
     picture: {
       type: String,
       default:

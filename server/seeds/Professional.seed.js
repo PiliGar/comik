@@ -15,28 +15,43 @@ function getData(url) {
       //console.log("--->>> RESPONSE", response.data.results);
       const res = response.data.results;
 
-      res.forEach(professional => {
-        //Get description and issues of this professional response.data.results.issues + response.data.results.issues => arr of obj
+      const createProfessional = async res => {
+        res.forEach(professional => {
+          //Get issues of this professional response.data.results.issues => arr of obj
 
-        //const getIssues = `${url}/person/4040-${professional.id}/?api_key=${key}&format=json`;
+          const issuesUrl = `${url}/person/4040-${professional.id}/?api_key=${key}&format=json`;
 
-        const newProfessional = {
-          name: professional.name,
-          birth: professional.birth,
-          death: professional.death,
-          country: professional.country,
-          hometown: professional.hometown,
-          excerpt: professional.deck,
-          description: professional.description,
-          picture: professional.image.original_url
-        };
-        console.log(newProfessional);
+          const getIssues = () => {
+            axios
+              .get(issuesUrl)
+              .then(response => {
+                //Array of issues
+                console.log(response.data.results.issues);
+                //¿Como desde ese array obtener el id correspondiente del modelo de issues?
+              })
+              .catch(function(error) {
+                // handle error
+                console.log("--->>> ERROR", error);
+              });
+          };
+          const newProfessional = {
+            name: professional.name,
+            birth: professional.birth,
+            death: professional.death,
+            country: professional.country,
+            hometown: professional.hometown,
+            excerpt: professional.deck,
+            description: professional.description,
+            picture: professional.image.original_url
+          };
+          console.log(newProfessional);
 
-        withDbConnection(async () => {
-          //await Professional.deleteMany();
-          await Professional.create(newProfessional);
+          withDbConnection(async () => {
+            //await Professional.deleteMany();
+            await Professional.create(newProfessional);
+          });
         });
-      });
+      };
     })
     .catch(function(error) {
       // handle error

@@ -15,7 +15,7 @@ const userSchema = new Schema(
       type: String,
       required: "Alias is required"
     },
-    username: {
+    email: {
       type: String,
       trim: true,
       match: [EMAIL_PATTERN, "Please fill a valid email address"],
