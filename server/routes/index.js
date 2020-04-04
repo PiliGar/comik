@@ -1,7 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const { crudGenerator } = require("./crud.model");
+const CharacterModel = require("../models/Character");
 
-/* GET home page */
+//Crud Generator
+
+router.use("/character", crudGenerator(CharacterModel));
+router.use("/user", require("./user.routes"));
+router.use("/auth", require("./auth.routes"));
+
+// GET home page
 router.get("/", (req, res, next) => {
   res.json({ status: "Welcome here!" });
 });

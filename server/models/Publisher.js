@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const publisherSchema = new mongoose.Schema(
   {
-    _id: Number,
     name: {
       type: String,
       unique: true,

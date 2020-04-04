@@ -39,7 +39,7 @@ const userSchema = new Schema(
     },
     role: { type: String, default: "subscriber" },
     wantedIssues: {
-      type: [{ type: ObjectId, ref: "Issue" }],
+      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
       default: []
     },
     favoritesIssues: {

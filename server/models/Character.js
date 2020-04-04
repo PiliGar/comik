@@ -3,7 +3,6 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const characterSchema = new mongoose.Schema(
   {
-    _id: Number,
     name: {
       type: String,
       unique: true,
