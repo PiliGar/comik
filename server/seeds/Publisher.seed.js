@@ -8,6 +8,8 @@ const url = process.env.API_URL;
 const apiURL = `${url}/publishers/?api_key=${key}&format=json`;
 getData(apiURL);
 
+//Crea pero se queda abierta la db conection
+
 function getData(url) {
   axios
     .get(url)
@@ -16,7 +18,6 @@ function getData(url) {
       const res = response.data.results;
       res.forEach(publisher => {
         const newPublisher = {
-          _id: publisher.id,
           name: publisher.name,
           locationAddress: publisher.location_address,
           locationCity: publisher.location_city,

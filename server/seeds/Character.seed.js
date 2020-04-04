@@ -16,7 +16,6 @@ function getData(url) {
       const res = response.data.results;
       res.forEach(character => {
         const newCharacter = {
-          _id: character.id,
           name: character.name,
           alias: character.aliases,
           realName: character.real_name,

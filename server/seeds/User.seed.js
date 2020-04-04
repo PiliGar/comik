@@ -1,10 +1,13 @@
 const withDbConnection = require("../withDbConnection");
 const Users = require("../models/User");
+require("dotenv").config();
+const adminUser = process.env.ADMIN_USER;
+const adminPass = process.env.ADMIN_PASS;
 
 let dataUsers = [
   {
-    username: "pilar@comik.com",
-    password: "Pilar123",
+    username: adminUser,
+    password: adminPass,
     name: "Pilar",
     alias: "admin",
     avatar:
@@ -20,7 +23,7 @@ let dataUsers = [
   },
   {
     username: "manuela@comik.com",
-    password: "Manuela123",
+    password: adminPass,
     name: "Manuela",
     alias: "admin",
     avatar:
