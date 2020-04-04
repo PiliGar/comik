@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const issueSchema = new mongoose.Schema(
   {
-    _id: Number,
     title: {
       type: String,
       unique: true,

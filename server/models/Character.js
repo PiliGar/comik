@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
 const characterSchema = new mongoose.Schema(
   {
-    _id: Number,
     name: {
       type: String,
       unique: true,
@@ -21,9 +21,7 @@ const characterSchema = new mongoose.Schema(
     publisher: {
       type: String
     },
-    publisherId: {
-      type: Number
-    },
+    publisherId: { type: ObjectId, ref: "Publisher" },
     excerpt: {
       type: String
     },

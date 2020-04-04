@@ -3,8 +3,7 @@ const User = require("../models/User");
 const router = express.Router();
 const _ = require("lodash");
 const passport = require("passport");
-const { hashPassword, checkHashed } = require("../lib/hashing");
-const { isLoggedIn, isLoggedOut } = require("../lib/isLoggedMiddleware");
+const { isLoggedIn } = require("../middleware/isLogged");
 
 /* AUTH Signup */
 router.post("/signup", async (req, res, next) => {
@@ -34,8 +33,6 @@ router.post("/signup", async (req, res, next) => {
 });
 
 /* AUTH Login */
-
-//Login
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, fealureDetails) => {
     if (err) {
@@ -55,8 +52,7 @@ router.post("/login", (req, res, next) => {
 });
 
 /* AUTH Edit */
-
-router.post("/edit", isLoggedIn(), async (req, res, next) => {
+router.put("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
     const { name, alias, username, password } = req.body;
@@ -66,7 +62,7 @@ router.post("/edit", isLoggedIn(), async (req, res, next) => {
       username,
       password
     });
-    return res.json({ status: "Profile updated" });
+    return res.json({ status: "Profile updated!" });
   } catch (error) {
     return res.status(401).json({ status: "Not Found" });
   }
@@ -86,6 +82,7 @@ router.post("/logout", isLoggedIn(), async (req, res, next) => {
 
 /* AUTH Whoami */
 router.post("/whoami", (req, res, next) => {
+  console.log("--->>> que user", req.user);
   if (req.user)
     return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
   else return res.status(401).json({ status: "No user session present" });

@@ -21,14 +21,13 @@ function getData(url) {
         //const getIssues = `${url}/person/4040-${professional.id}/?api_key=${key}&format=json`;
 
         const newProfessional = {
-          _id: professional.id,
           name: professional.name,
           birth: professional.birth,
           death: professional.death,
           country: professional.country,
           hometown: professional.hometown,
           excerpt: professional.deck,
-          description: "description",
+          description: professional.description,
           picture: professional.image.original_url
         };
         console.log(newProfessional);

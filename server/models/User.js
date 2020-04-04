@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_PATTERN = /^[a-zA-Z]\w{3,14}$/;
 const { hashPassword } = require("../lib/hashing");
+const { ObjectId } = mongoose.Schema.Types;
+
 const userSchema = new Schema(
   {
     name: {
@@ -41,27 +43,27 @@ const userSchema = new Schema(
       default: []
     },
     favoritesIssues: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
+      type: [{ type: ObjectId, ref: "Issue" }],
       default: []
     },
     favoritesProfessionals: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Professional" }],
+      type: [{ type: ObjectId, ref: "Professional" }],
       default: []
     },
     favoritesPublishers: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Publisher" }],
+      type: [{ type: ObjectId, ref: "Publisher" }],
       default: []
     },
     favoritesCharacters: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Character" }],
+      type: [{ type: ObjectId, ref: "Character" }],
       default: []
     },
     favoriteIssues: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
+      type: [{ type: ObjectId, ref: "Issue" }],
       default: []
     },
     contacts: {
-      type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+      type: [{ type: ObjectId, ref: "User" }],
       default: []
     },
     visits: { type: Number, default: 0 }
@@ -92,6 +94,7 @@ userSchema.pre("save", async function(next) {
 });
 
 const User = mongoose.model("User", userSchema);
+//"User" will be the ref
 
 User.collection.createIndexes([
   {

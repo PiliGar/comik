@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const publisherSchema = new mongoose.Schema(
   {
-    _id: Number,
     name: {
       type: String,
       unique: true,
@@ -10,24 +9,19 @@ const publisherSchema = new mongoose.Schema(
       required: "Name is required"
     },
     locationAddress: {
-      type: String,
-      required: "Address is required"
+      type: String
     },
     locationCity: {
-      type: String,
-      required: "City is required"
+      type: String
     },
     locationState: {
-      type: String,
-      required: "State is required"
+      type: String
     },
     excerpt: {
-      type: String,
-      required: "Excerpt is required"
+      type: String
     },
     description: {
-      type: String,
-      required: "Description is required"
+      type: String
     },
     picture: {
       type: String,
