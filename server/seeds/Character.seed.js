@@ -21,7 +21,6 @@ function getData(url) {
           realName: character.real_name,
           gender: character.gender,
           publisher: character.publisher.name,
-          publisherId: character.publisher.id,
           excerpt: character.deck,
           description: character.description,
           picture: character.image.original_url

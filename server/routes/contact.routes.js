@@ -5,13 +5,13 @@ const _ = require("lodash");
 const { isLoggedIn } = require("../middleware/isLogged");
 
 /* CONTACTS get contacts */
-router.get("/", isLoggedIn(), async (req, res, next) => {
+router.get("/list", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
     const user = await User.findById(id).populate("contacts");
     return res.json(user.contacts);
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(401).json(error);
   }
 });
 

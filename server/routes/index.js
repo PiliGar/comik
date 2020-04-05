@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { crudGenerator } = require("./crud.model");
-const CharacterModel = require("../models/Character");
 
-//Crud Generator
-
-router.use("/character", crudGenerator(CharacterModel));
+router.use("/character", require("./character.routes"));
+router.use("/publisher", require("./publisher.routes"));
+router.use("/issue", require("./issue.routes"));
+router.use("/professional", require("./professional.routes"));
 router.use("/contact", require("./contact.routes"));
-router.use("/user", require("./user.routes"));
 router.use("/auth", require("./auth.routes"));
+router.use("/user", require("./user.routes"));
 
 // GET home page
 router.get("/", (req, res, next) => {

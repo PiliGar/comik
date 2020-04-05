@@ -21,7 +21,10 @@ const characterSchema = new mongoose.Schema(
     publisher: {
       type: String
     },
-    publisherId: { type: ObjectId, ref: "Publisher" },
+    publisherId: {
+      type: [{ type: ObjectId, ref: "Publisher" }],
+      default: []
+    },
     excerpt: {
       type: String
     },

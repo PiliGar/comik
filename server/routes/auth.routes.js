@@ -7,22 +7,22 @@ const { isLoggedIn } = require("../middleware/isLogged");
 
 /* AUTH Signup */
 router.post("/signup", async (req, res, next) => {
-  const { name, alias, email, password } = req.body;
+  const { name, alias, username, password } = req.body;
 
-  console.log(name, alias, email);
+  console.log(name, alias, username);
 
   // Create the user
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ username });
   if (!existingUser) {
     const newUser = await User.create({
       name,
       alias,
-      email,
+      username,
       password
     });
     //Directly login user
     req.logIn(newUser, err => {
-      res.json(_.pick(req.user, ["name", "alias", "email", "_id"]));
+      res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
     });
     console.log(name, "User registered!");
   } else {
@@ -46,7 +46,7 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return res.status(500).json({ message: "Session save went bad" });
       }
-      return res.json(_.pick(req.user, ["name", "alias", "email", "_id"]));
+      return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
     });
   })(req, res, next);
 });
@@ -56,11 +56,11 @@ router.post("/login", (req, res, next) => {
 router.put("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
-    const { name, alias, email } = req.body;
+    const { name, alias, username } = req.body;
     await User.findByIdAndUpdate(id, {
       name,
       alias,
-      email
+      username
     });
     return res.json({ status: "Profile updated!" });
   } catch (error) {
@@ -84,7 +84,7 @@ router.post("/logout", isLoggedIn(), async (req, res, next) => {
 router.post("/whoami", (req, res, next) => {
   console.log("--->>> que user", req.user);
   if (req.user)
-    return res.json(_.pick(req.user, ["name", "alias", "email", "_id"]));
+    return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
   else return res.status(401).json({ status: "No user session present" });
 });
 
