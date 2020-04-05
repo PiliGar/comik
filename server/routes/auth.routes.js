@@ -60,8 +60,7 @@ router.put("/edit", isLoggedIn(), async (req, res, next) => {
     await User.findByIdAndUpdate(id, {
       name,
       alias,
-      email,
-      password
+      email
     });
     return res.json({ status: "Profile updated!" });
   } catch (error) {

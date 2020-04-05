@@ -6,6 +6,7 @@ const CharacterModel = require("../models/Character");
 //Crud Generator
 
 router.use("/character", crudGenerator(CharacterModel));
+router.use("/contact", require("./contact.routes"));
 router.use("/user", require("./user.routes"));
 router.use("/auth", require("./auth.routes"));
 
