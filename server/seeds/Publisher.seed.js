@@ -16,7 +16,6 @@ function getData(url) {
       const res = response.data.results;
       res.forEach(publisher => {
         const newPublisher = {
-          _id: publisher.id,
           name: publisher.name,
           locationAddress: publisher.location_address,
           locationCity: publisher.location_city,

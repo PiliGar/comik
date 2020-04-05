@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
 const professionalSchema = new mongoose.Schema(
   {
@@ -25,6 +26,10 @@ const professionalSchema = new mongoose.Schema(
     },
     description: {
       type: String
+    },
+    issues: {
+      type: [{ type: ObjectId, ref: "Issue" }],
+      default: []
     },
     picture: {
       type: String,

@@ -7,11 +7,11 @@ passport.use(
   new LocalStrategy(async (username, password, done) => {
     console.log("Passport local", username, password);
     try {
-      const existUser = await User.findOne({ username });
-      console.log("found user", existUser);
-      if (existUser) {
-        checkHashed(password, existUser.password)
-          ? done(null, existUser)
+      const foundUser = await User.findOne({ username });
+      console.log("found user", foundUser);
+      if (foundUser) {
+        checkHashed(password, foundUser.password)
+          ? done(null, foundUser)
           : done(null, false);
       } else {
         done(null, false);

@@ -52,15 +52,15 @@ router.post("/login", (req, res, next) => {
 });
 
 /* AUTH Edit */
+//--->>> TODO Can't edit with email hashed
 router.put("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
-    const { name, alias, username, password } = req.body;
+    const { name, alias, username } = req.body;
     await User.findByIdAndUpdate(id, {
       name,
       alias,
-      username,
-      password
+      username
     });
     return res.json({ status: "Profile updated!" });
   } catch (error) {

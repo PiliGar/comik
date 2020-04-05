@@ -16,10 +16,27 @@ function getData(url) {
       const res = response.data.results;
 
       res.forEach(professional => {
-        //Get description and issues of this professional response.data.results.issues + response.data.results.issues => arr of obj
+        //const createProfessional = async res => {
+        //Get issues of this professional response.data.results.issues => arr of obj
+        //I can do it in the front
 
-        //const getIssues = `${url}/person/4040-${professional.id}/?api_key=${key}&format=json`;
+        //   const issuesUrl = `${url}/person/4040-${professional.id}/?api_key=${key}&format=json`;
 
+        //   const getIssues = () => {
+        //     axios
+        //       .get(issuesUrl)
+        //       .then(response => {
+        //         //Array of issues
+        //         console.log(response.data.results.issues);
+        //         //¿Como desde ese array obtener el id correspondiente del modelo de issues?
+        //       })
+        //       .catch(function(error) {
+        //         // handle error
+        //         console.log("--->>> ERROR", error);
+        //       });
+        //   };
+
+        //};
         const newProfessional = {
           name: professional.name,
           birth: professional.birth,

@@ -1,41 +1,41 @@
 const express = require("express");
 const User = require("../models/User");
-const Character = require("../models/Character");
+const Publisher = require("../models/Publisher");
 const router = express.Router();
 const _ = require("lodash");
 const { isLoggedIn } = require("../middleware/isLogged");
 
-/* CHARACTER  add favorite */
+/* PUBLISHER  add favorite */
 router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
   try {
     const { favoriteid } = req.params;
     const id = req.user._id;
-    const character = await Character.findById(favoriteid);
+    const publisher = await Publisher.findById(favoriteid);
     await User.findByIdAndUpdate(id, {
-      $addToSet: { favoritesCharacters: character }
+      $addToSet: { favoritesPublishers: publisher }
     });
-    return res.json({ status: "Character added to user fav arr." });
+    return res.json({ status: "Publisher added to user fav arr." });
   } catch (error) {
     return res.status(401).json({ status: "Not found." });
   }
 });
 
-/* CHARACTER  remove favorite */
+/* PUBLISHER  remove favorite */
 router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
   try {
     const { favoriteid } = req.params;
     const id = req.user._id;
     await User.findById(id)
       .then(async user => {
-        const favoritesArr = user.favoritesCharacters;
+        const favoritesArr = user.favoritesPublishers;
         const updatedArr = await Promise.all(
           favoritesArr.filter(e => e != favoriteid)
         );
         await User.findByIdAndUpdate(id, {
-          favoritesCharacters: updatedArr.map(character => character._id)
+          favoritesPublishers: updatedArr.map(publisher => publisher._id)
         });
         return res.json({
-          status: "Character removed from user favorites arr."
+          status: "Publisher removed from user favorites arr."
         });
       })
       .catch(err => res.status(401).json({ status: "Not found again." }));
@@ -44,12 +44,12 @@ router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
   }
 });
 
-/* CHARACTER  get favorites */
+/* PUBLISHER  get favorites */
 router.get("/list", async (req, res, next) => {
   try {
     const id = req.user._id;
-    const user = await User.findById(id).populate("favoritesCharacters");
-    return res.json(user.favoritesCharacters);
+    const user = await User.findById(id).populate("favoritesPublishers");
+    return res.json(user.favoritesPublishers);
   } catch (error) {
     return res.status(401).json({ status: "Not found." });
   }

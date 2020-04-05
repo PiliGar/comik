@@ -16,7 +16,6 @@ function getData(url) {
       const res = response.data.results;
       res.forEach(issue => {
         const newIssue = {
-          _id: issue.id,
           title: issue.name,
           issueNumber: issue.issue_number,
           coverDate: issue.cover_date,

@@ -9,9 +9,7 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: "Name is required",
-      unique: true,
-      index: true
+      required: "Name is required"
     },
     alias: {
       type: String,
@@ -39,7 +37,7 @@ const userSchema = new Schema(
     },
     role: { type: String, default: "subscriber" },
     wantedIssues: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
+      type: [{ type: ObjectId, ref: "Issue" }],
       default: []
     },
     favoritesIssues: {
