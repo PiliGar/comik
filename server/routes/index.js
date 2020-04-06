@@ -1,10 +1,22 @@
 const express = require("express");
 const router = express.Router();
+const { crudGenerator } = require("./crudGenerator.routes");
+const Professional = require("../models/Professional");
+const Issue = require("../models/Issue");
+const Publisher = require("../models/Publisher");
+const Character = require("../models/Character");
 
-router.use("/character", require("./character.routes"));
-router.use("/publisher", require("./publisher.routes"));
-router.use("/issue", require("./issue.routes"));
-router.use("/professional", require("./professional.routes"));
+router.use("/character/favorite", require("./favorites/character.routes"));
+router.use("/character", crudGenerator(Character));
+router.use("/publisher/favorite", require("./favorites/publisher.routes"));
+router.use("/publisher", crudGenerator(Publisher));
+router.use("/issue/favorite", require("./favorites/issue.routes"));
+router.use("/issue", crudGenerator(Issue));
+router.use(
+  "/professional/favorite",
+  require("./favorites/professional.routes")
+);
+router.use("/professional", crudGenerator(Professional));
 router.use("/contact", require("./contact.routes"));
 router.use("/auth", require("./auth.routes"));
 router.use("/user", require("./user.routes"));
