@@ -1,59 +1,63 @@
 const express = require("express");
-const User = require("../models/User");
-const Issue = require("../models/Issue");
+const User = require("../../models/User");
+const Professional = require("../../models/Professional");
 const router = express.Router();
 const _ = require("lodash");
-const { isLoggedIn } = require("../middleware/isLogged");
+const { isLoggedIn } = require("../../middleware/isLogged");
 
-/* ISSUE  add favorite */
+/* PROFESSIONAL  add favorite */
 router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
   try {
     const { favoriteid } = req.params;
     const id = req.user._id;
-    const issue = await Issue.findById(favoriteid);
+    const professional = await Professional.findById(favoriteid);
     await User.findByIdAndUpdate(id, {
-      $addToSet: { favoritesIssues: issue }
+      $addToSet: { favoritesProfessionals: professional },
     });
-    return res.json({ status: "Issue added to user fav arr." });
+    return res.json({ status: "Professional added to user fav arr." });
   } catch (error) {
     return res.status(401).json({ status: "Not found." });
   }
 });
 
-/* ISSUE  remove favorite */
+/* PROFESSIONAL  remove favorite */
 router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
   try {
     const { favoriteid } = req.params;
     const id = req.user._id;
     await User.findById(id)
-      .then(async user => {
-        const favoritesArr = user.favoritesIssues;
+      .then(async (user) => {
+        const favoritesArr = user.favoritesProfessionals;
         const updatedArr = await Promise.all(
-          favoritesArr.filter(e => e != favoriteid)
+          favoritesArr.filter((e) => e != favoriteid)
         );
         await User.findByIdAndUpdate(id, {
-          favoritesIssues: updatedArr.map(issue => issue._id)
+          favoritesProfessionals: updatedArr.map(
+            (professional) => professional._id
+          ),
         });
         return res.json({
-          status: "Issue removed from user favorites arr."
+          status: "Professional removed from user favorites arr.",
         });
       })
-      .catch(err => res.status(401).json({ status: "Not found again." }));
+      .catch((err) => res.status(401).json({ status: "Not found again." }));
   } catch (error) {
     return res.status(401).json({ status: "Not found." });
   }
 });
 
-/* ISSUE  get favorites */
+/* PROFESSIONAL  get favorites */
 
 router.get("/list", async (req, res, next) => {
   try {
     const id = req.user._id;
-    const user = await User.findById(id).populate("favoritesIssues");
-    return res.json(user.favoritesIssues);
+    const user = await User.findById(id).populate("favoritesProfessionals");
+    return res.json(user.favoritesProfessionals);
   } catch (error) {
     return res.status(401).json({ status: "Not found." });
   }
 });
+
+/* CRUD */
 
 module.exports = router;
