@@ -11,11 +11,11 @@ getData(apiURL);
 function getData(url) {
   axios
     .get(url)
-    .then(response => {
+    .then((response) => {
       //console.log("--->>> RESPONSE", response.data.results);
       const res = response.data.results;
 
-      res.forEach(professional => {
+      res.forEach((professional) => {
         //const createProfessional = async res => {
         //Get issues of this professional response.data.results.issues => arr of obj
         //I can do it in the front
@@ -45,7 +45,7 @@ function getData(url) {
           hometown: professional.hometown,
           excerpt: professional.deck,
           description: professional.description,
-          picture: professional.image.original_url
+          picture: professional.image.original_url,
         };
         console.log(newProfessional);
 
@@ -55,7 +55,7 @@ function getData(url) {
         });
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log("--->>> ERROR", error);
     });
