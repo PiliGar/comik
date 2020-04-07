@@ -1,20 +1,20 @@
-const isLoggedIn = (redirectRoute = "/login") => (req, res, next) => {
+const isLoggedIn = () => (req, res, next) => {
   if (req.user) {
     return next();
   } else {
-    return res.redirect(redirectRoute);
+    return res.status(401).json({ message: "Unauthorized" });
   }
 };
 
-const isLoggedOut = (redirectRoute = "/") => (req, res, next) => {
+const isLoggedOut = () => (req, res, next) => {
   if (!req.user) {
     return next();
   } else {
-    return res.redirect(redirectRoute);
+    return res.status(401).json({ message: "Unauthorized" });
   }
 };
 
 module.exports = {
   isLoggedIn,
-  isLoggedOut
+  isLoggedOut,
 };
