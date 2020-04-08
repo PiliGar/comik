@@ -14,14 +14,19 @@ router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
     await User.findByIdAndUpdate(id, {
       $addToSet: { favoritesPublishers: publisher },
     });
-    return res.json({ status: "Publisher added to user fav arr." });
+    return res
+      .status(200)
+      .json({ message: "Publisher added successfully to user favorites." });
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(500).json({
+      message: "Internal server error adding publisher to favorites",
+      error,
+    });
   }
 });
 
 /* PUBLISHER  remove favorite */
-router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
+router.delete("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
   try {
     const { favoriteid } = req.params;
     const id = req.user._id;
@@ -34,13 +39,16 @@ router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
         await User.findByIdAndUpdate(id, {
           favoritesPublishers: updatedArr.map((publisher) => publisher._id),
         });
-        return res.json({
-          status: "Publisher removed from user favorites arr.",
+        return res.status(200).json({
+          message: "Publisher removed successfully to user favorites.",
         });
       })
-      .catch((err) => res.status(401).json({ status: "Not found again." }));
+      .catch((err) => res.status(401).json({ status: "User not found" }));
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(500).json({
+      message: "Internal server error removing publisher from favorites",
+      error,
+    });
   }
 });
 
@@ -49,9 +57,12 @@ router.get("/list", async (req, res, next) => {
   try {
     const id = req.user._id;
     const user = await User.findById(id).populate("favoritesPublishers");
-    return res.json(user.favoritesPublishers);
+    return res.status(200).json(user.favoritesPublishers);
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(500).json({
+      message: "Internal server error showing favorites publishers",
+      error,
+    });
   }
 });
 

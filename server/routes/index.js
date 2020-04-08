@@ -10,6 +10,7 @@ router.use("/character/favorite", require("./favorites/character.routes"));
 router.use("/character", crudGenerator(Character));
 router.use("/publisher/favorite", require("./favorites/publisher.routes"));
 router.use("/publisher", crudGenerator(Publisher));
+router.use("/issue/wanted", require("./wanted/issue.routes"));
 router.use("/issue/favorite", require("./favorites/issue.routes"));
 router.use("/issue", crudGenerator(Issue));
 router.use(

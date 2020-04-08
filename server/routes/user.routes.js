@@ -6,32 +6,52 @@ const { isLoggedIn } = require("../middleware/isLogged");
 const { isAdminRole } = require("../middleware/isRole");
 
 /* USER Get single user */
-//---- >>>> TODO populate
-router.get("/:id", isLoggedIn(), (req, res, next) => {
-  const id = req.user._id;
+router.get("/:id", isLoggedIn(), async (req, res, next) => {
+  const { id } = req.params;
   User.findOne({ _id: id })
-    .then(user => {
-      res.json(user);
+    .populate("wantedIssues")
+    .populate("favoritesIssues")
+    .populate("favoritesProfessionals")
+    .populate("favoritesPublishers")
+    .populate("favoritesCharacters")
+    .populate("favoriteIssues")
+    .populate("contacts")
+    .then((user) => {
+      res.status(200).json({ message: "User retrived", user });
     })
-    .catch(err => res.status(500).json(err));
+    .catch((err) => res.status(500).json(err));
 });
 
 /* USER Get users */
-//---- >>>> TODO populate
 router.get("/", isAdminRole(), (req, res, next) => {
   User.find()
-    .then(users => {
-      res.json(users);
+    .populate("wantedIssues")
+    .populate("favoritesIssues")
+    .populate("favoritesProfessionals")
+    .populate("favoritesPublishers")
+    .populate("favoritesCharacters")
+    .populate("favoriteIssues")
+    .populate("contacts")
+    .then((users) => {
+      res.status(200).json({ message: "Users retrived", users });
     })
-    .catch(err => res.status(500).json(err));
+    .catch((err) => res.status(500).json(err));
 });
 
 /* USER edit single user by admin */
 router.put("/:id", isAdminRole(), (req, res, next) => {
   const { id } = req.params;
   User.findOneAndUpdate({ _id: id }, req.body, { new: true })
-    .then(data => res.json(data))
-    .catch(err => res.status(500).json(err));
+    .then((data) => res.status(200).json({ message: "User updated", data }))
+    .catch((err) => res.status(500).json(err));
+});
+
+/* USER delete user by admin */
+router.delete("/:id", isAdminRole(), (req, res, next) => {
+  const { id } = req.params;
+  User.findByIdAndRemove({ _id: id }, req.body, { new: true })
+    .then((data) => res.status(200).json({ message: "User deleted", data }))
+    .catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;

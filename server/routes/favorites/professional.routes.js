@@ -14,14 +14,19 @@ router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
     await User.findByIdAndUpdate(id, {
       $addToSet: { favoritesProfessionals: professional },
     });
-    return res.json({ status: "Professional added to user fav arr." });
+    return res
+      .status(200)
+      .json({ message: "Professional added successfully to user favorites." });
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(500).json({
+      message: "Internal server error adding professional to favorites",
+      error,
+    });
   }
 });
 
 /* PROFESSIONAL  remove favorite */
-router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
+router.delete("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
   try {
     const { favoriteid } = req.params;
     const id = req.user._id;
@@ -36,25 +41,30 @@ router.post("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
             (professional) => professional._id
           ),
         });
-        return res.json({
-          status: "Professional removed from user favorites arr.",
+        return res.status(200).json({
+          status: "Professional removed successfully from user favorites arr.",
         });
       })
-      .catch((err) => res.status(401).json({ status: "Not found again." }));
+      .catch((err) => res.status(401).json({ status: "User not found" }));
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(500).json({
+      message: "Internal server error removing professional from favorites",
+      error,
+    });
   }
 });
 
 /* PROFESSIONAL  get favorites */
-
 router.get("/list", async (req, res, next) => {
   try {
     const id = req.user._id;
     const user = await User.findById(id).populate("favoritesProfessionals");
-    return res.json(user.favoritesProfessionals);
+    return res.status(200).json(user.favoritesProfessionals);
   } catch (error) {
-    return res.status(401).json({ status: "Not found." });
+    return res.status(500).json({
+      message: "Internal server error showing favorites professionals",
+      error,
+    });
   }
 });
 

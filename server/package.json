@@ -10,7 +10,8 @@
     "seed-professionals": "node seeds/Professional.seed.js",
     "seed-publishers": "node seeds/Publisher.seed.js",
     "seed-issues": "node seeds/Issue.seed.js",
-    "seed-characters": "node seeds/Character.seed.js"
+    "seed-characters": "node seeds/Character.seed.js",
+    "seed-pro-test": "node seeds/Oldprofessional.seed.js"
   },
   "dependencies": {
     "axios": "^0.19.2",

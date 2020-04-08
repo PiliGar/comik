@@ -1,13 +1,11 @@
 const withDbConnection = require("../withDbConnection");
 const Users = require("../models/User");
 require("dotenv").config();
-const adminUser = process.env.ADMIN_USER;
-const adminPass = process.env.ADMIN_PASS;
 
 let dataUsers = [
   {
-    username: adminUser,
-    password: adminPass,
+    username: process.env.ADMIN_USER,
+    password: process.env.ADMIN_PASS,
     name: "Pilar",
     alias: "admin",
     avatar:
@@ -19,11 +17,11 @@ let dataUsers = [
     favoritesPublishers: [],
     favoritesCharacters: [],
     favoriteIssues: [],
-    contacts: []
+    contacts: [],
   },
   {
     username: "manuela@comik.com",
-    password: adminPass,
+    password: process.env.ADMIN_PASS,
     name: "Manuela",
     alias: "admin",
     avatar:
@@ -35,8 +33,8 @@ let dataUsers = [
     favoritesPublishers: [],
     favoritesCharacters: [],
     favoriteIssues: [],
-    contacts: []
-  }
+    contacts: [],
+  },
 ];
 
 withDbConnection(async () => {
