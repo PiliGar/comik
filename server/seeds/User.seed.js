@@ -8,7 +8,8 @@ let dataUsers = [
     password: process.env.ADMIN_PASS,
     name: "Pilar",
     alias: "admin",
-    avatar:
+    imgName: "avatar",
+    imgSrc:
       "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
     role: "admin",
     wantedIssues: [],
@@ -24,7 +25,8 @@ let dataUsers = [
     password: process.env.ADMIN_PASS,
     name: "Manuela",
     alias: "admin",
-    avatar:
+    imgName: "avatar",
+    imgSrc:
       "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
     role: "admin",
     wantedIssues: [],

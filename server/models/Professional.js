@@ -7,35 +7,38 @@ const professionalSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      required: "Name is required"
+      required: "Name is required",
     },
     birth: {
-      type: String
+      type: String,
     },
     death: {
-      type: String
+      type: String,
     },
     country: {
-      type: String
+      type: String,
     },
     hometown: {
-      type: String
+      type: String,
     },
     excerpt: {
-      type: String
+      type: String,
     },
     description: {
-      type: String
+      type: String,
     },
     issues: {
       type: [{ type: ObjectId, ref: "Issue" }],
-      default: []
+      default: [],
     },
-    picture: {
+    imageName: {
+      type: String,
+    },
+    imageSrc: {
       type: String,
       default:
-        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
-    }
+        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
+    },
   },
   {
     timestamps: true,
@@ -47,8 +50,8 @@ const professionalSchema = new mongoose.Schema(
         delete ret.updatedAt;
         delete ret.__v;
         return ret;
-      }
-    }
+      },
+    },
   }
 );
 
@@ -57,8 +60,8 @@ const Professional = mongoose.model("Professional", professionalSchema);
 Professional.collection.createIndexes([
   {
     key: { name: 1 },
-    name: "name"
-  }
+    name: "name",
+  },
 ]);
 
 module.exports = Professional;

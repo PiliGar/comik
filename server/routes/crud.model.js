@@ -3,6 +3,7 @@ const _ = require("lodash");
 const { asyncController } = require("../middleware/asyncController");
 const User = require("../models/User");
 const { isAdminRole } = require("../middleware/isRole");
+const uploadCloud = require("../config/cloudinary.js");
 
 //Function that retrieve a model and options and return a router
 const crudGenerator = (
@@ -48,13 +49,22 @@ const crudGenerator = (
   });
 
   /* CRUD Create */
+  //TODO insert cloudinary
   router.post(
     "/create",
+    uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
+      //   const imgPath = req.file.url;
+      //   const imgName = req.file.originalname;
+      const imgPath = "path.jpg";
+      const imgName = "picture";
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
+        imgPath,
+        imgName,
       };
+      console.log("--->>> Create data:", data);
       const obj = await Model.create(data);
       return res.status(200).json({ message: "Created successfully", obj });
     })
@@ -63,12 +73,20 @@ const crudGenerator = (
   /* CRUD Edit */
   router.put(
     "/edit/:id",
+    uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
       const { id } = req.params;
+      //   const imgPath = req.file.url;
+      //   const imgName = req.file.originalname;
+      const imgPath = "path.jpg";
+      const imgName = "picture";
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
+        imgPath,
+        imgName,
       };
+      console.log("--->>> Update data:", data);
       const obj = await Model.findOneAndUpdate({ _id: id }, data, {
         new: true,
       });

@@ -56,7 +56,7 @@ function getData(url) {
                   description: issue.description,
                   picture: issue.image.original_url,
                 };
-                //console.log("NEW ISSUE", newIssue);
+                console.log("NEW ISSUE", newIssue);
 
                 //---> Create new issue in DB
                 //---> Get the _id of each issue, push to an array and pass it to the newProfessional object ??

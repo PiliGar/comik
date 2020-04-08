@@ -9,11 +9,11 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: "Name is required"
+      required: "Name is required",
     },
     alias: {
       type: String,
-      required: "Alias is required"
+      required: "Alias is required",
     },
     username: {
       type: String,
@@ -23,48 +23,51 @@ const userSchema = new Schema(
       unique: true,
       index: true,
       default: null,
-      lowercase: true
+      lowercase: true,
     },
     password: {
       type: String,
       required: [true, "Password is required"],
-      match: [PASSWORD_PATTERN, "Invalid password pattern"]
+      match: [PASSWORD_PATTERN, "Invalid password pattern"],
     },
-    avatar: {
+    imageName: {
+      type: String,
+    },
+    imageSrc: {
       type: String,
       default:
-        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
+        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
     },
     role: { type: String, default: "subscriber" },
     wantedIssues: {
       type: [{ type: ObjectId, ref: "Issue" }],
-      default: []
+      default: [],
     },
     favoritesIssues: {
       type: [{ type: ObjectId, ref: "Issue" }],
-      default: []
+      default: [],
     },
     favoritesProfessionals: {
       type: [{ type: ObjectId, ref: "Professional" }],
-      default: []
+      default: [],
     },
     favoritesPublishers: {
       type: [{ type: ObjectId, ref: "Publisher" }],
-      default: []
+      default: [],
     },
     favoritesCharacters: {
       type: [{ type: ObjectId, ref: "Character" }],
-      default: []
+      default: [],
     },
     favoriteIssues: {
       type: [{ type: ObjectId, ref: "Issue" }],
-      default: []
+      default: [],
     },
     contacts: {
       type: [{ type: ObjectId, ref: "User" }],
-      default: []
+      default: [],
     },
-    visits: { type: Number, default: 0 }
+    visits: { type: Number, default: 0 },
   },
   {
     timestamps: true,
@@ -77,12 +80,12 @@ const userSchema = new Schema(
         delete ret.updatedAt;
         delete ret.__v;
         return ret;
-      }
-    }
+      },
+    },
   }
 );
 
-userSchema.pre("save", async function(next) {
+userSchema.pre("save", async function (next) {
   const user = this;
   if (!user.isModified("password")) {
     return next();
@@ -97,8 +100,8 @@ const User = mongoose.model("User", userSchema);
 User.collection.createIndexes([
   {
     key: { username: 1 },
-    name: "username"
-  }
+    name: "username",
+  },
 ]);
 
 module.exports = User;
