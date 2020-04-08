@@ -2,6 +2,7 @@ const express = require("express");
 const _ = require("lodash");
 const { asyncController } = require("../middleware/asyncController");
 const User = require("../models/User");
+const { isAdminRole } = require("../middleware/isRole");
 
 //Function that retrieve a model and options and return a router
 const crudGenerator = (
@@ -25,34 +26,37 @@ const crudGenerator = (
   router.get(
     "/fields",
     asyncController(async (req, res, next) => {
-      return res.json({ createFields });
+      return res
+        .status(200)
+        .json({ message: "Fields available to create", createFields });
     })
   );
 
   /* CRUD Retrieve */
   router.get("/", async (req, res, next) => {
     const objs = await Model.find().populate(populateFields);
-    return res.json(objs);
+    return res
+      .status(200)
+      .json({ message: "All retrieved successfully", objs });
   });
 
   /* CRUD Retrieve one */
   router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
-    const objs = await Model.findById(id).populate(populateFields);
-    return res.json(objs);
+    const obj = await Model.findById(id).populate(populateFields);
+    return res.status(200).json({ message: "Retrieved one successfully", obj });
   });
 
   /* CRUD Create */
   router.post(
     "/create",
     asyncController(async (req, res, next) => {
-      // NOTE: For security reasons, only allow input certain fields
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
       };
       const obj = await Model.create(data);
-      return res.json(obj);
+      return res.status(200).json({ message: "Created successfully", obj });
     })
   );
 
@@ -61,7 +65,6 @@ const crudGenerator = (
     "/edit/:id",
     asyncController(async (req, res, next) => {
       const { id } = req.params;
-      // NOTE: For security reasons, only allow input certain fields
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
@@ -69,17 +72,17 @@ const crudGenerator = (
       const obj = await Model.findOneAndUpdate({ _id: id }, data, {
         new: true,
       });
-      return res.json(obj);
+      return res.status(200).json({ message: "Updated successfully", obj });
     })
   );
 
   /* CRUD Delete */
-  router.post(
+  router.delete(
     "/delete/:id",
     asyncController(async (req, res, next) => {
       const { id } = req.params;
       await Model.findByIdAndRemove(id);
-      return res.json({ status: "Deleted", id });
+      return res.status(200).json({ message: "Deleted successfully", id });
     })
   );
 

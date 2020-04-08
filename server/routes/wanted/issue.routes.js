@@ -5,62 +5,62 @@ const router = express.Router();
 const _ = require("lodash");
 const { isLoggedIn } = require("../../middleware/isLogged");
 
-/* ISSUE  add favorite */
-router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
+/* ISSUE  add wanted */
+router.post("/add/:wantedid", isLoggedIn(), async (req, res, next) => {
   try {
-    const { favoriteid } = req.params;
+    const { wantedid } = req.params;
     const id = req.user._id;
-    const issue = await Issue.findById(favoriteid);
+    const issue = await Issue.findById(wantedid);
     await User.findByIdAndUpdate(id, {
-      $addToSet: { favoritesIssues: issue },
+      $addToSet: { wantedIssues: issue },
     });
     return res
       .status(200)
-      .json({ message: "Issue added successfully to user favorites." });
+      .json({ message: "Issue added successfully to user wanted." });
   } catch (error) {
     return res.status(500).json({
-      message: "Internal server error adding issue to favorites",
+      message: "Internal server error adding issue to wanted",
       error,
     });
   }
 });
 
-/* ISSUE  remove favorite */
-router.delete("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
+/* ISSUE  remove wanted */
+router.delete("/remove/:wantedid", isLoggedIn(), async (req, res, next) => {
   try {
-    const { favoriteid } = req.params;
+    const { wantedid } = req.params;
     const id = req.user._id;
     await User.findById(id)
       .then(async (user) => {
-        const favoritesArr = user.favoritesIssues;
+        const wantedArr = user.wantedIssues;
         const updatedArr = await Promise.all(
-          favoritesArr.filter((e) => e != favoriteid)
+          wantedArr.filter((e) => e != wantedid)
         );
         await User.findByIdAndUpdate(id, {
-          favoritesIssues: updatedArr.map((issue) => issue._id),
+          wantedIssues: updatedArr.map((issue) => issue._id),
         });
         return res.status(200).json({
-          status: "Issue removed successfully from user favorites arr.",
+          status: "Issue removed successfully from user wanted arr.",
         });
       })
       .catch((err) => res.status(401).json({ status: "User not found" }));
   } catch (error) {
     return res.status(500).json({
-      message: "Internal server error removing issue from favorites",
+      message: "Internal server error removing issue from wanted",
       error,
     });
   }
 });
 
-/* ISSUE  get favorites */
+/* ISSUE  get wanted */
 router.get("/list", async (req, res, next) => {
   try {
     const id = req.user._id;
-    const user = await User.findById(id).populate("favoritesIssues");
-    return res.status(200).json(user.favoritesIssues);
+    const user = await User.findById(id).populate("wantedIssues");
+    return res.status(200).json(user.wantedIssues);
   } catch (error) {
     return res.status(500).json({
-      message: "Internal server error showing favorites issues",
+      message: "Internal server error showing wanted issues",
       error,
     });
   }
