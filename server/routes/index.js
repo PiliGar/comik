@@ -46,6 +46,7 @@ router.use(
 
       const issueIds = issuesObj.map((issue) => issue.value._id);
       console.log("issueIds --->>>", issueIds);
+      //This is created before resolve the promise
       return {
         issues: issueIds,
       };
