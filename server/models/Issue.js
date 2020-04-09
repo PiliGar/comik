@@ -8,6 +8,9 @@ const issueSchema = new mongoose.Schema(
       index: true,
       required: "Title is required",
     },
+    apiId: {
+      type: Number,
+    },
     issueNumber: {
       type: String,
     },

@@ -1,9 +1,8 @@
 const express = require("express");
 const _ = require("lodash");
-const { asyncController } = require("../middleware/asyncController");
-const User = require("../models/User");
-const { isAdminRole } = require("../middleware/isRole");
-const uploadCloud = require("../config/cloudinary.js");
+const { asyncController } = require("../../middleware/asyncController");
+const { isAdminRole } = require("../../middleware/isRole");
+const uploadCloud = require("../../config/cloudinary.js");
 
 //Function that retrieve a model and options and return a router
 const crudGenerator = (
@@ -80,13 +79,14 @@ const crudGenerator = (
       //   const imgName = req.file.originalname;
       const imgPath = "path.jpg";
       const imgName = "picture";
+
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
         imgPath,
         imgName,
       };
-      console.log("--->>> Update data:", data);
+      console.log("--->>> Create data:", data);
       const obj = await Model.findOneAndUpdate({ _id: id }, data, {
         new: true,
       });
