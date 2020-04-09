@@ -7,35 +7,38 @@ const characterSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      required: "Name is required"
+      required: "Name is required",
     },
     alias: {
-      type: String
+      type: String,
     },
     realName: {
-      type: String
+      type: String,
     },
     gender: {
-      type: String
+      type: String,
     },
     publisher: {
-      type: String
+      type: String,
     },
     publisherId: {
       type: [{ type: ObjectId, ref: "Publisher" }],
-      default: []
+      default: [],
     },
     excerpt: {
-      type: String
+      type: String,
     },
     description: {
-      type: String
+      type: String,
     },
-    picture: {
+    imageName: {
+      type: String,
+    },
+    imageSrc: {
       type: String,
       default:
-        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
-    }
+        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
+    },
   },
   {
     timestamps: true,
@@ -47,8 +50,8 @@ const characterSchema = new mongoose.Schema(
         delete ret.updatedAt;
         delete ret.__v;
         return ret;
-      }
-    }
+      },
+    },
   }
 );
 
@@ -57,8 +60,8 @@ const Character = mongoose.model("Character", characterSchema);
 Character.collection.createIndexes([
   {
     key: { name: 1 },
-    name: "name"
-  }
+    name: "name",
+  },
 ]);
 
 module.exports = Character;

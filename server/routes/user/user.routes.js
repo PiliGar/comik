@@ -1,9 +1,9 @@
 const express = require("express");
-const User = require("../models/User");
+const User = require("../../models/User");
 const router = express.Router();
 const _ = require("lodash");
-const { isLoggedIn } = require("../middleware/isLogged");
-const { isAdminRole } = require("../middleware/isRole");
+const { isLoggedIn } = require("../../middleware/isLogged");
+const { isAdminRole } = require("../../middleware/isRole");
 
 /* USER Get single user */
 router.get("/:id", isLoggedIn(), async (req, res, next) => {

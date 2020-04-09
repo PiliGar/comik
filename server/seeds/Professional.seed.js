@@ -49,44 +49,47 @@ function getData(url) {
                 const issue = r.value.data.results;
                 const newIssue = {
                   title: issue.name,
+                  apiId: issue.id,
                   issueNumber: issue.issue_number,
                   coverDate: getDate(issue.cover_date),
                   volume: issue.volume.name,
                   excerpt: issue.deck,
                   description: issue.description,
-                  picture: issue.image.original_url,
+                  imageName: issue.name,
+                  imageSrc: issue.image.original_url,
                 };
-                //console.log("NEW ISSUE", newIssue);
+                console.log("NEW ISSUE", newIssue);
 
                 //---> Create new issue in DB
                 //---> Get the _id of each issue, push to an array and pass it to the newProfessional object ??
+                Issue.create(newIssue);
 
-                //withDbConnection(async () => {
-                // await Issue.save((err, newIssue) => {
+                // withDbConnection(async () => {
+                //   await Issue.save((err, newIssue) => {
                 //     if (err) return `Error occurred while saving ${err}`;
-
                 //     const { _id } = newIssue;
                 //     issuesIds.push(_id);
+                //   });
                 // });
-                //});
               }
             });
             return issuesIds;
           };
-          const professionalIssues = getIssues(arrOfIssues);
+          getIssues(arrOfIssues).then(console.log("res", res));
 
-          newProfessionals.push({
-            name: professional.name,
-            birth: getDate(professional.birth),
-            death: getDate(professional.death),
-            country: professional.country,
-            hometown: professional.hometown,
-            //---> Array of ISUES IDS
-            issues: professionalIssues,
-            excerpt: professional.deck,
-            description: professional.description,
-            picture: professional.image.original_url,
-          });
+          //   newProfessionals.push({
+          //     name: professional.name,
+          //     birth: getDate(professional.birth),
+          //     death: getDate(professional.death),
+          //     country: professional.country,
+          //     hometown: professional.hometown,
+          //     //---> Array of ISUES IDS
+          //     issues: professionalIssues,
+          //     excerpt: professional.deck,
+          //     description: professional.description,
+          //     imageName: professional.name,
+          //     imageSrc: professional.image.original_url,
+          //   });
 
           //---> Create Professionals in DB all the arr at once
 

@@ -1,8 +1,8 @@
 const express = require("express");
-const User = require("../models/User");
+const User = require("../../models/User");
 const router = express.Router();
 const _ = require("lodash");
-const { isLoggedIn } = require("../middleware/isLogged");
+const { isLoggedIn } = require("../../middleware/isLogged");
 
 /* CONTACTS get contacts */
 router.get("/list", isLoggedIn(), async (req, res, next) => {

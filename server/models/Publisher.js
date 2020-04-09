@@ -6,28 +6,31 @@ const publisherSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      required: "Name is required"
+      required: "Name is required",
     },
     locationAddress: {
-      type: String
+      type: String,
     },
     locationCity: {
-      type: String
+      type: String,
     },
     locationState: {
-      type: String
+      type: String,
     },
     excerpt: {
-      type: String
+      type: String,
     },
     description: {
-      type: String
+      type: String,
     },
-    picture: {
+    imageName: {
+      type: String,
+    },
+    imageSrc: {
       type: String,
       default:
-        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg"
-    }
+        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
+    },
   },
   {
     timestamps: true,
@@ -39,8 +42,8 @@ const publisherSchema = new mongoose.Schema(
         delete ret.updatedAt;
         delete ret.__v;
         return ret;
-      }
-    }
+      },
+    },
   }
 );
 
@@ -49,8 +52,8 @@ const Publisher = mongoose.model("Publisher", publisherSchema);
 Publisher.collection.createIndexes([
   {
     key: { name: 1 },
-    name: "name"
-  }
+    name: "name",
+  },
 ]);
 
 module.exports = Publisher;

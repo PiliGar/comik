@@ -13,14 +13,14 @@ const MongoStore = require("connect-mongo")(session);
 mongoose
   .connect(process.env.DBURL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 
@@ -34,7 +34,7 @@ const app = express();
 // Cross Domain CORS whitlist
 const whitelist = ["http://localhost:3000", "http://localhost:1234"];
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin) return callback(null, true);
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
@@ -42,7 +42,7 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true
+  credentials: true,
 };
 
 // Middleware Setup
@@ -53,10 +53,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: "comik",
     resave: true,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 require("./passport")(app);

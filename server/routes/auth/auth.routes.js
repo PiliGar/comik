@@ -1,9 +1,9 @@
 const express = require("express");
-const User = require("../models/User");
+const User = require("../../models/User");
 const router = express.Router();
 const _ = require("lodash");
 const passport = require("passport");
-const { isLoggedIn } = require("../middleware/isLogged");
+const { isLoggedIn } = require("../../middleware/isLogged");
 
 /* AUTH Signup */
 router.post("/signup", async (req, res, next) => {
@@ -11,6 +11,13 @@ router.post("/signup", async (req, res, next) => {
 
   console.log(name, alias, username);
   console.log(`--->>> New sing up request: ${name} | ${alias} | ${username}`);
+
+  if (username === "" || password === "") {
+    res.status(400).json({
+      message: "Please enter both, username and password to sign up.",
+    });
+    return;
+  }
 
   // Create the user
   const existingUser = await User.findOne({ username });
