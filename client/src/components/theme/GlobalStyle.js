@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import orkneyRegular from "../../../public/fonts/orkneyRegular.woff";
 
 export const GlobalStyle = createGlobalStyle`
@@ -23,26 +23,63 @@ export const GlobalStyle = createGlobalStyle`
     background: ${({ theme: { color } }) => color.medium};
     -webkit-box-shadow:${({ theme: { shadow } }) => shadow.global};
     box-shadow: ${({ theme: { shadow } }) => shadow.global};
+    &:before,&:after{
+        content:"";
+        height: 4rem;
+        width: 0.1rem;
+        position: absolute;
+        left:50%;
+        top: 0;
+        margin-left: -0.05rem;
+        background:${({ theme: { color } }) => color.primary};
+    }
+    &:before{
+        content:"";
+        top: initial;
+        bottom: 0;
+    }
     
   }
   body {
     border: ${({ theme: { border } }) => border.dashed};
     margin: 1.5rem;
     height: 90vh;
-    overflow: hidden;
+    &:before,&:after{
+        content:"";
+        width: 4rem;
+        height: 0.1rem;
+        position: absolute;
+        left:0;
+        top: 50%;
+        margin-top: -0.05rem;
+        background:${({ theme: { color } }) => color.primary};
+    }
+    &:before{
+        content:"";
+        left: initial;
+        right: 0;
+    }
+    /* @media ${({ theme: { media } }) => media.xs} {
+        background: greenyellow;
+    }
+    @media ${({ theme: { media } }) => media.sm} {
+        background: lightblue;
+    }
+    @media ${({ theme: { media } }) => media.md} {
+        background: cadetblue;
+    }
+    @media ${({ theme: { media } }) => media.lg} {
+        background: firebrick;
+    } */
   }
   h1{
         font-family: 'orkney';
         color: ${({ theme: { color } }) => color.primary};
     }
-`;
-
-export const Container = styled.div`
-  align-items: center;
-  background: #dbebda;
-  box-sizing: border-box;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  width: 100vw;
+    a, button{
+        font-size: ${({ theme: { fontSize } }) => fontSize.s};
+        line-height: ${({ theme: { lineHeight } }) => lineHeight.s};
+        font-family: ${({ theme: { font } }) => font.primary};
+    }
+    
 `;

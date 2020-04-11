@@ -1,6 +1,5 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { orkneyRegular } from "../../../public/fonts/orkneyRegular.woff";
 
 const theme = {
   color: {
@@ -16,13 +15,15 @@ const theme = {
     terciary: `"Libre Franklin", Helvetica, sans-serif`,
   },
   fontSize: {
-    s: "1rem",
+    xs: "1.6rem",
+    s: "1.8rem",
     m: "2.6rem",
     l: "3.1rem",
     xl: "4.2rem",
   },
   lineHeight: {
-    s: "1.5rem",
+    xs: "1.8rem",
+    s: "2.2rem",
     m: "3rem",
     l: "3.6rem",
     xl: "4.7rem",
@@ -49,6 +50,13 @@ const theme = {
     left: "left",
     right: "right",
     center: "center",
+  },
+  media: {
+    xs: `(min-width: 320px)`,
+    sm: `(min-width: 576px)`,
+    md: `(min-width: 768px)`,
+    lg: `(min-width: 992px)`,
+    xl: `(min-width: 1200px)`,
   },
 };
 

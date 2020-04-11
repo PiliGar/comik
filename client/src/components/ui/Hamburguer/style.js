@@ -93,10 +93,11 @@ export const StyledHamburguer = styled.nav`
       flex-flow: column nowrap;
       justify-content: space-between;
       align-items: center;
+      display: none;
       li {
         list-style: none;
         a {
-          font-size: ${({ theme: { fontSize } }) => fontSize.xl};
+          font-size: ${({ theme: { fontSize } }) => fontSize.l};
           line-height: ${({ theme: { lineHeight } }) => lineHeight.xl};
           font-family: ${({ theme: { font } }) => font.primary};
           font-weight: ${({ theme: { fontWeight } }) => fontWeight.h};
@@ -117,6 +118,11 @@ export const StyledHamburguer = styled.nav`
           }
         }
       }
+    }
+  }
+  @media ${({ theme: { media } }) => media.md} {
+    label ul li a {
+      font-size: ${({ theme: { fontSize } }) => fontSize.xl};
     }
   }
 `;
