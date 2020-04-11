@@ -9,7 +9,7 @@ export const NavBar = () => {
     <StyledNavbar>
       <ul>
         <li>
-          <Linkto to="/" type="primary">
+          {/* <Linkto to="/" type="primary">
             Nada
           </Linkto>
           <Button to="/" type="primary">
@@ -35,21 +35,32 @@ export const NavBar = () => {
             <span>o</span>
             <span>i</span>
             <span>n</span>
+          </LinkAnimated> */}
+        </li>
+        {/* TODO !isLoged */}
+        <li>
+          <Linkto to="/login" type="primary">
+            Log in
+          </Linkto>
+        </li>
+        <li>
+          <LinkAnimated to="/signin" type="dark" text="Join" design="inverted">
+            <span>J</span>
+            <span>o</span>
+            <span>i</span>
+            <span>n</span>
           </LinkAnimated>
         </li>
+        {/* TODO isLoged admin or user*/}
         <li>
-          <Link to="/">Log in</Link>
+          <Linkto to="/" type="primary">
+            Notifications
+          </Linkto>
         </li>
         <li>
-          <Link to="/">Notifications</Link>
-        </li>
-        <li>
-          <Link to="/">
+          <Linkto to="/" type="primary">
             Welcome <b>pilar@comick.com</b>
-          </Link>
-        </li>
-        <li>
-          <Link to="/">Log out</Link>
+          </Linkto>
         </li>
       </ul>
     </StyledNavbar>

@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 export const StyledBtnAnimated = styled.button`
   border-radius: 50px;
   font-size: 18px;
+  line-height: 18px;
   position: relative;
   padding: 0 2em;
+  margin: 0.5rem 0.8rem;
   overflow: hidden;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
@@ -130,9 +132,10 @@ export const StyledBtnAnimated = styled.button`
 
 export const StyledLinkAnimated = styled(Link)`
   text-decoration: none;
-  margin: 0;
+  margin: 0.5rem 0.8rem;
   border-radius: 50px;
   font-size: 18px;
+  line-height: 18px;
   position: relative;
   padding: 1.7rem 2em;
   text-align: center;
@@ -265,7 +268,7 @@ export const StyledBtn = styled(Link)`
   display: inline-block;
   border-radius: 5rem;
   padding: 0.5rem 0;
-  margin: 0.5rem 1rem;
+  margin: 0.5rem 0.8rem;
   width: auto;
   text-decoration: none;
   padding: 1.7rem 2rem;

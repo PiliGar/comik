@@ -1,17 +1,17 @@
 import React from "react";
-import { StyledHome } from "./style";
+import { StyledLogin } from "./style";
 import { Container, Row } from "react-bootstrap";
 
-export const HomePage = () => {
+export const LoginPage = () => {
   return (
     <>
-      <StyledHome>
+      <StyledLogin>
         <Container>
           <Row>
-            <h1>Home Page</h1>
+            <h1>Log in</h1>
           </Row>
         </Container>
-      </StyledHome>
+      </StyledLogin>
     </>
   );
 };

@@ -11,9 +11,9 @@ export const Header = () => {
     <StyledHeader>
       <Navbar>
         <div className="wrapper">
-          <Navbar.Brand href="#home" className="logo-container">
+          <Link to="/" className="logo-container">
             <img alt="" src={Logo} className="d-inline-block align-top logo" />
-          </Navbar.Brand>
+          </Link>
           <NavBar />
         </div>
         <Hamburger className="top-nav-bar" />

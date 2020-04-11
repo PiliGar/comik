@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
     font: normal 10px/1.45rem "orkneyRegular";
     height: 100vh;
     box-sizing: border-box;
-    background: ${({ theme: { color } }) => color.medium};
     -webkit-box-shadow:${({ theme: { shadow } }) => shadow.global};
     box-shadow: ${({ theme: { shadow } }) => shadow.global};
     &:before,&:after{
@@ -38,11 +37,12 @@ export const GlobalStyle = createGlobalStyle`
         top: initial;
         bottom: 0;
     }
-    
   }
   body {
     border: ${({ theme: { border } }) => border.dashed};
+    background: ${({ theme: { color } }) => color.medium};
     margin: 1.5rem;
+    overflow-x: hidden;
     height: 90vh;
     &:before,&:after{
         content:"";
@@ -72,9 +72,15 @@ export const GlobalStyle = createGlobalStyle`
         background: firebrick;
     } */
   }
-  h1{
+    h1{
         font-family: 'orkney';
         color: ${({ theme: { color } }) => color.primary};
+        font-size: ${({ theme: { fontSize } }) => fontSize.xl};
+    }
+    h2{
+        font-family: 'orkney';
+        color: ${({ theme: { color } }) => color.primary};
+        font-size: ${({ theme: { fontSize } }) => fontSize.l};
     }
     a, button{
         font-size: ${({ theme: { fontSize } }) => fontSize.s};
