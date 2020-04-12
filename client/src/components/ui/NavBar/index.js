@@ -9,28 +9,28 @@ export const NavBar = () => {
     <StyledNavbar>
       <ul>
         <li>
-          {/* <Linkto to="/" type="primary">
+          {/* <Linkto to="/" variant="primary">
             Nada
           </Linkto>
-          <Button to="/" type="primary">
+          <Button to="/" variant="primary">
             Hola
           </Button>
-          <Button to="/" type="secondary">
+          <Button to="/" variant="secondary">
             Hola
           </Button>
-          <Button to="/" type="primary-ghost">
+          <Button to="/" variant="primary-ghost">
             Hola
           </Button>
-          <Button to="/" type="secondary-ghost">
+          <Button to="/" variant="secondary-ghost">
             Hola
           </Button>
-          <ButtonAnimated type="dark" text="Join" design="inverted">
+          <ButtonAnimated variant="dark" text="Join" design="inverted">
             <span>J</span>
             <span>o</span>
             <span>i</span>
             <span>n</span>
           </ButtonAnimated>
-          <LinkAnimated to="/" type="dark" text="Join" design="inverted">
+          <LinkAnimated to="/" variant="dark" text="Join" design="inverted">
             <span>J</span>
             <span>o</span>
             <span>i</span>
@@ -39,12 +39,17 @@ export const NavBar = () => {
         </li>
         {/* TODO !isLoged */}
         <li>
-          <Linkto to="/login" type="primary">
+          <Linkto to="/login" variant="primary">
             Log in
           </Linkto>
         </li>
         <li>
-          <LinkAnimated to="/signin" type="dark" text="Join" design="inverted">
+          <LinkAnimated
+            to="/signin"
+            variant="dark"
+            text="Join"
+            design="inverted"
+          >
             <span>J</span>
             <span>o</span>
             <span>i</span>
@@ -53,12 +58,12 @@ export const NavBar = () => {
         </li>
         {/* TODO isLoged admin or user*/}
         <li>
-          <Linkto to="/" type="primary">
+          <Linkto to="/" variant="primary">
             Notifications
           </Linkto>
         </li>
         <li>
-          <Linkto to="/" type="primary">
+          <Linkto to="/" variant="primary">
             Welcome <b>pilar@comick.com</b>
           </Linkto>
         </li>

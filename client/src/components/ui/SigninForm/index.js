@@ -1,14 +1,21 @@
 import React from "react";
 import { StyledForm } from "./style";
-import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Button } from "../Button/index";
 import { Link as Linkto } from "../Link/index";
 
-export const LoginForm = () => {
+export const SigninForm = () => {
   return (
     <StyledForm>
-      <h2>What's up, doc?</h2>
+      <h2>Hey there true believer!</h2>
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Real name</Form.Label>
+        <Form.Control type="text" />
+      </Form.Group>
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>A.K.A</Form.Label>
+        <Form.Control type="text" />
+      </Form.Group>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" />
@@ -21,9 +28,9 @@ export const LoginForm = () => {
         Submit
       </Button>
       <div className="change">
-        <p>Are you new?</p>
-        <Linkto to="/signin" variant="primary">
-          Sign up here
+        <p>Already have an account?</p>
+        <Linkto to="/login" variant="primary">
+          Log in here
         </Linkto>
       </div>
     </StyledForm>

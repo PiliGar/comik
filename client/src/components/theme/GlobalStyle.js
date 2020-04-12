@@ -41,9 +41,11 @@ export const GlobalStyle = createGlobalStyle`
   body {
     border: ${({ theme: { border } }) => border.dashed};
     background: ${({ theme: { color } }) => color.medium};
+    color: ${({ theme: { color } }) => color.dark};
     margin: 1.5rem;
     overflow-x: hidden;
-    height: 90vh;
+    min-height:96.5vh;
+    /* height: 90vh; */
     &:before,&:after{
         content:"";
         width: 4rem;
@@ -79,13 +81,25 @@ export const GlobalStyle = createGlobalStyle`
     }
     h2{
         font-family: 'orkney';
-        color: ${({ theme: { color } }) => color.primary};
-        font-size: ${({ theme: { fontSize } }) => fontSize.l};
+        color: ${({ theme: { color } }) => color.dark};
+        font-size: ${({ theme: { fontSize } }) => fontSize.m};
+        margin-bottom: 2.5rem;
     }
     a, button{
         font-size: ${({ theme: { fontSize } }) => fontSize.s};
         line-height: ${({ theme: { lineHeight } }) => lineHeight.s};
         font-family: ${({ theme: { font } }) => font.primary};
+    }
+    label{
+        font-size: ${({ theme: { fontSize } }) => fontSize.xs};
+        font-family: ${({ theme: { font } }) => font.secondary};
+        font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
+    }
+    p{
+        font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
+        line-height: ${({ theme: { lineHeight } }) => lineHeight.xs};
+        font-family: ${({ theme: { font } }) => font.secondary};
+        font-weight: ${({ theme: { fontWeight } }) => fontWeight.l};
     }
     
 `;

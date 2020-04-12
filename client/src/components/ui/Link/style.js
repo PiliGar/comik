@@ -10,7 +10,7 @@ export const StyledLink = styled(Link)`
   font-family: ${({ theme: { font } }) => font.secondary};
   font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
   color: ${(props) => {
-    switch (props.type) {
+    switch (props.variant) {
       case "primary":
         return ({ theme: { color } }) => color.primary;
       case "secondary":
@@ -23,7 +23,7 @@ export const StyledLink = styled(Link)`
   transition: background-color 0.3s;
   &:hover {
     color: ${(props) => {
-      switch (props.type) {
+      switch (props.variant) {
         case "primary":
           return ({ theme: { color } }) => color.accent;
         case "secondary":

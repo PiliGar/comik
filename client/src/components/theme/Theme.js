@@ -6,6 +6,7 @@ const theme = {
     primary: "#76B5D7",
     dark: "#434343",
     accent: "#F9907A",
+    plus: "#B3B3BA",
     medium: "#F1F0EF",
     light: "#FFFFFF",
   },
@@ -15,6 +16,7 @@ const theme = {
     terciary: `"Libre Franklin", Helvetica, sans-serif`,
   },
   fontSize: {
+    xxs: "1.4rem",
     xs: "1.6rem",
     s: "1.8rem",
     m: "2.6rem",

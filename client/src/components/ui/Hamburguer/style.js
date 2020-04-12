@@ -93,7 +93,7 @@ export const StyledHamburguer = styled.nav`
       flex-flow: column nowrap;
       justify-content: space-between;
       align-items: center;
-      /* display: none; */
+      display: none;
       li {
         list-style: none;
         a {

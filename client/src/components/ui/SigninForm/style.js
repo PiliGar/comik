@@ -16,7 +16,7 @@ export const StyledForm = styled(Form)`
   input,
   textarea {
     box-sizing: border-box;
-    font-size: ${({ theme: { fontSize } }) => fontSize.xs};
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
     font-family: ${({ theme: { font } }) => font.secondary};
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
   }
