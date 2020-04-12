@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const StyledHamburguer = styled.nav`
+  height: 6rem;
   label {
     .menu {
       position: absolute;
-      right: -100px;
-      top: -100px;
+      right: 0px;
+      top: 0px;
       z-index: 100;
-      width: 200px;
-      height: 200px;
+      width: 6rem;
+      height: 6rem;
       background: ${({ theme: { color } }) => color.primary};
       border-radius: 50% 50% 50% 50%;
       -webkit-transition: 0.5s ease-in-out;
@@ -19,8 +20,8 @@ export const StyledHamburguer = styled.nav`
     }
     .hamburger {
       position: absolute;
-      top: 135px;
-      left: 50px;
+      top: 28px;
+      left: 15px;
       width: 30px;
       height: 2px;
       background: ${({ theme: { color } }) => color.medium};

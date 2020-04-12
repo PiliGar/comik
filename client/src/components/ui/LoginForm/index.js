@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { Button } from "../Button/index";
 import { Link as Linkto } from "../Link/index";
+import { ChevronRight, ArrowRight } from "react-feather";
 
 export const LoginForm = () => {
   return (
@@ -18,12 +19,12 @@ export const LoginForm = () => {
         <Form.Control type="password" />
       </Form.Group>
       <Button to="/" variant="secondary">
-        Submit
+        Log in <ArrowRight size="18" />
       </Button>
       <div className="change">
         <p>Are you new?</p>
         <Linkto to="/signup" variant="primary">
-          Sign up here
+          Sign up here <ChevronRight color="#76B5D7" size="13" />
         </Linkto>
       </div>
     </StyledForm>

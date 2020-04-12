@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 
 export const StyledForm = styled(Form)`
   width: 100%;
-  padding: 4.5rem 3rem 1.5rem 3rem;
+  padding: 4.5rem 4rem 1.5rem 4rem;
   background: ${({ theme: { color } }) => color.light};
   .form-group {
     position: relative;

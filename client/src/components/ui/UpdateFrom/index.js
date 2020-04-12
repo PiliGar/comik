@@ -2,10 +2,9 @@ import React from "react";
 import { StyledForm } from "./style";
 import { Form } from "react-bootstrap";
 import { Button } from "../Button/index";
-import { Link as Linkto } from "../Link/index";
-import { ChevronRight, ArrowRight } from "react-feather";
+import { RefreshCcw } from "react-feather";
 
-export const SignupForm = (props) => {
+export const UpdateForm = (props) => {
   return (
     <StyledForm>
       <h2>{props.title}</h2>
@@ -26,14 +25,8 @@ export const SignupForm = (props) => {
         <Form.Control type="password" />
       </Form.Group>
       <Button to="/" variant="secondary">
-        {props.c2a} <ArrowRight size="18" />
+        {props.c2a} <RefreshCcw size="14" />
       </Button>
-      <div className="change">
-        <p>Already have an account?</p>
-        <Linkto to="/login" variant="primary">
-          Log in <ChevronRight color="#76B5D7" size="13" />
-        </Linkto>
-      </div>
     </StyledForm>
   );
 };

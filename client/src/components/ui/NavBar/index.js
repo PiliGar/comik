@@ -56,17 +56,42 @@ export const NavBar = () => {
             <span>n</span>
           </LinkAnimated>
         </li>
-        {/* TODO isLoged admin or user*/}
         <li>
+          <Linkto to="/account" variant="primary">
+            Account
+          </Linkto>
+        </li>
+        <li>
+          <Linkto to="/gallery" variant="primary">
+            Gallery
+          </Linkto>
+        </li>
+        <li>
+          <Linkto to="/item" variant="primary">
+            Item Gallery
+          </Linkto>
+        </li>
+        <li>
+          <Linkto to="/profile" variant="primary">
+            Profile
+          </Linkto>
+        </li>
+        <li>
+          <Linkto to="/adminpanel" variant="primary">
+            Admin panel
+          </Linkto>
+        </li>
+        {/* TODO isLoged admin or user*/}
+        {/* <li>
           <Linkto to="/" variant="primary">
             Notifications
           </Linkto>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <Linkto to="/" variant="primary">
             Welcome <b>pilar@comick.com</b>
           </Linkto>
-        </li>
+        </li> */}
       </ul>
     </StyledNavbar>
   );

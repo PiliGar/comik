@@ -4,6 +4,7 @@ import orkneyRegular from "../../../public/fonts/orkneyRegular.woff";
 export const GlobalStyle = createGlobalStyle`
 @font-face {
     font-family: orkneyRegular;
+    font: normal 10px/1.45rem "orkneyRegular";
     src: url(${orkneyRegular}) format('woff');
     font-weight: normal;
     font-style: normal;
@@ -26,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
         content:"";
         height: 4rem;
         width: 0.1rem;
-        position: absolute;
+        position: fixed;
         left:50%;
         top: 0;
         margin-left: -0.05rem;
@@ -48,9 +49,9 @@ export const GlobalStyle = createGlobalStyle`
     /* height: 90vh; */
     &:before,&:after{
         content:"";
-        width: 4rem;
-        height: 0.1rem;
-        position: absolute;
+        width: 5rem;
+        height: 0.2rem;
+        position: fixed;
         left:0;
         top: 50%;
         margin-top: -0.05rem;
@@ -82,8 +83,14 @@ export const GlobalStyle = createGlobalStyle`
     h2{
         font-family: 'orkney';
         color: ${({ theme: { color } }) => color.dark};
-        font-size: ${({ theme: { fontSize } }) => fontSize.m};
+        font-size: ${({ theme: { fontSize } }) => fontSize.l};
         margin-bottom: 2.5rem;
+    }
+    h3{
+        font-family: 'orkney';
+        color: ${({ theme: { color } }) => color.dark};
+        font-size: ${({ theme: { fontSize } }) => fontSize.m};
+        margin-bottom: 3rem;
     }
     a, button{
         font-size: ${({ theme: { fontSize } }) => fontSize.s};

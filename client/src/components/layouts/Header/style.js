@@ -10,6 +10,9 @@ export const StyledHeader = styled.header`
     align-items: flex-start;
     .logo-container {
       display: block-size;
+      background: ${({ theme: { color } }) => color.primary};
+      padding: 5px;
+      margin: 2rem 0;
       .logo {
         height: 4rem;
         margin: ${({ theme: { space } }) => space.s};
@@ -22,11 +25,13 @@ export const StyledHeader = styled.header`
       flex-flow: row nowrap;
       justify-content: space-between;
       align-items: center;
-      .logo-container .logo {
-        height: 5.4rem;
-      }
-      nav {
-        padding-right: 15rem;
+      .logo-container {
+        display: block;
+        text-align: center;
+        .logo {
+          height: 6rem;
+          margin: 0;
+        }
       }
     }
   }

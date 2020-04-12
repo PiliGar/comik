@@ -19,8 +19,8 @@ const theme = {
     xxs: "1.4rem",
     xs: "1.6rem",
     s: "1.8rem",
-    m: "2.6rem",
-    l: "3.1rem",
+    m: "2.2rem",
+    l: "3rem",
     xl: "4.2rem",
   },
   lineHeight: {

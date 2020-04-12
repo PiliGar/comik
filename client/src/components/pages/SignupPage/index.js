@@ -7,10 +7,10 @@ export const SignupPage = () => {
   return (
     <>
       <StyledSignup>
-        <Container>
+        <Container fluid className="wrapper">
           <Row>
             <h1>Sign in</h1>
-            <SignupForm />
+            <SignupForm title="Hey there true believer!" c2a="Join us" />
           </Row>
         </Container>
       </StyledSignup>

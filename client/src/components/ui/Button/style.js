@@ -321,8 +321,8 @@ export const StyledBtn = styled.button`
     }};
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  > svg{
-      margin: 0px 0px 3px 10px;
+  > svg {
+    margin: 0px 8px 3px 8px;
   }
   &:focus {
     outline: 0;
@@ -412,8 +412,8 @@ export const StyledLink = styled(Link)`
     }};
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
-  > svg{
-      margin: 0px 0px 3px 10px;
+  > svg {
+    margin: 0px 8px 3px 8px;
   }
   &:hover {
     background: ${(props) => {

@@ -7,9 +7,11 @@ export const LoginPage = () => {
   return (
     <>
       <StyledLogin>
-        <Container>
+        <Container fluid className="wrapper">
           <Row>
             <h1>Log in</h1>
+          </Row>
+          <Row>
             <LoginForm />
           </Row>
         </Container>

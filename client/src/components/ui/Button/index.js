@@ -1,11 +1,10 @@
 import React from "react";
 import { StyledBtn, StyledBtnAnimated, StyledLinkAnimated } from "./style";
-import {ArrowRight} from "react-feather";
 
 export const Button = (props) => {
   return (
     <StyledBtn variant={props.variant} to={props.to}>
-      {props.children}<ArrowRight size="18"/>
+      {props.children}
     </StyledBtn>
   );
 };
