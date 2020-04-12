@@ -5,7 +5,7 @@ import { StyledLayout } from "./style";
 export const Layout = ({ children }) => {
   return (
     <StyledLayout>
-      <Container fluid>
+      <Container fluid className="global-layout">
         <Row>{children}</Row>
       </Container>
     </StyledLayout>

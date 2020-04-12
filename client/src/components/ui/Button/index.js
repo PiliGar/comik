@@ -3,7 +3,7 @@ import { StyledBtn, StyledBtnAnimated, StyledLinkAnimated } from "./style";
 
 export const Button = (props) => {
   return (
-    <StyledBtn type={props.type} to={props.to}>
+    <StyledBtn variant={props.variant} to={props.to}>
       {props.children}
     </StyledBtn>
   );
@@ -12,7 +12,7 @@ export const Button = (props) => {
 export const ButtonAnimated = (props) => {
   return (
     <StyledBtnAnimated
-      type={props.type}
+      variant={props.variant}
       data-text={props.text}
       className={props.design}
     >
@@ -25,7 +25,7 @@ export const LinkAnimated = (props) => {
   return (
     <StyledLinkAnimated
       to={props.to}
-      type={props.type}
+      variant={props.variant}
       data-text={props.text}
       className={props.design}
     >

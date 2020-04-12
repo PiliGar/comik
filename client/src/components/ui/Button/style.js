@@ -7,12 +7,12 @@ export const StyledBtnAnimated = styled.button`
   line-height: 18px;
   position: relative;
   padding: 0 2em;
-  margin: 0.5rem 0.8rem;
+  margin: 0.5rem 0;
   overflow: hidden;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
   background: ${(props) => {
-    if (props.type === "dark") {
+    if (props.variant === "dark") {
       return ({ theme: { color } }) => color.dark;
     } else {
       return ({ theme: { color } }) => color.primary;
@@ -21,7 +21,7 @@ export const StyledBtnAnimated = styled.button`
   color: ${({ theme: { color } }) => color.light};
   border: 2px solid
     ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
       } else {
         return ({ theme: { color } }) => color.primary;
@@ -30,14 +30,14 @@ export const StyledBtnAnimated = styled.button`
   cursor: pointer;
   &.inverted {
     background: ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.medium;
       } else {
         return ({ theme: { color } }) => color.medium;
       }
     }};
     color: ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
       } else {
         return ({ theme: { color } }) => color.primary;
@@ -56,6 +56,9 @@ export const StyledBtnAnimated = styled.button`
     -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
     transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
   }
+  &:focus {
+    outline: 0;
+  }
   &:before {
     content: attr(data-text);
     position: absolute;
@@ -71,7 +74,7 @@ export const StyledBtnAnimated = styled.button`
   }
   &:hover {
     background: ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
       } else {
         return ({ theme: { color } }) => color.primary;
@@ -132,7 +135,7 @@ export const StyledBtnAnimated = styled.button`
 
 export const StyledLinkAnimated = styled(Link)`
   text-decoration: none;
-  margin: 0.5rem 0.8rem;
+  margin: 0.5rem 0;
   border-radius: 50px;
   font-size: 18px;
   line-height: 18px;
@@ -143,7 +146,7 @@ export const StyledLinkAnimated = styled(Link)`
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
   background: ${(props) => {
-    if (props.type === "dark") {
+    if (props.variant === "dark") {
       return ({ theme: { color } }) => color.dark;
     } else {
       return ({ theme: { color } }) => color.primary;
@@ -152,7 +155,7 @@ export const StyledLinkAnimated = styled(Link)`
   color: ${({ theme: { color } }) => color.light};
   border: 2px solid
     ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
       } else {
         return ({ theme: { color } }) => color.primary;
@@ -162,14 +165,14 @@ export const StyledLinkAnimated = styled(Link)`
   &.inverted {
     overflow: hidden;
     background: ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.medium;
       } else {
         return ({ theme: { color } }) => color.medium;
       }
     }};
     color: ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
       } else {
         return ({ theme: { color } }) => color.primary;
@@ -203,7 +206,7 @@ export const StyledLinkAnimated = styled(Link)`
   }
   &:hover {
     background: ${(props) => {
-      if (props.type === "dark") {
+      if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
       } else {
         return ({ theme: { color } }) => color.primary;
@@ -264,16 +267,17 @@ export const StyledLinkAnimated = styled(Link)`
 
 // export const StyledButtonAnimated = StyledLinkAnimated.withComponent("button");
 
-export const StyledBtn = styled(Link)`
+export const StyledBtn = styled.button`
   display: inline-block;
   border-radius: 5rem;
   padding: 0.5rem 0;
-  margin: 0.5rem 0.8rem;
+  margin: 0.5rem 0;
   width: auto;
   text-decoration: none;
   padding: 1.7rem 2rem;
+  outline: none;
   background: ${(props) => {
-    switch (props.type) {
+    switch (props.variant) {
       case "primary":
         return ({ theme: { color } }) => color.primary;
       case "secondary":
@@ -287,7 +291,7 @@ export const StyledBtn = styled(Link)`
     }
   }};
   color: ${(props) => {
-    switch (props.type) {
+    switch (props.variant) {
       case "primary":
         return ({ theme: { color } }) => color.medium;
       case "secondary":
@@ -302,7 +306,98 @@ export const StyledBtn = styled(Link)`
   }};
   border: 2px solid
     ${(props) => {
-      switch (props.type) {
+      switch (props.variant) {
+        case "primary":
+          return ({ theme: { color } }) => color.primary;
+        case "secondary":
+          return ({ theme: { color } }) => color.dark;
+        case "primary-ghost":
+          return ({ theme: { color } }) => color.primary;
+        case "secondary-ghost":
+          return ({ theme: { color } }) => color.dark;
+        default:
+          return ({ theme: { color } }) => color.primary;
+      }
+    }};
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  > svg {
+    margin: 0px 8px 3px 8px;
+  }
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background: ${(props) => {
+      switch (props.variant) {
+        case "primary":
+          return ({ theme: { color } }) => color.medium;
+        case "secondary":
+          return ({ theme: { color } }) => color.medium;
+        case "primary-ghost":
+          return ({ theme: { color } }) => color.primary;
+        case "secondary-ghost":
+          return ({ theme: { color } }) => color.dark;
+        default:
+          return ({ theme: { color } }) => color.medium;
+      }
+    }};
+    color: ${(props) => {
+      switch (props.variant) {
+        case "primary":
+          return ({ theme: { color } }) => color.primary;
+        case "secondary":
+          return ({ theme: { color } }) => color.dark;
+        case "primary-ghost":
+          return ({ theme: { color } }) => color.medium;
+        case "secondary-ghost":
+          return ({ theme: { color } }) => color.medium;
+        default:
+          return ({ theme: { color } }) => color.primary;
+      }
+    }};
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: inline-block;
+  border-radius: 5rem;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  width: auto;
+  text-decoration: none;
+  padding: 1.7rem 2rem;
+  background: ${(props) => {
+    switch (props.variant) {
+      case "primary":
+        return ({ theme: { color } }) => color.primary;
+      case "secondary":
+        return ({ theme: { color } }) => color.dark;
+      case "primary-ghost":
+        return ({ theme: { color } }) => color.medium;
+      case "secondary-ghost":
+        return ({ theme: { color } }) => color.medium;
+      default:
+        return ({ theme: { color } }) => color.primary;
+    }
+  }};
+  color: ${(props) => {
+    switch (props.variant) {
+      case "primary":
+        return ({ theme: { color } }) => color.medium;
+      case "secondary":
+        return ({ theme: { color } }) => color.medium;
+      case "primary-ghost":
+        return ({ theme: { color } }) => color.primary;
+      case "secondary-ghost":
+        return ({ theme: { color } }) => color.dark;
+      default:
+        return ({ theme: { color } }) => color.medium;
+    }
+  }};
+  border: 2px solid
+    ${(props) => {
+      switch (props.variant) {
         case "primary":
           return ({ theme: { color } }) => color.primary;
         case "secondary":
@@ -317,9 +412,12 @@ export const StyledBtn = styled(Link)`
     }};
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
+  > svg {
+    margin: 0px 8px 3px 8px;
+  }
   &:hover {
     background: ${(props) => {
-      switch (props.type) {
+      switch (props.variant) {
         case "primary":
           return ({ theme: { color } }) => color.medium;
         case "secondary":
@@ -333,7 +431,7 @@ export const StyledBtn = styled(Link)`
       }
     }};
     color: ${(props) => {
-      switch (props.type) {
+      switch (props.variant) {
         case "primary":
           return ({ theme: { color } }) => color.primary;
         case "secondary":
