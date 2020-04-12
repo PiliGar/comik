@@ -319,8 +319,11 @@ export const StyledBtn = styled.button`
           return ({ theme: { color } }) => color.primary;
       }
     }};
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  > svg{
+      margin: 0px 0px 3px 10px;
+  }
   &:focus {
     outline: 0;
   }
@@ -409,6 +412,9 @@ export const StyledLink = styled(Link)`
     }};
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
+  > svg{
+      margin: 0px 0px 3px 10px;
+  }
   &:hover {
     background: ${(props) => {
       switch (props.variant) {

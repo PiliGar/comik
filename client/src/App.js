@@ -8,7 +8,7 @@ import { Header } from "./components/layouts/Header/index";
 //Pages
 import { HomePage } from "./components/pages/HomePage/index";
 import { LoginPage } from "./components/pages/LoginPage/index";
-import { SigninPage } from "./components/pages/SinginPage/index";
+import { SignupPage } from "./components/pages/SignupPage/index";
 import { AccountPage } from "./components/pages/AccountPage/index";
 import { AdminPanelPage } from "./components/pages/AdminPanelPage/index";
 import { GalleryPage } from "./components/pages/GalleryPage/index";
@@ -21,8 +21,8 @@ export const App = () => (
       <Header />
       <Switch>
         <Route path="/" exact component={HomePage} />
+        <Route path="/signup" exact component={SignupPage} />
         <Route path="/login" exact component={LoginPage} />
-        <Route path="/signin" exact component={SigninPage} />
         <Route path="/account" exact component={AccountPage} />
         <Route path="/adminpanel" exact component={AdminPanelPage} />
         <Route path="/gallery" exact component={GalleryPage} />

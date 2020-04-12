@@ -1,19 +1,19 @@
 import React from "react";
-import { StyledSignin } from "./style";
+import { StyledSignup } from "./style";
 import { Container, Row } from "react-bootstrap";
-import { SigninForm } from "../../ui/SigninForm/index";
+import { SignupForm } from "../../ui/SignupForm/index";
 
-export const SigninPage = () => {
+export const SignupPage = () => {
   return (
     <>
-      <StyledSignin>
+      <StyledSignup>
         <Container>
           <Row>
             <h1>Sign in</h1>
-            <SigninForm />
+            <SignupForm />
           </Row>
         </Container>
-      </StyledSignin>
+      </StyledSignup>
     </>
   );
 };

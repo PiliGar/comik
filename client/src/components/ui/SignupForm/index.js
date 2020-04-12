@@ -3,8 +3,9 @@ import { StyledForm } from "./style";
 import { Form } from "react-bootstrap";
 import { Button } from "../Button/index";
 import { Link as Linkto } from "../Link/index";
+import { ChevronRight } from 'react-feather';
 
-export const SigninForm = () => {
+export const SignupForm = () => {
   return (
     <StyledForm>
       <h2>Hey there true believer!</h2>
@@ -30,7 +31,7 @@ export const SigninForm = () => {
       <div className="change">
         <p>Already have an account?</p>
         <Linkto to="/login" variant="primary">
-          Log in here
+          Log in here <ChevronRight color='#76B5D7' size="13" />
         </Linkto>
       </div>
     </StyledForm>

@@ -22,7 +22,7 @@ export const LoginForm = () => {
       </Button>
       <div className="change">
         <p>Are you new?</p>
-        <Linkto to="/signin" variant="primary">
+        <Linkto to="/signup" variant="primary">
           Sign up here
         </Linkto>
       </div>

@@ -45,7 +45,7 @@ export const NavBar = () => {
         </li>
         <li>
           <LinkAnimated
-            to="/signin"
+            to="/signup"
             variant="dark"
             text="Join"
             design="inverted"
