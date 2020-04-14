@@ -12,7 +12,7 @@ export const LoginPage = () => {
             <h1>Log in</h1>
           </Row>
           <Row>
-            <LoginForm />
+            <LoginForm title="What's up, doc?" c2a="Log in" />
           </Row>
         </Container>
       </StyledLogin>

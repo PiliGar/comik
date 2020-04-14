@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+//Authentication
+import { withAuthentication } from "../lib/withAuthentication";
+
 //UI
 import { Layout } from "./components/layouts/Layout/index";
 import { Header } from "./components/layouts/Header/index";
@@ -15,20 +18,22 @@ import { GalleryPage } from "./components/pages/GalleryPage/index";
 import { GalleryItemPage } from "./components/pages/GalleryItemPage/index";
 import { ProfilePage } from "./components/pages/ProfilePage/index";
 
-export const App = () => (
-  <Router>
-    <Layout>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/signup" exact component={SignupPage} />
-        <Route path="/login" exact component={LoginPage} />
-        <Route path="/account" exact component={AccountPage} />
-        <Route path="/adminpanel" exact component={AdminPanelPage} />
-        <Route path="/gallery" exact component={GalleryPage} />
-        <Route path="/item" exact component={GalleryItemPage} />
-        <Route path="/profile" exact component={ProfilePage} />
-      </Switch>
-    </Layout>
-  </Router>
-);
+export const App = withAuthentication(() => {
+  return (
+    <Router>
+      <Layout>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/auth/signup" exact component={SignupPage} />
+          <Route path="/auth/login" exact component={LoginPage} />
+          <Route path="/account" exact component={AccountPage} />
+          <Route path="/adminpanel" exact component={AdminPanelPage} />
+          <Route path="/gallery" exact component={GalleryPage} />
+          <Route path="/item" exact component={GalleryItemPage} />
+          <Route path="/profile" exact component={ProfilePage} />
+        </Switch>
+      </Layout>
+    </Router>
+  );
+});

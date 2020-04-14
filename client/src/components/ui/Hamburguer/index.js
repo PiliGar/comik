@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { MainContext } from "../../../contexts/MainContext";
 import { StyledHamburguer } from "./style";
 import { Link } from "react-router-dom";
 
 export const Hamburger = () => {
+  const { burgerOpen, handleBurger } = useContext(MainContext);
   return (
     <StyledHamburguer>
       <label>
         <input type="checkbox" />
-        <span className="menu">
+        <span id="hamburguer" onClick={handleBurger} className="menu">
           <span className="hamburger"></span>
         </span>
-        <ul>
+        <ul className={` ${burgerOpen ? "active" : ""} `}>
           <li>
             <Link to="#">Account</Link>
           </li>

@@ -7,7 +7,7 @@ import { RefreshCcw } from "react-feather";
 export const UpdateForm = (props) => {
   return (
     <StyledForm>
-      <h2>{props.title}</h2>
+      {/* <h2>{props.title}</h2>
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Real name</Form.Label>
         <Form.Control type="text" />
@@ -26,7 +26,7 @@ export const UpdateForm = (props) => {
       </Form.Group>
       <Button to="/" variant="secondary">
         {props.c2a} <RefreshCcw size="14" />
-      </Button>
+      </Button> */}
     </StyledForm>
   );
 };

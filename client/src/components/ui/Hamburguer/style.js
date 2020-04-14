@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledHamburguer = styled.nav`
   height: 6rem;
-  label {
+  div {
     .menu {
       position: absolute;
       right: 0px;
@@ -48,7 +48,7 @@ export const StyledHamburguer = styled.nav`
         bottom: -10px;
       }
     }
-    input {
+    /* input {
       display: none;
     }
 
@@ -77,6 +77,35 @@ export const StyledHamburguer = styled.nav`
 
     input:checked + .menu + ul {
       opacity: 1;
+    } */
+    &.active{
+
+        .menu {
+        box-shadow: 0 0 0 100vw ${({ theme: { color } }) => color.primary},
+            0 0 0 100vh ${({ theme: { color } }) => color.primary};
+        border-radius: 0;
+        }
+
+        .menu .hamburger {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        }
+
+        .menu .hamburger:after {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        bottom: 0;
+        }
+
+        .menu .hamburger:before {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+        top: 0;
+        }
+
+        .menu + ul {
+        opacity: 1;
+        }
     }
     ul {
       z-index: 200;
@@ -95,6 +124,10 @@ export const StyledHamburguer = styled.nav`
       justify-content: space-between;
       align-items: center;
       display: none;
+      &.active {
+        display: block;
+        background: orange;
+      }
       li {
         list-style: none;
         a {
