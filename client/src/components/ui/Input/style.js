@@ -50,6 +50,8 @@ export const StyledInput = styled.div`
     }
   }
   &.errors {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
     input {
       border-color: transparent;
       border-bottom: solid 0.2rem ${({ theme: { color } }) => color.accent};

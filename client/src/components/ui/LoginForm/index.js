@@ -13,7 +13,7 @@ import { StyledForm } from "./style";
 
 export const LoginForm = withRouter(({ history, title, c2a }) => {
   const { user, setUser } = useContext(MainContext);
-  //   const { register, handleSubmit, errors } = useForm();
+
   const methods = useForm({
     mode: "onBlur",
   });
