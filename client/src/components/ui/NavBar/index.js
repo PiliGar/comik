@@ -11,18 +11,6 @@ import { Link as Linkto, LinkBtn } from "../Link/index";
 export const NavBar = withRouter(({ history }) => {
   const { user, setUser } = useContext(MainContext);
 
-  //   const [hamburguerNav, setHamburguerNav] = useState(false);
-  //   const Body = document.getElementsById("body");
-  //   const handleHamburguerNav = (e) => {
-  //     e.preventDefault();
-  //     hamburguerNav ? setHamburguerNav(false) : setHamburguerNav(true);
-  //     if (Body[0].classList.contains("active")) {
-  //       Body[0].classList.remove("active");
-  //     } else {
-  //       Body[0].classList.add("active");
-  //     }
-  //   };
-
   const onClickLogout = async (e) => {
     e.preventDefault();
     await doLogout();

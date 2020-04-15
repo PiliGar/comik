@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledBtnAnimated = styled.button`
-  border-radius: 50px;
-  font-size: 18px;
-  line-height: 18px;
+  border-radius: 5rem;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
   position: relative;
   padding: 0 2em;
   margin: 0.5rem 0;
@@ -19,7 +19,7 @@ export const StyledBtnAnimated = styled.button`
     }
   }};
   color: ${({ theme: { color } }) => color.light};
-  border: 2px solid
+  border: 0.2rem solid
     ${(props) => {
       if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
@@ -45,12 +45,15 @@ export const StyledBtnAnimated = styled.button`
     }};
   }
   > span {
+    font-family: ${({ theme: { font } }) => font.primary};
+    font-size: 1.8rem;
+    line-height: 1.8rem;
     display: inline-block;
     padding: 1em 0;
     opacity: 0;
     color: ${({ theme: { color } }) => color.light};
-    -webkit-transform: translate3d(0, -10px, 0);
-    transform: translate3d(0, -10px, 0);
+    -webkit-transform: translate3d(0, -0.1rem, 0);
+    transform: translate3d(0, -0.1rem, 0);
     -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
     transition: transform 0.3s, opacity 0.3s;
     -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
@@ -136,9 +139,9 @@ export const StyledBtnAnimated = styled.button`
 export const StyledLinkAnimated = styled(Link)`
   text-decoration: none;
   margin: 0.5rem 0;
-  border-radius: 50px;
-  font-size: 18px;
-  line-height: 18px;
+  border-radius: 5rem;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
   position: relative;
   padding: 1.7rem 2em;
   text-align: center;
@@ -153,7 +156,7 @@ export const StyledLinkAnimated = styled(Link)`
     }
   }};
   color: ${({ theme: { color } }) => color.light};
-  border: 2px solid
+  border: 0.2rem solid
     ${(props) => {
       if (props.variant === "dark") {
         return ({ theme: { color } }) => color.dark;
@@ -180,12 +183,15 @@ export const StyledLinkAnimated = styled(Link)`
     }};
   }
   > span {
+    font-family: ${({ theme: { font } }) => font.primary};
+    font-size: 1.8rem;
+    line-height: 1.8rem;
     display: inline-block;
     padding: 1em 0;
     opacity: 0;
     color: ${({ theme: { color } }) => color.light};
-    -webkit-transform: translate3d(0, -10px, 0);
-    transform: translate3d(0, -10px, 0);
+    -webkit-transform: translate3d(0, -1rem, 0);
+    transform: translate3d(0, -1rem, 0);
     -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
     transition: transform 0.3s, opacity 0.3s;
     -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
@@ -304,7 +310,7 @@ export const StyledBtn = styled.button`
         return ({ theme: { color } }) => color.medium;
     }
   }};
-  border: 2px solid
+  border: 0.2rem solid
     ${(props) => {
       switch (props.variant) {
         case "primary":
@@ -322,7 +328,7 @@ export const StyledBtn = styled.button`
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   > svg {
-    margin: 0px 8px 3px 8px;
+    margin: 0px 0.8rem 0.3rem 0.8rem;
   }
   &:focus {
     outline: 0;
@@ -395,7 +401,7 @@ export const StyledLink = styled(Link)`
         return ({ theme: { color } }) => color.medium;
     }
   }};
-  border: 2px solid
+  border: 0.2rem solid
     ${(props) => {
       switch (props.variant) {
         case "primary":
@@ -413,7 +419,7 @@ export const StyledLink = styled(Link)`
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
   > svg {
-    margin: 0px 8px 3px 8px;
+    margin: 0px 0.8rem 0.3rem 0.8rem;
   }
   &:hover {
     background: ${(props) => {

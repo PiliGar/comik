@@ -19,53 +19,5 @@ export const StyledForm = styled.div`
         font-size: 1.4rem;
       }
     }
-    input,
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
-      font-family: ${({ theme: { font } }) => font.secondary};
-      font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
-      margin-bottom: 0.8rem;
-    }
-    label {
-      width: 100%;
-      font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
-      font-family: ${({ theme: { font } }) => font.secondary};
-      font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
-      margin: 0px;
-    }
-    input {
-      height: 4.5rem;
-      -webkit-appearance: none;
-      color: ${({ theme: { color } }) => color.primary};
-      ::placeholder {
-        color: ${({ theme: { color } }) => color.plus};
-        opacity: 1; /* Firefox */
-      }
-      :-ms-input-placeholder {
-        color: ${({ theme: { color } }) => color.plus};
-      }
-      ::-ms-input-placeholder {
-        color: ${({ theme: { color } }) => color.plus};
-      }
-      outline-style: none;
-      box-shadow: none;
-      border-color: transparent;
-      border-bottom: solid 0.2rem ${({ theme: { color } }) => color.medium};
-      -webkit-transition: border-color 0.3s;
-      transition: border-color 0.3s;
-      &:focus {
-        outline: none !important;
-        outline-style: none;
-        box-shadow: none;
-        border-color: transparent;
-        color: ${({ theme: { color } }) => color.dark};
-        border-bottom: solid 0.2rem ${({ theme: { color } }) => color.primary};
-        &::-webkit-input-placeholder {
-          color: ${({ theme: { color } }) => color.dark};
-        }
-      }
-    }
   }
 `;
