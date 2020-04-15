@@ -43,11 +43,6 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
     if (response.status === 200) {
       setUser(data);
     }
-    // if (response.status) {
-    //   return history.push("/login");
-    // }
-    //setUser(data);
-    // history.push("/profile");
   };
 
   return (
