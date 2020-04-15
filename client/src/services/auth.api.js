@@ -35,6 +35,21 @@ export const doLogin = async ({ username, password }) => {
   }
 };
 
+export const doUpdate = async ({ name, alias, username, password }) => {
+  try {
+    const response = await authApi.put("/edit", {
+      name,
+      alias,
+      username,
+      password,
+    });
+    console.log("--->>>  DDBB ⭐", response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const doLogout = async () => {
   const response = await authApi.post("logout");
   console.log("--->>>  DDBB ⭐", response.data);
