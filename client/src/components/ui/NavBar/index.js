@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { MainContext } from "../../../contexts/MainContext";
+import { withRouter, Link } from "react-router-dom";
+
+import { doLogout } from "../../../services/auth.api";
+
 import { StyledNavbar } from "./style";
 import { Button, ButtonAnimated, LinkAnimated } from "../Button/index";
-import { Link as Linkto } from "../Link/index";
-import { Link } from "react-router-dom";
+import { Link as Linkto, LinkBtn } from "../Link/index";
 
-export const NavBar = () => {
+export const NavBar = withRouter(({ history }) => {
+  const { user, setUser } = useContext(MainContext);
+
+  const onClickLogout = async (e) => {
+    e.preventDefault();
+    await doLogout();
+    setUser(null);
+    history.push("/");
+  };
   return (
     <StyledNavbar>
       <ul>
@@ -37,50 +49,66 @@ export const NavBar = () => {
             <span>n</span>
           </LinkAnimated> */}
         </li>
-        {/* TODO !isLoged */}
-        <li>
-          <Linkto to="/login" variant="primary">
-            Log in
-          </Linkto>
-        </li>
-        <li>
-          <LinkAnimated
-            to="/signup"
-            variant="dark"
-            text="Join"
-            design="inverted"
-          >
-            <span>J</span>
-            <span>o</span>
-            <span>i</span>
-            <span>n</span>
-          </LinkAnimated>
-        </li>
-        <li>
-          <Linkto to="/account" variant="primary">
-            Account
-          </Linkto>
-        </li>
-        <li>
-          <Linkto to="/gallery" variant="primary">
-            Gallery
-          </Linkto>
-        </li>
-        <li>
-          <Linkto to="/item" variant="primary">
-            Item Gallery
-          </Linkto>
-        </li>
-        <li>
-          <Linkto to="/profile" variant="primary">
-            Profile
-          </Linkto>
-        </li>
-        <li>
-          <Linkto to="/adminpanel" variant="primary">
-            Admin panel
-          </Linkto>
-        </li>
+        {!user && (
+          <>
+            <li>
+              <Linkto to="/auth/login" variant="primary">
+                Log in
+              </Linkto>
+            </li>
+            <li>
+              <LinkAnimated
+                to="/auth/signup"
+                variant="dark"
+                text="Join us"
+                design="inverted"
+              >
+                <span>J</span>
+                <span>o</span>
+                <span>i</span>
+                <span>n</span>
+                <span>&nbsp;</span>
+                <span>u</span>
+                <span>s</span>
+              </LinkAnimated>
+            </li>
+          </>
+        )}
+        {user && (
+          <>
+            <li>
+              <Linkto to="/account" variant="primary">
+                Account
+              </Linkto>
+            </li>
+            <li>
+              <Linkto to="/gallery" variant="primary">
+                Gallery
+              </Linkto>
+            </li>
+            <li>
+              <Linkto to="/item" variant="primary">
+                Item Gallery
+              </Linkto>
+            </li>
+            <li>
+              <Linkto to="/profile" variant="primary">
+                Profile
+              </Linkto>
+            </li>
+            <li>
+              <Linkto to="/adminpanel" variant="primary">
+                Admin panel
+              </Linkto>
+            </li>
+            <li>
+              <Link to="/" variant="primary" onClick={(e) => onClickLogout(e)}>
+                Log out
+              </Link>
+            </li>
+          </>
+        )}
+
         {/* TODO isLoged admin or user*/}
         {/* <li>
           <Linkto to="/" variant="primary">
@@ -95,4 +123,4 @@ export const NavBar = () => {
       </ul>
     </StyledNavbar>
   );
-};
+});

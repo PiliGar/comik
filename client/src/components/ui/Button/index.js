@@ -2,6 +2,10 @@ import React from "react";
 import { StyledBtn, StyledBtnAnimated, StyledLinkAnimated } from "./style";
 
 export const Button = (props) => {
+  return <StyledBtn variant={props.variant}>{props.children}</StyledBtn>;
+};
+
+export const ButtonLink = (props) => {
   return (
     <StyledBtn variant={props.variant} to={props.to}>
       {props.children}

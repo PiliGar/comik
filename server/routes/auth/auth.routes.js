@@ -42,17 +42,23 @@ router.post("/signup", async (req, res, next) => {
 
 /* AUTH Login */
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, fealureDetails) => {
+  passport.authenticate("local", (err, user, failureDetails) => {
     if (err) {
       console.log(`--->>> Login ERROR: ${err}`);
-      return res.status(500).json({ message: "Autentication Error" });
+      return res
+        .status(500)
+        .json({ status: 500, message: "Autentication Error" });
     }
     if (!user) {
-      return res.status(401).json({ message: fealureDetails.message });
+      return res
+        .status(401)
+        .json({ status: 401, message: failureDetails.message });
     }
     req.logIn(user, (err) => {
       if (err) {
-        return res.status(500).json({ message: "Session save went bad" });
+        return res
+          .status(500)
+          .json({ status: 500, message: "Session save went bad" });
       }
       return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
     });
@@ -70,7 +76,7 @@ router.put("/edit", isLoggedIn(), async (req, res, next) => {
       alias,
       username,
     });
-    return res.json({ status: "Profile updated!" });
+    return res.status(200).json({ status: "200", message: "Profile updated!" });
   } catch (error) {
     return res.status(401).json({ status: "Not Found" });
   }

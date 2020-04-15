@@ -76,18 +76,18 @@ export const GlobalStyle = createGlobalStyle`
     } */
   }
     h1{
-        font-family: 'orkney';
+        font-family: ${({ theme: { font } }) => font.primary};
         color: ${({ theme: { color } }) => color.primary};
         font-size: ${({ theme: { fontSize } }) => fontSize.xl};
     }
     h2{
-        font-family: 'orkney';
+        font-family: ${({ theme: { font } }) => font.primary};
         color: ${({ theme: { color } }) => color.dark};
         font-size: ${({ theme: { fontSize } }) => fontSize.l};
         margin-bottom: 2.5rem;
     }
     h3{
-        font-family: 'orkney';
+        font-family: ${({ theme: { font } }) => font.primary};
         color: ${({ theme: { color } }) => color.dark};
         font-size: ${({ theme: { fontSize } }) => fontSize.m};
         margin-bottom: 3rem;
@@ -107,6 +107,11 @@ export const GlobalStyle = createGlobalStyle`
         line-height: ${({ theme: { lineHeight } }) => lineHeight.xs};
         font-family: ${({ theme: { font } }) => font.secondary};
         font-weight: ${({ theme: { fontWeight } }) => fontWeight.l};
+    }
+    span{
+        font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
+        line-height: ${({ theme: { lineHeight } }) => lineHeight.xs};
+        font-family: ${({ theme: { font } }) => font.secondary};
     }
     
 `;
