@@ -7,10 +7,18 @@ export const StyledBurgerMenu = styled.div`
   left: 0;
   width: 100%;
   height: 62vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   display: none;
+  -webkit-transition: 5s opacity ease-in-out;
+  transition: 5s opacity ease-in-out;
 
   ul {
+    z-index: 200;
+    margin-left: 150%;
     height: 62vh;
     width: auto;
     text-align: ${({ theme: { align } }) => align.center};
@@ -47,11 +55,18 @@ export const StyledBurgerMenu = styled.div`
     }
   }
   &.active {
-    -webkit-transition: all 0.8s;
-    transition: all 0.8s;
     display: block;
+    display: flex;
     opacity: 1;
+    > ul {
+      margin-left: 0;
+      display: block;
+      display: flex;
+      opacity: 1;
+      color: red;
+    }
   }
+
   @media ${({ theme: { media } }) => media.md} {
     ul li a {
       font-size: ${({ theme: { fontSize } }) => fontSize.xl};
