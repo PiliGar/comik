@@ -1,15 +1,11 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: `${process.env.BACKEND_URL}/character`,
-  withCredentials: true,
-});
+import { api } from "./api";
+const path = `/character`;
 
 export const getAllCharacters = async () => {
   try {
-    const response = await api.get("/");
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.get(`${path}/`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -17,9 +13,9 @@ export const getAllCharacters = async () => {
 
 export const getOneCharacter = async (id) => {
   try {
-    const response = await api.get(`/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.get(`${path}/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -38,7 +34,7 @@ export const createcharacter = async ({
   imageSrc,
 }) => {
   try {
-    const response = await api.post(`/create`, {
+    const res = await api.post(`${path}/create`, {
       name,
       alias,
       realName,
@@ -49,8 +45,8 @@ export const createcharacter = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -70,7 +66,7 @@ export const updateCharacter = async ({
   id,
 }) => {
   try {
-    const response = await api.put(`/edit/${id}`, {
+    const res = await api.put(`${path}/edit/${id}`, {
       name,
       alias,
       realName,
@@ -81,8 +77,8 @@ export const updateCharacter = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -90,9 +86,9 @@ export const updateCharacter = async ({
 
 export const removeCharacter = async (id) => {
   try {
-    const response = await api.delete(`/delete/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.delete(`${path}/delete/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -100,9 +96,9 @@ export const removeCharacter = async (id) => {
 
 export const getFavCharacter = async () => {
   try {
-    const response = await api.get(`/favorite/list`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.get(`${path}/favorite/list`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -110,9 +106,9 @@ export const getFavCharacter = async () => {
 
 export const addFavCharacter = async (id) => {
   try {
-    const response = await api.post(`/favorite/add/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.post(`${path}/favorite/add/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -120,9 +116,9 @@ export const addFavCharacter = async (id) => {
 
 export const removeFavCharacter = async (id) => {
   try {
-    const response = await api.delete(`/favorite/remove/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.delete(`${path}/favorite/remove/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }

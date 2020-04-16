@@ -1,15 +1,11 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: `${process.env.BACKEND_URL}/issue`,
-  withCredentials: true,
-});
+import { api } from "./api";
+const path = `/issue`;
 
 export const getAllIssues = async () => {
   try {
-    const response = await api.get("/");
-    console.log("--->>>  DDBB ⭐", response.data.objs);
-    return response.data.objs;
+    const res = await api.get(`${path}/`);
+    console.log("--->>>  DDBB ⭐", res.data.objs);
+    return res.data.objs;
   } catch (error) {
     console.log(error);
   }
@@ -17,9 +13,9 @@ export const getAllIssues = async () => {
 
 export const getOneIssue = async (id) => {
   try {
-    const response = await api.get(`/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.get(`${path}/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -37,7 +33,7 @@ export const createIssue = async ({
   imageSrc,
 }) => {
   try {
-    const response = await api.post(`/create`, {
+    const res = await api.post(`${path}/create`, {
       title,
       issueNumber,
       coverDate,
@@ -47,8 +43,8 @@ export const createIssue = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -67,7 +63,7 @@ export const updateIssue = async ({
   id,
 }) => {
   try {
-    const response = await api.put(`/edit/${id}`, {
+    const res = await api.put(`${path}/edit/${id}`, {
       title,
       issueNumber,
       coverDate,
@@ -77,8 +73,8 @@ export const updateIssue = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -86,9 +82,9 @@ export const updateIssue = async ({
 
 export const removeIssue = async (id) => {
   try {
-    const response = await api.delete(`/delete/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.delete(`${path}/delete/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -96,9 +92,9 @@ export const removeIssue = async (id) => {
 
 export const getFavIssues = async () => {
   try {
-    const response = await api.get(`/favorite/list`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.get(`${path}/favorite/list`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -106,9 +102,9 @@ export const getFavIssues = async () => {
 
 export const addFavIssues = async (id) => {
   try {
-    const response = await api.post(`/favorite/add/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.post(`${path}/favorite/add/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -116,9 +112,9 @@ export const addFavIssues = async (id) => {
 
 export const removeFavIssues = async (id) => {
   try {
-    const response = await api.delete(`/favorite/remove/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.delete(`${path}/favorite/remove/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }

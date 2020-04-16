@@ -96,7 +96,7 @@ router.post("/logout", isLoggedIn(), async (req, res, next) => {
 
 /* AUTH Whoami */
 router.post("/whoami", (req, res, next) => {
-  console.log(`--->>> Current user logged: ${req.user}`);
+  console.log(`--->>> Current user logged: 👽 ${req.user}`);
   if (req.user)
     return res
       .status(200)

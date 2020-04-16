@@ -8,14 +8,7 @@ export const MainContextProvider = ({ children }) => {
 
   const handleBurger = (e) => {
     e.preventDefault();
-    // burgerOpen ? setBurguerOpen(false) : setBurguerOpen(true);
-    if (burgerOpen) {
-      console.log("cerrar menu");
-      setBurguerOpen(false);
-    } else {
-      console.log("abrir menu");
-      setBurguerOpen(true);
-    }
+    burgerOpen ? setBurguerOpen(false) : setBurguerOpen(true);
   };
 
   return (

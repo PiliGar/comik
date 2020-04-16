@@ -1,15 +1,11 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: `${process.env.BACKEND_URL}/user`,
-  withCredentials: true,
-});
+import { api } from "./api";
+const path = `/user`;
 
 export const getAllUsers = async () => {
   try {
-    const response = await api.get("/");
-    console.log("--->>>  DDBB ⭐", response.data.objs);
-    return response.data.objs;
+    const res = await api.get(`${path}/`);
+    console.log("--->>>  DDBB ⭐", res.data.objs);
+    return res.data.objs;
   } catch (error) {
     console.log(error);
   }
@@ -17,9 +13,9 @@ export const getAllUsers = async () => {
 
 export const getOneUser = async (id) => {
   try {
-    const response = await api.get(`/${id}`);
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    const res = await api.get(`${path}/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -27,11 +23,11 @@ export const getOneUser = async (id) => {
 
 export const updateRole = async ({ role, id }) => {
   try {
-    const response = await api.put(`/${id}`, {
+    const res = await api.put(`${path}/${id}`, {
       role,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }

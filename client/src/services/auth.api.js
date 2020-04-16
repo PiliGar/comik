@@ -1,34 +1,29 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: `${process.env.BACKEND_URL}/auth`,
-  withCredentials: true,
-});
+import { api } from "./api";
+const path = `/auth`;
 
 export const doSignup = async ({ name, alias, username, password }) => {
   try {
-    const response = await api.post("/signup", {
+    const res = await api.post(`${path}/signup`, {
       name,
       alias,
       username,
       password,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
 export const doLogin = async ({ username, password }) => {
-  console.log(`--->>> login user: ${username}`);
   try {
-    const response = await api.post("/login", {
+    const res = await api.post(`${path}/login`, {
       username,
       password,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -36,27 +31,27 @@ export const doLogin = async ({ username, password }) => {
 
 export const doUpdate = async ({ name, alias, username, password }) => {
   try {
-    const response = await api.put("/edit", {
+    const res = await api.put(`${path}/edit`, {
       name,
       alias,
       username,
       password,
     });
-    console.log("--->>>  DDBB ⭐", response.data);
-    return response.data;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
 export const doLogout = async () => {
-  const response = await api.post("logout");
-  console.log("--->>>  DDBB ⭐", response.data);
-  return response.data;
+  const res = await api.post(`${path}/logout`);
+  console.log("--->>>  DDBB ⭐", res.data);
+  return res.data;
 };
 
 export const whoUser = async () => {
-  const response = await api.post("/whoami");
-  console.log("--->>>  DDBB ⭐", response.data);
-  return response.data;
+  const res = await api.post(`${path}/whoami`);
+  console.log("--->>>  DDBB ⭐", res.data);
+  return res.data;
 };

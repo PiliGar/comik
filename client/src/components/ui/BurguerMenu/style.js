@@ -5,7 +5,7 @@ export const StyledBurgerMenu = styled.div`
   position: absolute;
   top: 10%;
   left: 0;
-  width: 100%;
+  width: 60%;
   height: 62vh;
   display: flex;
   flex-flow: column nowrap;
