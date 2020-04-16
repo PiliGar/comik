@@ -3,6 +3,7 @@ const User = require("../../models/User");
 const router = express.Router();
 const _ = require("lodash");
 const passport = require("passport");
+const { hashPassword } = require("../../lib/hashing");
 const { isLoggedIn } = require("../../middleware/isLogged");
 
 /* AUTH Signup */
@@ -42,7 +43,7 @@ router.post("/signup", async (req, res, next) => {
 
 /* AUTH Login */
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, failureDetails) => {
+  passport.authenticate("local", (err, user) => {
     if (err) {
       console.log(`--->>> Login ERROR: ${err}`);
       return res
@@ -50,9 +51,7 @@ router.post("/login", (req, res, next) => {
         .json({ status: 500, message: "Autentication Error" });
     }
     if (!user) {
-      return res
-        .status(401)
-        .json({ status: 401, message: failureDetails.message });
+      return res.status(401).json({ status: 401, message: "Unathorised" });
     }
     req.logIn(user, (err) => {
       if (err) {
@@ -70,11 +69,12 @@ router.post("/login", (req, res, next) => {
 router.put("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
-    const { name, alias, username } = req.body;
+    const { name, alias, username, password } = req.body;
     await User.findByIdAndUpdate(id, {
       name,
       alias,
       username,
+      password: hashPassword(password),
     });
     return res.status(200).json({ status: "200", message: "Profile updated!" });
   } catch (error) {

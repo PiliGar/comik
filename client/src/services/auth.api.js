@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const authApi = axios.create({
-  baseURL: "http://localhost:3000/auth",
+const api = axios.create({
+  baseURL: `${process.env.BACKEND_URL}/auth`,
   withCredentials: true,
 });
 
 export const doSignup = async ({ name, alias, username, password }) => {
   try {
-    const response = await authApi.post("/signup", {
+    const response = await api.post("/signup", {
       name,
       alias,
       username,
@@ -23,7 +23,7 @@ export const doSignup = async ({ name, alias, username, password }) => {
 export const doLogin = async ({ username, password }) => {
   console.log(`--->>> login user: ${username}`);
   try {
-    const response = await authApi.post("/login", {
+    const response = await api.post("/login", {
       username,
       password,
     });
@@ -36,7 +36,7 @@ export const doLogin = async ({ username, password }) => {
 
 export const doUpdate = async ({ name, alias, username, password }) => {
   try {
-    const response = await authApi.put("/edit", {
+    const response = await api.put("/edit", {
       name,
       alias,
       username,
@@ -50,13 +50,13 @@ export const doUpdate = async ({ name, alias, username, password }) => {
 };
 
 export const doLogout = async () => {
-  const response = await authApi.post("logout");
+  const response = await api.post("logout");
   console.log("--->>>  DDBB ⭐", response.data);
   return response.data;
 };
 
 export const whoUser = async () => {
-  const response = await authApi.post("/whoami");
+  const response = await api.post("/whoami");
   console.log("--->>>  DDBB ⭐", response.data);
   return response.data;
 };

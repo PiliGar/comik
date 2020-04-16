@@ -18,7 +18,7 @@ export const LoginForm = withRouter(({ history, title, c2a }) => {
     mode: "onBlur",
   });
   const { register, handleSubmit, errors } = methods;
-  console.log("usuario actual", user);
+
   const onSubmit = async (data) => {
     console.log("--->>> data 🚀", data);
     const response = await doLogin(data);

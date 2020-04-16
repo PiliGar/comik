@@ -9,7 +9,7 @@ export const StyledAccount = styled.section`
       justify-content: space-between;
       align-items: flex-start;
       form {
-        width: 50%;
+        width: 100%;
         .change {
           display: flex;
           flex-flow: row nowrap;

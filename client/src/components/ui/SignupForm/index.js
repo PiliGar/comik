@@ -19,8 +19,6 @@ export const SignupForm = withRouter(({ history, title, c2a }) => {
   });
   const { register, handleSubmit, errors } = methods;
 
-  console.log("usuario actual", user);
-
   const onSubmit = async (data) => {
     console.log("--->>> data 🚀", data);
     const response = await doSignup(data);

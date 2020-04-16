@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/issue",
+  baseURL: `${process.env.BACKEND_URL}/issue`,
   withCredentials: true,
 });
 

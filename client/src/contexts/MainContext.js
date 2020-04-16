@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 export const MainContext = createContext();
 
 export const MainContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [burgerOpen, setBurguerOpen] = useState(false);
 
