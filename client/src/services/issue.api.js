@@ -100,7 +100,7 @@ export const getFavIssues = async () => {
   }
 };
 
-export const addFavIssues = async (id) => {
+export const addFavIssue = async (id) => {
   try {
     const res = await api.post(`${path}/favorite/add/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
@@ -110,9 +110,39 @@ export const addFavIssues = async (id) => {
   }
 };
 
-export const removeFavIssues = async (id) => {
+export const removeFavIssue = async (id) => {
   try {
     const res = await api.delete(`${path}/favorite/remove/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getWantedIssues = async () => {
+  try {
+    const res = await api.get(`${path}/wanted/list`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addWantedIssue = async (id) => {
+  try {
+    const res = await api.post(`${path}/wanted/add/${id}`);
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removeWantedIssue = async (id) => {
+  try {
+    const res = await api.delete(`${path}/wanted/remove/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
