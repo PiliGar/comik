@@ -5,7 +5,8 @@ import User from "../../../../public/images/man.png";
 import { LinkTo } from "../Link/index";
 import { Trash2, PenTool } from "react-feather";
 
-export const BarUser = () => {
+export const BarUser = ({ userItem }) => {
+  console.log("user", userItem);
   return (
     <StyledUser>
       <Row>
@@ -13,20 +14,20 @@ export const BarUser = () => {
           <Image className="avatar" src={User} roundedCircle fluid />
         </Col>
         <Col xs={12} md={2} className="vertical">
-          <span>Real name</span>
-          <p>Name user</p>
+          <span>Name</span>
+          <p>{userItem?.name}</p>
         </Col>
         <Col xs={12} md={2} className="vertical">
           <span>A.K.A</span>
-          <p>Name user</p>
+          <p>{userItem?.alias}</p>
         </Col>
         <Col xs={12} md={2} className="vertical">
           <span>Email</span>
-          <p>email@email.com</p>
+          <p>{userItem?.username}</p>
         </Col>
         <Col xs={12} md={2} className="vertical">
           <span>Role</span>
-          <p>Suscriber</p>
+          <p>{userItem?.role}</p>
         </Col>
         <Col xs={12} md={2} className="vertical">
           <Row>

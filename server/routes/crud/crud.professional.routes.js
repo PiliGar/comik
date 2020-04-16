@@ -9,7 +9,7 @@ const router = express.Router();
 
 /* PROFESSIONAL  retrieve */
 router.get("/", async (req, res, next) => {
-  const professionals = await Professional.find().populate("issues");
+  const professionals = await Professional.find();
   return res.status(200).json({
     message: "All professionals retrieved successfully",
     professionals,

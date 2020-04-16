@@ -5,7 +5,7 @@ require("dotenv").config();
 const key = process.env.API_KEY;
 const url = process.env.API_URL;
 
-const apiURL = `${url}/people/?api_key=${key}&format=json`;
+const apiURL = `${url}/people/?api_key=${key}&format=json&limit=30`;
 getData(apiURL);
 
 function getData(url) {

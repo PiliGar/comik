@@ -4,8 +4,8 @@ const path = `/user`;
 export const getAllUsers = async () => {
   try {
     const res = await api.get(`${path}/`);
-    console.log("--->>>  DDBB ⭐", res.data.objs);
-    return res.data.objs;
+    console.log("--->>>  DDBB ⭐", res.data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }

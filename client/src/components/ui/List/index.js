@@ -17,13 +17,6 @@ export const List = () => {
   );
 };
 
-export const ListUser = () => {
-  return (
-    <ListGroup>
-      <BarUser />
-      <BarUser />
-      <BarUser />
-      <BarUser />
-    </ListGroup>
-  );
+export const ListUser = ({ children }) => {
+  return <ListGroup>{children}</ListGroup>;
 };

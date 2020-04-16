@@ -1,17 +1,34 @@
 import React, { createContext, useState, useEffect } from "react";
 export const MainContext = createContext();
 
+import { getAllUsers } from "../services/user.api";
+import { getAllProfessionals } from "../services/professinal.api";
+import { getAllIssues } from "../services/issue.api";
+import { getAllPublisher } from "../services/publisher.api";
+import { getAllCharacters } from "../services/character.api";
+
 export const MainContextProvider = ({ children }) => {
-  //user
-  const [user, setUser] = useState();
+  //ui
   const [loading, setLoading] = useState(true);
   const [burgerOpen, setBurguerOpen] = useState(false);
 
   //content
+  const [user, setUser] = useState();
+  const [users, setUsers] = useState();
   const [professionals, setProfessionals] = useState();
   const [issues, setIssues] = useState();
   const [publishers, setPublishers] = useState();
   const [characters, setCharacters] = useState();
+
+  useEffect(() => {
+    getAllUsers().then((res) => {
+      console.log("--->>> users", res.users);
+      setUsers(res.users);
+    });
+    // getAllProfessionals().then((professionals) =>
+    //   setProfessionals(professionals)
+    // );
+  }, []);
 
   const handleBurger = (e) => {
     e.preventDefault();
@@ -21,12 +38,14 @@ export const MainContextProvider = ({ children }) => {
   return (
     <MainContext.Provider
       value={{
-        user,
-        setUser,
         loading,
         setLoading,
         burgerOpen,
         setBurguerOpen,
+        user,
+        setUser,
+        users,
+        setUsers,
         handleBurger,
         professionals,
         setProfessionals,

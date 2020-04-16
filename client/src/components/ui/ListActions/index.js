@@ -13,17 +13,17 @@ export const ListActions = () => {
         </LinkTo>
       </ListGroup.Item>
       <ListGroup.Item>
-        <LinkTo to="/signup" variant="terciary">
+        <LinkTo to="/add-issue" variant="terciary">
           <PlusCircle /> Add Issue
         </LinkTo>
       </ListGroup.Item>
       <ListGroup.Item>
-        <LinkTo to="/signup" variant="terciary">
+        <LinkTo to="/add-publisher" variant="terciary">
           <PlusCircle /> Add Publisher
         </LinkTo>
       </ListGroup.Item>
       <ListGroup.Item>
-        <LinkTo to="/signup" variant="terciary">
+        <LinkTo to="/add-character" variant="terciary">
           <PlusCircle /> Add Character
         </LinkTo>
       </ListGroup.Item>
