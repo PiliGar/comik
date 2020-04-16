@@ -8,7 +8,7 @@ import { useForm, FormContext } from "react-hook-form";
 import { ChevronRight, ArrowRight } from "react-feather";
 import { InputBox } from "../Input/index";
 import { Button } from "../Button/index";
-import { Link as Linkto } from "../Link/index";
+import { LinkTo } from "../Link/index";
 import { StyledForm } from "./style";
 
 export const UpdateForm = withRouter(({ history, title, c2a }) => {
@@ -108,9 +108,9 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
           </Button>
           <div className="change">
             <p>Already have an account?</p>
-            <Linkto to="/auth/login" variant="primary">
+            <LinkTo to="/auth/login" variant="primary">
               Log in <ChevronRight color="#76B5D7" size="13" />
-            </Linkto>
+            </LinkTo>
           </div>
         </form>
       </FormContext>

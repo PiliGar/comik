@@ -1,8 +1,8 @@
 import React from "react";
 import { StyledUser } from "./style";
-import { Container, Row, Col, ListGroup, Image } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 import User from "../../../../public/images/man.png";
-import { Link as Linkto } from "../Link/index";
+import { LinkTo } from "../Link/index";
 import { Trash2, PenTool } from "react-feather";
 
 export const BarUser = () => {
@@ -31,14 +31,14 @@ export const BarUser = () => {
         <Col xs={12} md={2} className="vertical">
           <Row>
             <Col xs={6}>
-              <Linkto to="/signup" variant="secondary">
+              <LinkTo to="/signup" variant="secondary">
                 <PenTool />
-              </Linkto>
+              </LinkTo>
             </Col>
             <Col xs={6}>
-              <Linkto to="/signup" variant="secondary">
+              <LinkTo to="/signup" variant="secondary">
                 <Trash2 />
-              </Linkto>
+              </LinkTo>
             </Col>
           </Row>
         </Col>

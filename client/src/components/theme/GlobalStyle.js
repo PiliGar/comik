@@ -98,12 +98,14 @@ export const GlobalStyle = createGlobalStyle`
         font-family: ${({ theme: { font } }) => font.primary};
     }
     label{
-        font-size: ${({ theme: { fontSize } }) => fontSize.xs};
+        font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
         font-family: ${({ theme: { font } }) => font.secondary};
         font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
+        color: ${({ theme: { color } }) => color.plus};
     }
     p{
         font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
+        color: ${({ theme: { color } }) => color.plus};
         line-height: ${({ theme: { lineHeight } }) => lineHeight.xs};
         font-family: ${({ theme: { font } }) => font.secondary};
         font-weight: ${({ theme: { fontWeight } }) => fontWeight.l};

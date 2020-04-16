@@ -17,6 +17,10 @@ import { AdminPanelPage } from "./components/pages/AdminPanelPage/index";
 import { GalleryPage } from "./components/pages/GalleryPage/index";
 import { GalleryItemPage } from "./components/pages/GalleryItemPage/index";
 import { ProfilePage } from "./components/pages/ProfilePage/index";
+import { AddProfessionalPage } from "./components/pages/AddProfessionalPage/index";
+import { AddIssuePage } from "./components/pages/AddIssuePage/index";
+import { AddPublisherPage } from "./components/pages/AddPublisherPage/index";
+import { AddCharacterPage } from "./components/pages/AddCharacterPage/index";
 
 export const App = withAuthentication(() => {
   return (
@@ -32,6 +36,14 @@ export const App = withAuthentication(() => {
           <Route path="/gallery" exact component={GalleryPage} />
           <Route path="/item" exact component={GalleryItemPage} />
           <Route path="/profile" exact component={ProfilePage} />
+          <Route
+            path="/add-professional"
+            exact
+            component={AddProfessionalPage}
+          />
+          <Route path="/add-issue" exact component={AddIssuePage} />
+          <Route path="/add-publisher" exact component={AddPublisherPage} />
+          <Route path="/add-character" exact component={AddCharacterPage} />
         </Switch>
       </Layout>
     </Router>

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledNavbar } from "./style";
-import { Link as Linkto } from "../Link/index";
+import { LinkTo } from "../Link/index";
 import { BookOpen, Heart } from "react-feather";
 
 export const NavCategories = () => {
@@ -8,34 +8,34 @@ export const NavCategories = () => {
     <StyledNavbar>
       <ul>
         <li>
-          <Linkto to="/gallery" variant="primary">
+          <LinkTo to="/gallery" variant="primary">
             <BookOpen />
             Issues that I'm looking for
-          </Linkto>
+          </LinkTo>
         </li>
         <li>
-          <Linkto to="/gallery" variant="primary">
+          <LinkTo to="/gallery" variant="primary">
             <Heart />
             Professionals
-          </Linkto>
+          </LinkTo>
         </li>
         <li>
-          <Linkto to="/item" variant="primary">
+          <LinkTo to="/item" variant="primary">
             <Heart />
             Issues
-          </Linkto>
+          </LinkTo>
         </li>
         <li>
-          <Linkto to="/profile" variant="primary">
+          <LinkTo to="/profile" variant="primary">
             <Heart />
             Publishers
-          </Linkto>
+          </LinkTo>
         </li>
         <li>
-          <Linkto to="/adminpanel" variant="primary">
+          <LinkTo to="/adminpanel" variant="primary">
             <Heart />
             Character
-          </Linkto>
+          </LinkTo>
         </li>
       </ul>
     </StyledNavbar>

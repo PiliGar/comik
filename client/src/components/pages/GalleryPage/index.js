@@ -1,9 +1,8 @@
 import React from "react";
 import { StyledGallery } from "./style";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { CardItem } from "../../ui/Card/index";
 import { List } from "../../ui/List/index";
-import { Link as Linkto } from "../../ui/Link/index";
 
 export const GalleryPage = () => {
   return (

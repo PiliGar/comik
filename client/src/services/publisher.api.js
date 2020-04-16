@@ -13,7 +13,7 @@ export const getAllPublishers = async () => {
 
 export const getOnePublisher = async (id) => {
   try {
-    const res = await api.get(`${path}/${id}`);
+    const res = await api.get(`${path}/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -33,7 +33,7 @@ export const createPublisher = async ({
   imageSrc,
 }) => {
   try {
-    const res = await api.post(`${path}/create`, {
+    const res = await api.post(`${path}/create`, {
       name,
       locationAddress,
       locationCity,
@@ -63,7 +63,7 @@ export const updatePublisher = async ({
   id,
 }) => {
   try {
-    const res = await api.put(`${path}/edit/${id}`, {
+    const res = await api.put(`${path}/edit/${id}`, {
       name,
       locationAddress,
       locationCity,
@@ -82,7 +82,7 @@ export const updatePublisher = async ({
 
 export const removePublisher = async (id) => {
   try {
-    const res = await api.delete(`${path}/delete/${id}`);
+    const res = await api.delete(`${path}/delete/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -92,7 +92,7 @@ export const removePublisher = async (id) => {
 
 export const getFavPublisher = async () => {
   try {
-    const res = await api.get(`${path}/favorite/list`);
+    const res = await api.get(`${path}/favorite/list`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -102,7 +102,7 @@ export const getFavPublisher = async () => {
 
 export const addFavPublisher = async (id) => {
   try {
-    const res = await api.post(`${path}/favorite/add/${id}`);
+    const res = await api.post(`${path}/favorite/add/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -112,7 +112,7 @@ export const addFavPublisher = async (id) => {
 
 export const removeFavPublisher = async (id) => {
   try {
-    const res = await api.delete(`${path}/favorite/remove/${id}`);
+    const res = await api.delete(`${path}/favorite/remove/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {

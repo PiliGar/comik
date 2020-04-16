@@ -1,9 +1,10 @@
 import React from "react";
 import { StyledInput } from "./style";
 import { useFormContext } from "react-hook-form";
+import { Upload } from "react-feather";
 
-export const InputBox = React.forwardRef(
-  ({ label, type = "text", placeholder, name }, ref) => {
+export const InputUpload = React.forwardRef(
+  ({ label, type = "file", placeholder, name, c2a }, ref) => {
     const { errors } = useFormContext();
     return (
       <>
@@ -11,7 +12,10 @@ export const InputBox = React.forwardRef(
         <StyledInput
           className={errors[name] ? `form-group errors` : `form-group`}
         >
-          <input type={type} placeholder={placeholder} name={name} ref={ref}/>
+          <button className="upload-btn">
+            {c2a} <Upload />
+          </button>
+          <input type={type} placeholder={placeholder} name={name} ref={ref} />
           {errors[name] && <span>{errors[name].message}</span>}
         </StyledInput>
       </>

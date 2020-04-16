@@ -42,11 +42,12 @@ router.post(
       excerpt,
       description,
     } = req.body;
-    //   const imgSrc = req.file.url;
-    //   const imgName = req.file.originalname;
-    const imgSrc = "path.jpg";
-    const imgName = "picture";
-    const arrIssues = issues.split("|").map((title) => title.trim());
+    const imgSrc = req.file.url;
+    const imgName = req.file.originalname;
+    // const imgSrc = "path.jpg";
+    // const imgName = "picture";
+
+    /*const arrIssues = issues.split("|").map((title) => title.trim());
     console.log("arrIssues--->>>", arrIssues);
     const issuesObj = await Promise.all(
       arrIssues
@@ -65,7 +66,7 @@ router.post(
     console.log("issuesObj--->>>", issuesObj);
 
     const arrIds = issuesObj.map((issue) => issue._id);
-    console.log("arrIds--->>>", arrIds);
+    console.log("arrIds--->>>", arrIds);*/
 
     const data = {
       name: name,
@@ -76,6 +77,8 @@ router.post(
       issues: arrIds,
       excerpt: excerpt,
       description: description,
+      imgSrc: imgSrc,
+      imgName: imgName,
     };
     const professional = await Professional.create(data).populate("issues");
     return res.status(200).json({

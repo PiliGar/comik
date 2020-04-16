@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledListActions } from "./style";
-import { LinkBtn } from "../Link/index";
+import { LinkTo } from "../Link/index";
 import { PlusCircle } from "react-feather";
 import { ListGroup } from "react-bootstrap";
 
@@ -8,24 +8,24 @@ export const ListActions = () => {
   return (
     <StyledListActions>
       <ListGroup.Item>
-        <LinkBtn to="/signup" variant="terciary">
+        <LinkTo to="/add-professional" variant="terciary">
           <PlusCircle /> Add Professional
-        </LinkBtn>
+        </LinkTo>
       </ListGroup.Item>
       <ListGroup.Item>
-        <LinkBtn to="/signup" variant="terciary">
+        <LinkTo to="/signup" variant="terciary">
           <PlusCircle /> Add Issue
-        </LinkBtn>
+        </LinkTo>
       </ListGroup.Item>
       <ListGroup.Item>
-        <LinkBtn to="/signup" variant="terciary">
+        <LinkTo to="/signup" variant="terciary">
           <PlusCircle /> Add Publisher
-        </LinkBtn>
+        </LinkTo>
       </ListGroup.Item>
       <ListGroup.Item>
-        <LinkBtn to="/signup" variant="terciary">
+        <LinkTo to="/signup" variant="terciary">
           <PlusCircle /> Add Character
-        </LinkBtn>
+        </LinkTo>
       </ListGroup.Item>
     </StyledListActions>
   );

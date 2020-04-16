@@ -5,8 +5,8 @@ import { withRouter, Link } from "react-router-dom";
 import { doLogout } from "../../../services/auth.api";
 
 import { StyledNavbar } from "./style";
-import { Button, ButtonAnimated, LinkAnimated } from "../Button/index";
-import { Link as Linkto, LinkBtn } from "../Link/index";
+import { LinkAnimated } from "../Button/index";
+import { LinkTo } from "../Link/index";
 
 export const NavBar = withRouter(({ history }) => {
   const { user, setUser } = useContext(MainContext);
@@ -21,9 +21,9 @@ export const NavBar = withRouter(({ history }) => {
     <StyledNavbar>
       <ul>
         <li>
-          {/* <Linkto to="/" variant="primary">
+          {/* <LinkTo to="/" variant="primary">
             Nada
-          </Linkto>
+          </LinkTo>
           <Button to="/" variant="primary">
             Hola
           </Button>
@@ -52,9 +52,9 @@ export const NavBar = withRouter(({ history }) => {
         {!user && (
           <>
             <li>
-              <Linkto to="/auth/login" variant="primary">
+              <LinkTo to="/auth/login" variant="primary">
                 Log in
-              </Linkto>
+              </LinkTo>
             </li>
             <li>
               <LinkAnimated
@@ -77,29 +77,29 @@ export const NavBar = withRouter(({ history }) => {
         {user && (
           <>
             <li>
-              <Linkto to="/account" variant="primary">
+              <LinkTo to="/account" variant="primary">
                 Account
-              </Linkto>
+              </LinkTo>
             </li>
             <li>
-              <Linkto to="/gallery" variant="primary">
+              <LinkTo to="/gallery" variant="primary">
                 Gallery
-              </Linkto>
+              </LinkTo>
             </li>
             <li>
-              <Linkto to="/item" variant="primary">
+              <LinkTo to="/item" variant="primary">
                 Item Gallery
-              </Linkto>
+              </LinkTo>
             </li>
             <li>
-              <Linkto to="/profile" variant="primary">
+              <LinkTo to="/profile" variant="primary">
                 Profile
-              </Linkto>
+              </LinkTo>
             </li>
             <li>
-              <Linkto to="/adminpanel" variant="primary">
+              <LinkTo to="/adminpanel" variant="primary">
                 Admin panel
-              </Linkto>
+              </LinkTo>
             </li>
             <li>
               <Link to="/" variant="primary" onClick={(e) => onClickLogout(e)}>
@@ -111,14 +111,14 @@ export const NavBar = withRouter(({ history }) => {
 
         {/* TODO isLoged admin or user*/}
         {/* <li>
-          <Linkto to="/" variant="primary">
+          <LinkTo to="/" variant="primary">
             Notifications
-          </Linkto>
+          </LinkTo>
         </li> */}
         {/* <li>
-          <Linkto to="/" variant="primary">
+          <LinkTo to="/" variant="primary">
             Welcome <b>pilar@comick.com</b>
-          </Linkto>
+          </LinkTo>
         </li> */}
       </ul>
     </StyledNavbar>

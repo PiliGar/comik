@@ -1,19 +1,24 @@
 import React from "react";
-import { StyledInput } from "./style";
+import { StyledTextArea } from "./style";
 import { useFormContext } from "react-hook-form";
 
-export const InputBox = React.forwardRef(
-  ({ label, type = "text", placeholder, name }, ref) => {
+export const TextAreaBox = React.forwardRef(
+  ({ label, placeholder, name, rowsNumber = "4" }, ref) => {
     const { errors } = useFormContext();
     return (
       <>
         {label && <label>{label}</label>}
-        <StyledInput
+        <StyledTextArea
           className={errors[name] ? `form-group errors` : `form-group`}
         >
-          <input type={type} placeholder={placeholder} name={name} ref={ref}/>
+          <textarea
+            placeholder={placeholder}
+            name={name}
+            ref={ref}
+            rows={rowsNumber}
+          />
           {errors[name] && <span>{errors[name].message}</span>}
-        </StyledInput>
+        </StyledTextArea>
       </>
     );
   }

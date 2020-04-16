@@ -13,7 +13,7 @@ export const getAllProfessionals = async () => {
 
 export const getOneProfessional = async (id) => {
   try {
-    const res = await api.get(`${path}/${id}`);
+    const res = await api.get(`${path}/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -35,7 +35,7 @@ export const createProfessional = async ({
   imageSrc,
 }) => {
   try {
-    const res = await api.post(`${path}/create`, {
+    const res = await api.post(`${path}/create`, {
       name,
       birth,
       death,
@@ -69,7 +69,7 @@ export const updateProfessional = async ({
   id,
 }) => {
   try {
-    const res = await api.put(`${path}/edit/${id}`, {
+    const res = await api.put(`${path}/edit/${id}`, {
       name,
       birth,
       death,
@@ -90,7 +90,7 @@ export const updateProfessional = async ({
 
 export const removeProfessional = async (id) => {
   try {
-    const res = await api.delete(`${path}/delete/${id}`);
+    const res = await api.delete(`${path}/delete/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -100,7 +100,7 @@ export const removeProfessional = async (id) => {
 
 export const getFavProfessionals = async () => {
   try {
-    const res = await api.get(`${path}/favorite/list`);
+    const res = await api.get(`${path}/favorite/list`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -110,7 +110,7 @@ export const getFavProfessionals = async () => {
 
 export const addFavProfessionals = async (id) => {
   try {
-    const res = await api.post(`${path}/favorite/add/${id}`);
+    const res = await api.post(`${path}/favorite/add/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -120,7 +120,7 @@ export const addFavProfessionals = async (id) => {
 
 export const removeFavProfessionals = async (id) => {
   try {
-    const res = await api.delete(`${path}/favorite/remove/${id}`);
+    const res = await api.delete(`${path}/favorite/remove/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {

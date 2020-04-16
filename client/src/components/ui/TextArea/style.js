@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledInput = styled.div`
+export const StyledTextArea = styled.div`
   label {
     width: 100%;
     font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
@@ -9,7 +9,6 @@ export const StyledInput = styled.div`
     color: ${({ theme: { color } }) => color.plus};
     margin: 0px;
   }
-  input,
   textarea {
     width: 100%;
     box-sizing: border-box;
@@ -17,11 +16,19 @@ export const StyledInput = styled.div`
     font-family: ${({ theme: { font } }) => font.secondary};
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
     margin-bottom: 0.8rem;
-  }
-  input {
-    height: 4.5rem;
-    -webkit-appearance: none;
-    color: ${({ theme: { color } }) => color.primary};
+    border-color: transparent;
+    border: solid 0.2rem ${({ theme: { color } }) => color.medium};
+    padding: 0.8rem;
+    &:focus {
+      outline: none !important;
+      outline-style: none;
+      box-shadow: none;
+      color: ${({ theme: { color } }) => color.dark};
+      border-bottom: solid 0.2rem ${({ theme: { color } }) => color.primary};
+      &::-webkit-input-placeholder {
+        color: ${({ theme: { color } }) => color.dark};
+      }
+    }
     &::placeholder {
       color: ${({ theme: { color } }) => color.plus};
       opacity: 1; /* Firefox */
@@ -32,24 +39,8 @@ export const StyledInput = styled.div`
     &::-ms-input-placeholder {
       color: ${({ theme: { color } }) => color.plus};
     }
-    outline-style: none;
-    box-shadow: none;
-    border-color: transparent;
-    border-bottom: solid 0.2rem ${({ theme: { color } }) => color.medium};
-    -webkit-transition: border-color 0.3s;
-    transition: border-color 0.3s;
-    &:focus {
-      outline: none !important;
-      outline-style: none;
-      box-shadow: none;
-      border-color: transparent;
-      color: ${({ theme: { color } }) => color.dark};
-      border-bottom: solid 0.2rem ${({ theme: { color } }) => color.primary};
-      &::-webkit-input-placeholder {
-        color: ${({ theme: { color } }) => color.dark};
-      }
-    }
   }
+
   &.errors {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;

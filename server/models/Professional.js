@@ -9,12 +9,8 @@ const professionalSchema = new mongoose.Schema(
       index: true,
       required: "Name is required",
     },
-    birth: {
-      type: String,
-    },
-    death: {
-      type: String,
-    },
+    birth: { type: Date, default: Date.now },
+    death: { type: Date, default: Date.now },
     country: {
       type: String,
     },

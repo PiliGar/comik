@@ -13,7 +13,7 @@ export const getAllContacts = async () => {
 
 export const addContact = async (id) => {
   try {
-    const res = await api.post(`${path}/add/${id}`);
+    const res = await api.post(`${path}/add/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -23,7 +23,7 @@ export const addContact = async (id) => {
 
 export const removeContact = async (id) => {
   try {
-    const res = await api.delete(`${path}/remove/${id}`);
+    const res = await api.delete(`${path}/remove/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {

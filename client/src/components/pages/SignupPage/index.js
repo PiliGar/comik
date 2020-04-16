@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Container, Row } from "react-bootstrap";
 import { SignupForm } from "../../ui/SignupForm/index";
+
+import { Container, Row } from "react-bootstrap";
 import { StyledSignup } from "./style";
 
 export const SignupPage = () => {
