@@ -8,30 +8,30 @@ const { isLoggedIn } = require("../../middleware/isLogged");
 
 /* AUTH Signup */
 router.post("/signup", async (req, res, next) => {
-  const { name, alias, username, password } = req.body;
+  const { name, alias, email, password } = req.body;
 
-  console.log(name, alias, username);
-  console.log(`--->>> New sing up request: ${name} | ${alias} | ${username}`);
+  console.log(name, alias, email);
+  console.log(`--->>> New sing up request: ${name} | ${alias} | ${email}`);
 
-  if (username === "" || password === "") {
+  if (email === "" || password === "") {
     res.status(400).json({
-      message: "Please enter both, username and password to sign up.",
+      message: "Please enter both, email and password to sign up.",
     });
     return;
   }
 
   // Create the user
-  const existingUser = await User.findOne({ username });
+  const existingUser = await User.findOne({ email });
   if (!existingUser) {
     const newUser = await User.create({
       name,
       alias,
-      username,
+      email,
       password,
     });
     //Directly login user
     req.logIn(newUser, (err) => {
-      res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      res.json(_.pick(req.user, ["name", "alias", "email", "_id"]));
     });
     console.log(`--->>> New user registered: ${name}`);
   } else {
@@ -44,6 +44,7 @@ router.post("/signup", async (req, res, next) => {
 /* AUTH Login */
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user) => {
+    console.log("PASSPORT USER", user);
     if (err) {
       console.log(`--->>> Login ERROR: ${err}`);
       return res
@@ -51,7 +52,9 @@ router.post("/login", (req, res, next) => {
         .json({ status: 500, message: "Autentication Error" });
     }
     if (!user) {
-      return res.status(401).json({ status: 401, message: "Unathorised" });
+      return res
+        .status(401)
+        .json({ status: 401, message: "Unathorised no user" });
     }
     req.logIn(user, (err) => {
       if (err) {
@@ -59,7 +62,7 @@ router.post("/login", (req, res, next) => {
           .status(500)
           .json({ status: 500, message: "Session save went bad" });
       }
-      return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      return res.json(_.pick(req.user, ["name", "alias", "email", "_id"]));
     });
   })(req, res, next);
 });
@@ -69,11 +72,11 @@ router.post("/login", (req, res, next) => {
 router.put("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
-    const { name, alias, username, password } = req.body;
+    const { name, alias, email, password } = req.body;
     await User.findByIdAndUpdate(id, {
       name,
       alias,
-      username,
+      email,
       password: hashPassword(password),
     });
     return res.status(200).json({ status: "200", message: "Profile updated!" });
@@ -100,7 +103,7 @@ router.post("/whoami", (req, res, next) => {
   if (req.user)
     return res
       .status(200)
-      .json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      .json(_.pick(req.user, ["name", "alias", "email", "_id"]));
   else return res.status(401).json({ status: "No user session present" });
 });
 

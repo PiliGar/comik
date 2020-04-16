@@ -18,7 +18,7 @@ export const withAuthentication = (Component) => () => {
     console.log("Welcome to app! 👨🏼‍💻");
     whoUser()
       .then((user) => {
-        console.error(`Welcome again user ${user.username}!`);
+        console.error(`Welcome again user ${user.email}!`);
         setUser(user);
       })
       .catch((e) => {

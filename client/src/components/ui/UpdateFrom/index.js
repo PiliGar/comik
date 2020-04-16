@@ -19,7 +19,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
     defaultValues: {
       name: user?.name,
       alias: user?.alias,
-      username: user?.username,
+      email: user?.email,
     },
   });
 
@@ -27,7 +27,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
     methods.reset({
       name: user?.name,
       alias: user?.alias,
-      username: user?.username,
+      email: user?.email,
     });
   }, [user]);
 
@@ -75,7 +75,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
           <InputBox
             type="email"
             placeholder="Email"
-            name="username"
+            name="email"
             ref={register({
               required: {
                 value: false,

@@ -60,7 +60,7 @@ export const SignupForm = withRouter(({ history, title, c2a }) => {
           <InputBox
             type="email"
             placeholder="Email"
-            name="username"
+            name="email"
             ref={register({
               required: {
                 value: true,

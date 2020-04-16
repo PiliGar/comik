@@ -1,12 +1,12 @@
 import { api } from "./api";
 const path = `/auth`;
 
-export const doSignup = async ({ name, alias, username, password }) => {
+export const doSignup = async ({ name, alias, email, password }) => {
   try {
     const res = await api.post(`${path}/signup`, {
       name,
       alias,
-      username,
+      email,
       password,
     });
     console.log("--->>>  DDBB ⭐", res.data);
@@ -16,10 +16,10 @@ export const doSignup = async ({ name, alias, username, password }) => {
   }
 };
 
-export const doLogin = async ({ username, password }) => {
+export const doLogin = async ({ email, password }) => {
   try {
     const res = await api.post(`${path}/login`, {
-      username,
+      email,
       password,
     });
     console.log("--->>>  DDBB ⭐", res.data);
@@ -29,12 +29,12 @@ export const doLogin = async ({ username, password }) => {
   }
 };
 
-export const doUpdate = async ({ name, alias, username, password }) => {
+export const doUpdate = async ({ name, alias, email, password }) => {
   try {
     const res = await api.put(`${path}/edit`, {
       name,
       alias,
-      username,
+      email,
       password,
     });
     console.log("--->>>  DDBB ⭐", res.data);

@@ -15,7 +15,7 @@ const userSchema = new Schema(
       type: String,
       required: "Alias is required",
     },
-    username: {
+    email: {
       type: String,
       trim: true,
       match: [EMAIL_PATTERN, "Please fill a valid email address"],
@@ -99,8 +99,8 @@ const User = mongoose.model("User", userSchema);
 
 User.collection.createIndexes([
   {
-    key: { username: 1 },
-    name: "username",
+    key: { email: 1 },
+    name: "email",
   },
 ]);
 

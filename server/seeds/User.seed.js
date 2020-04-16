@@ -4,7 +4,7 @@ require("dotenv").config();
 
 let dataUsers = [
   {
-    username: process.env.ADMIN_USER,
+    email: process.env.ADMIN_USER,
     password: process.env.ADMIN_PASS,
     name: "Pilar",
     alias: "admin",
@@ -21,7 +21,7 @@ let dataUsers = [
     contacts: [],
   },
   {
-    username: "manuela@comik.com",
+    email: "manuela@comik.com",
     password: process.env.ADMIN_PASS,
     name: "Manuela",
     alias: "admin",
