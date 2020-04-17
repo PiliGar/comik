@@ -22,7 +22,7 @@ function getData(url) {
           hometown: professional.hometown,
           excerpt: professional.deck,
           description: professional.description,
-          picture: professional.image.original_url,
+          imageSrc: professional.image.original_url,
         };
         console.log(newProfessional);
 

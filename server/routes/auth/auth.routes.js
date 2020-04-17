@@ -100,7 +100,7 @@ router.post("/whoami", (req, res, next) => {
   if (req.user)
     return res
       .status(200)
-      .json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      .json(_.pick(req.user, ["name", "alias", "username", "role", "_id"]));
   else return res.status(401).json({ status: "No user session present" });
 });
 

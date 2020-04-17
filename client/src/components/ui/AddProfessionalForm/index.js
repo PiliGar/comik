@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
-import { createProfessional } from "../../../services/professinal.api";
+import { createProfessional } from "../../../services/professional.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";

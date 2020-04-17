@@ -105,7 +105,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     p{
         font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
-        color: ${({ theme: { color } }) => color.plus};
+        color: ${({ theme: { color } }) => color.dark};
         line-height: ${({ theme: { lineHeight } }) => lineHeight.xs};
         font-family: ${({ theme: { font } }) => font.secondary};
         font-weight: ${({ theme: { fontWeight } }) => fontWeight.l};

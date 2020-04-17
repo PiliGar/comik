@@ -11,10 +11,10 @@ getData(apiURL);
 function getData(url) {
   axios
     .get(url)
-    .then(response => {
+    .then((response) => {
       //console.log("--->>> RESPONSE", response.data.results);
       const res = response.data.results;
-      res.forEach(issue => {
+      res.forEach((issue) => {
         const newIssue = {
           title: issue.name,
           issueNumber: issue.issue_number,
@@ -22,7 +22,7 @@ function getData(url) {
           volume: issue.volume.name,
           excerpt: issue.deck,
           description: issue.description,
-          picture: issue.image.original_url
+          imageSrc: issue.image.original_url,
         };
         withDbConnection(async () => {
           //await Professional.deleteMany();
@@ -30,7 +30,7 @@ function getData(url) {
         });
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log("--->>> ERROR", error);
     });

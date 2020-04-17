@@ -4,7 +4,7 @@ const path = `/professional`;
 export const getAllProfessionals = async () => {
   try {
     const res = await api.get(`${path}/`);
-    console.log("--->>>  DDBB ⭐", res.data.professionals);
+    // console.log("--->>>  DDBB ⭐", res.data.professionals);
     return res.data.professionals;
   } catch (error) {
     console.log(error);
@@ -47,7 +47,7 @@ export const createProfessional = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", res.data);
+    // console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -81,7 +81,7 @@ export const updateProfessional = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -91,7 +91,7 @@ export const updateProfessional = async ({
 export const removeProfessional = async (id) => {
   try {
     const res = await api.delete(`${path}/delete/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -101,7 +101,7 @@ export const removeProfessional = async (id) => {
 export const getFavProfessionals = async () => {
   try {
     const res = await api.get(`${path}/favorite/list`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -111,7 +111,7 @@ export const getFavProfessionals = async () => {
 export const addFavProfessionals = async (id) => {
   try {
     const res = await api.post(`${path}/favorite/add/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -121,7 +121,7 @@ export const addFavProfessionals = async (id) => {
 export const removeFavProfessionals = async (id) => {
   try {
     const res = await api.delete(`${path}/favorite/remove/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);

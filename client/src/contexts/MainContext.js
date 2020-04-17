@@ -2,7 +2,8 @@ import React, { createContext, useState, useEffect } from "react";
 export const MainContext = createContext();
 
 import { getAllUsers } from "../services/user.api";
-import { getAllProfessionals } from "../services/professinal.api";
+import { getAllProfessionals } from "../services/professional.api";
+import { whoUser } from "../services/auth.api";
 import { getAllIssues } from "../services/issue.api";
 import { getAllPublisher } from "../services/publisher.api";
 import { getAllCharacters } from "../services/character.api";
@@ -21,13 +22,22 @@ export const MainContextProvider = ({ children }) => {
   const [characters, setCharacters] = useState();
 
   useEffect(() => {
+    whoUser().then((res) => {
+      //console.log("--->>> 🌎 whoUser", res);
+      setUser(res);
+    });
     getAllUsers().then((res) => {
-      console.log("--->>> users", res.users);
+      //console.log("--->>> 🌎 users", res.users);
       setUsers(res.users);
     });
-    // getAllProfessionals().then((professionals) =>
-    //   setProfessionals(professionals)
-    // );
+    getAllProfessionals().then((professionals) => {
+      console.log("--->>> 🌎professionals", professionals);
+      setProfessionals(professionals);
+    });
+    getAllIssues().then((issues) => {
+      //console.log("--->>> 🌎 issues", issues);
+      setIssues(issues);
+    });
   }, []);
 
   const handleBurger = (e) => {

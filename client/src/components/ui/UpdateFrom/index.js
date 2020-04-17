@@ -106,12 +106,6 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
           <Button to="/" variant="secondary">
             {c2a} <ArrowRight size="18" />
           </Button>
-          <div className="change">
-            <p>Already have an account?</p>
-            <LinkTo to="/auth/login" variant="primary">
-              Log in <ChevronRight color="#76B5D7" size="13" />
-            </LinkTo>
-          </div>
         </form>
       </FormContext>
     </StyledForm>

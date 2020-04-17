@@ -10,7 +10,7 @@ export const AccountPage = () => {
         <Container fluid className="wrapper">
           <Row>
             <h1>Account</h1>
-            <UpdateForm title="This is you" c2a="Update" />
+            <UpdateForm title="This is you," c2a="Update" />
           </Row>
         </Container>
       </StyledAccount>

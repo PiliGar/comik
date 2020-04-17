@@ -4,7 +4,7 @@ const path = `/publisher`;
 export const getAllPublishers = async () => {
   try {
     const res = await api.get(`${path}/`);
-    console.log("--->>>  DDBB ⭐", res.data.objs);
+    //console.log("--->>>  DDBB ⭐", res.data.objs);
     return res.data.objs;
   } catch (error) {
     console.log(error);
@@ -14,7 +14,7 @@ export const getAllPublishers = async () => {
 export const getOnePublisher = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -43,7 +43,7 @@ export const createPublisher = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -73,7 +73,7 @@ export const updatePublisher = async ({
       imageName,
       imageSrc,
     });
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -83,7 +83,7 @@ export const updatePublisher = async ({
 export const removePublisher = async (id) => {
   try {
     const res = await api.delete(`${path}/delete/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -93,7 +93,7 @@ export const removePublisher = async (id) => {
 export const getFavPublisher = async () => {
   try {
     const res = await api.get(`${path}/favorite/list`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -103,7 +103,7 @@ export const getFavPublisher = async () => {
 export const addFavPublisher = async (id) => {
   try {
     const res = await api.post(`${path}/favorite/add/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -113,7 +113,7 @@ export const addFavPublisher = async (id) => {
 export const removeFavPublisher = async (id) => {
   try {
     const res = await api.delete(`${path}/favorite/remove/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
