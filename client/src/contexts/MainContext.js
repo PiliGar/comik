@@ -5,7 +5,7 @@ import { getAllUsers } from "../services/user.api";
 import { getAllProfessionals } from "../services/professional.api";
 import { whoUser } from "../services/auth.api";
 import { getAllIssues } from "../services/issue.api";
-import { getAllPublisher } from "../services/publisher.api";
+import { getAllPublishers } from "../services/publisher.api";
 import { getAllCharacters } from "../services/character.api";
 
 export const MainContextProvider = ({ children }) => {
@@ -31,12 +31,20 @@ export const MainContextProvider = ({ children }) => {
       setUsers(res.users);
     });
     getAllProfessionals().then((professionals) => {
-      console.log("--->>> 🌎professionals", professionals);
+      //console.log("--->>> 🌎professionals", professionals);
       setProfessionals(professionals);
     });
     getAllIssues().then((issues) => {
       //console.log("--->>> 🌎 issues", issues);
       setIssues(issues);
+    });
+    getAllPublishers().then((publishers) => {
+      //console.log("--->>> 🌎 publishers", publishers);
+      setPublishers(publishers);
+    });
+    getAllCharacters().then((characters) => {
+      console.log("--->>> 🌎 characters", characters);
+      //setPublishers(characters);
     });
   }, []);
 

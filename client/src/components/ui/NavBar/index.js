@@ -92,6 +92,16 @@ export const NavBar = withRouter(({ history }) => {
               </LinkTo>
             </li>
             <li>
+              <LinkTo to="/gallery/publishers" variant="primary">
+                Publishers
+              </LinkTo>
+            </li>
+            <li>
+              <LinkTo to="/gallery/characters" variant="primary">
+                Characters
+              </LinkTo>
+            </li>
+            <li>
               <LinkTo to="/profile" variant="primary">
                 Profile
               </LinkTo>

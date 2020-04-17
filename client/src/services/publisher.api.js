@@ -15,7 +15,7 @@ export const getOnePublisher = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
     //console.log("--->>>  DDBB ⭐", res.data);
-    return res.data;
+    return res.data.obj;
   } catch (error) {
     console.log(error);
   }

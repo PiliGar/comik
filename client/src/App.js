@@ -20,6 +20,8 @@ import { GalleryProfessionalsPage } from "./components/pages/GalleryProfessional
 import { SingleProfessionalPage } from "./components/pages/SingleProfessionalPage/index";
 import { GalleryIssuesPage } from "./components/pages/GalleryIssuesPage/index";
 import { SingleIssuePage } from "./components/pages/SingleIssuePage/index";
+import { GalleryPublishersPage } from "./components/pages/GalleryPublishersPage/index";
+import { SinglePublisherPage } from "./components/pages/SinglePublisherPage/index";
 
 import { AddProfessionalPage } from "./components/pages/AddProfessionalPage/index";
 import { AddIssuePage } from "./components/pages/AddIssuePage/index";
@@ -49,9 +51,18 @@ export const App = withAuthentication(() => {
             exact
             component={SingleProfessionalPage}
           />
-
           <Route path="/gallery/issues" exact component={GalleryIssuesPage} />
           <Route path="/gallery/issue/:id" exact component={SingleIssuePage} />
+          <Route
+            path="/gallery/publishers"
+            exact
+            component={GalleryPublishersPage}
+          />
+          <Route
+            path="/gallery/publisher/:id"
+            exact
+            component={SinglePublisherPage}
+          />
 
           <Route
             path="/add-professional"
