@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { getOneProfessional } from "../../../services/professional.api";
+import { getOneCharacter } from "../../../services/character.api";
 
 import { MainContext } from "../../../contexts/MainContext";
 
@@ -9,15 +9,15 @@ import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleProfessionalPage = (props) => {
+export const SingleCharacterPage = (props) => {
   const { user } = useContext(MainContext);
-  const [professional, setProfessional] = useState({});
+  const [character, setCharacter] = useState({});
   const id = props.match.params.id;
 
   useEffect(() => {
-    getOneProfessional(id).then((res) => {
-      //console.log("--->>> 🦄 professional", res);
-      setProfessional(res.professional);
+    getOneCharacter(id).then((res) => {
+      console.log("--->>> 🦄 character", res);
+      setCharacter(res);
     });
   }, []);
 
@@ -27,7 +27,7 @@ export const SingleProfessionalPage = (props) => {
         <Container fluid>
           <Row>
             <Col xs={12}>
-              <h1>Professional</h1>
+              <h1>Character</h1>
             </Col>
           </Row>
         </Container>
@@ -36,14 +36,14 @@ export const SingleProfessionalPage = (props) => {
             <Col xs={12} md={8} lg={9}>
               <Row>
                 <Col xs={12}>
-                  <h2>{professional?.name}</h2>
+                  <h2>{character?.name}</h2>
                 </Col>
               </Row>
               <Row>
                 <Col xs={12} md={4}>
                   <img
                     className="itemImg"
-                    src={professional?.imageSrc}
+                    src={character?.imageSrc}
                     alt="item picture"
                   ></img>
                 </Col>
@@ -51,21 +51,14 @@ export const SingleProfessionalPage = (props) => {
                   <Row>
                     <Col xs={6}>
                       <h3>Info</h3>
-                      {professional?.birth && (
-                        <p>
-                          <b>Birth: {professional?.birth}</b>
-                        </p>
-                      )}
-                      {professional?.death && (
-                        <p>
-                          <b>Death: {professional?.death}</b>
-                        </p>
-                      )}
                       <p>
-                        <b>Hometown: {professional?.hometown}</b>
+                        <b>Alias: {character?.alias}</b>
                       </p>
                       <p>
-                        <b>Country: {professional?.country}</b>
+                        <b>Real name: {character?.realName}</b>
+                      </p>
+                      <p>
+                        <b>Publisher: {character?.publisher}</b>
                       </p>
                     </Col>
                     <Col xs={6}>
@@ -99,9 +92,7 @@ export const SingleProfessionalPage = (props) => {
                   <Row>
                     <Col xs={12} className="description">
                       <h3>Description</h3>
-                      <p>
-                        {professional?.description || professional?.excerpt}
-                      </p>
+                      <p>{character?.excerpt}</p>
                     </Col>
                   </Row>
                 </Col>

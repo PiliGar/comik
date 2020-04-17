@@ -4,8 +4,8 @@ const path = `/character`;
 export const getAllCharacters = async () => {
   try {
     const res = await api.get(`${path}/`);
-    console.log("--->>>  DDBB ⭐", res.data);
-    return res.data;
+    //console.log("--->>>  DDBB ⭐", res.data.objs);
+    return res.data.objs;
   } catch (error) {
     console.log(error);
   }
@@ -14,8 +14,8 @@ export const getAllCharacters = async () => {
 export const getOneCharacter = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
-    return res.data;
+    console.log("--->>>  DDBB ⭐", res.data.obj);
+    return res.data.obj;
   } catch (error) {
     console.log(error);
   }

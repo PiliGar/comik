@@ -22,6 +22,7 @@ function getData(url) {
           volume: issue.volume.name,
           excerpt: issue.deck,
           description: issue.description,
+          imageName: issue.name,
           imageSrc: issue.image.original_url,
         };
         withDbConnection(async () => {

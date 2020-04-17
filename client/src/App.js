@@ -13,7 +13,7 @@ import { HomePage } from "./components/pages/HomePage/index";
 import { LoginPage } from "./components/pages/LoginPage/index";
 import { SignupPage } from "./components/pages/SignupPage/index";
 import { AccountPage } from "./components/pages/AccountPage/index";
-import { ProfilePage } from "./components/pages/ProfilePage/index";
+import { ProfilePage } from "./components/pages/ProfilePage/index"; //TODO
 import { AdminPanelPage } from "./components/pages/AdminPanelPage/index";
 
 import { GalleryProfessionalsPage } from "./components/pages/GalleryProfessionalPage/index";
@@ -22,6 +22,8 @@ import { GalleryIssuesPage } from "./components/pages/GalleryIssuesPage/index";
 import { SingleIssuePage } from "./components/pages/SingleIssuePage/index";
 import { GalleryPublishersPage } from "./components/pages/GalleryPublishersPage/index";
 import { SinglePublisherPage } from "./components/pages/SinglePublisherPage/index";
+import { GalleryCharactersPage } from "./components/pages/GalleryCharactersPage/index";
+import { SingleCharacterPage } from "./components/pages/SingleCharacterPage/index";
 
 import { AddProfessionalPage } from "./components/pages/AddProfessionalPage/index";
 import { AddIssuePage } from "./components/pages/AddIssuePage/index";
@@ -62,6 +64,16 @@ export const App = withAuthentication(() => {
             path="/gallery/publisher/:id"
             exact
             component={SinglePublisherPage}
+          />
+          <Route
+            path="/gallery/characters"
+            exact
+            component={GalleryCharactersPage}
+          />
+          <Route
+            path="/gallery/character/:id"
+            exact
+            component={SingleCharacterPage}
           />
 
           <Route

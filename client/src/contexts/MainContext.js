@@ -43,8 +43,8 @@ export const MainContextProvider = ({ children }) => {
       setPublishers(publishers);
     });
     getAllCharacters().then((characters) => {
-      console.log("--->>> 🌎 characters", characters);
-      //setPublishers(characters);
+      //console.log("--->>> 🌎 characters", characters);
+      setCharacters(characters);
     });
   }, []);
 
