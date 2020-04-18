@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 export const StyledInput = styled.div`
+  label {
+    width: 100%;
+    font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
+    font-family: ${({ theme: { font } }) => font.secondary};
+    font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
+    color: ${({ theme: { color } }) => color.plus};
+    margin: 0px;
+  }
   input,
   textarea {
     width: 100%;
@@ -10,25 +18,18 @@ export const StyledInput = styled.div`
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
     margin-bottom: 0.8rem;
   }
-  label {
-    width: 100%;
-    font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
-    font-family: ${({ theme: { font } }) => font.secondary};
-    font-weight: ${({ theme: { fontWeight } }) => fontWeight.m};
-    margin: 0px;
-  }
   input {
     height: 4.5rem;
     -webkit-appearance: none;
     color: ${({ theme: { color } }) => color.primary};
-    ::placeholder {
+    &::placeholder {
       color: ${({ theme: { color } }) => color.plus};
       opacity: 1; /* Firefox */
     }
-    :-ms-input-placeholder {
+    &:-ms-input-placeholder {
       color: ${({ theme: { color } }) => color.plus};
     }
-    ::-ms-input-placeholder {
+    &::-ms-input-placeholder {
       color: ${({ theme: { color } }) => color.plus};
     }
     outline-style: none;

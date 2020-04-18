@@ -5,7 +5,7 @@ require("dotenv").config();
 const key = process.env.API_KEY;
 const url = process.env.API_URL;
 
-const apiURL = `${url}/people/?api_key=${key}&format=json`;
+const apiURL = `${url}/people/?api_key=${key}&format=json&limit=30`;
 getData(apiURL);
 
 function getData(url) {
@@ -22,7 +22,8 @@ function getData(url) {
           hometown: professional.hometown,
           excerpt: professional.deck,
           description: professional.description,
-          picture: professional.image.original_url,
+          imageName: professional.name,
+          imageSrc: professional.image.original_url,
         };
         console.log(newProfessional);
 

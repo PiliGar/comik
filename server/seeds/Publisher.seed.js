@@ -5,16 +5,16 @@ require("dotenv").config();
 const key = process.env.API_KEY;
 const url = process.env.API_URL;
 
-const apiURL = `${url}/publishers/?api_key=${key}&format=json`;
+const apiURL = `${url}/publishers/?api_key=${key}&format=json&limit=50`;
 getData(apiURL);
 
 function getData(url) {
   axios
     .get(url)
-    .then(response => {
+    .then((response) => {
       //console.log("--->>> RESPONSE", response.data.results);
       const res = response.data.results;
-      res.forEach(publisher => {
+      res.forEach((publisher) => {
         const newPublisher = {
           name: publisher.name,
           locationAddress: publisher.location_address,
@@ -22,7 +22,8 @@ function getData(url) {
           locationState: publisher.location_state,
           excerpt: publisher.deck,
           description: publisher.description,
-          picture: publisher.image.original_url
+          imageName: publisher.name,
+          imageSrc: publisher.image.original_url,
         };
         withDbConnection(async () => {
           //await Professional.deleteMany();
@@ -30,7 +31,7 @@ function getData(url) {
         });
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // handle error
       console.log("--->>> ERROR", error);
     });

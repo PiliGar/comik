@@ -4,8 +4,8 @@ const path = `/character`;
 export const getAllCharacters = async () => {
   try {
     const res = await api.get(`${path}/`);
-    console.log("--->>>  DDBB ⭐", res.data);
-    return res.data;
+    //console.log("--->>>  DDBB ⭐", res.data.objs);
+    return res.data.objs;
   } catch (error) {
     console.log(error);
   }
@@ -14,8 +14,8 @@ export const getAllCharacters = async () => {
 export const getOneCharacter = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
-    return res.data;
+    console.log("--->>>  DDBB ⭐", res.data.obj);
+    return res.data.obj;
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +34,7 @@ export const createcharacter = async ({
   imageSrc,
 }) => {
   try {
-    const res = await api.post(`${path}/create`, {
+    const res = await api.post(`${path}/create`, {
       name,
       alias,
       realName,
@@ -106,7 +106,7 @@ export const getFavCharacter = async () => {
 
 export const addFavCharacter = async (id) => {
   try {
-    const res = await api.post(`${path}/favorite/add/${id}`);
+    const res = await api.post(`${path}/favorite/add/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
@@ -116,7 +116,7 @@ export const addFavCharacter = async (id) => {
 
 export const removeFavCharacter = async (id) => {
   try {
-    const res = await api.delete(`${path}/favorite/remove/${id}`);
+    const res = await api.delete(`${path}/favorite/remove/${id}`);
     console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledLink, StyledLinkBtn } from "./style";
 
-export const Link = (props) => {
+export const LinkTo = (props) => {
   return (
     <StyledLink variant={props.variant} to={props.to}>
       {props.children}

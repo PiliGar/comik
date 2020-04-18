@@ -5,7 +5,6 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { UserPlus, Heart, Settings } from "react-feather";
 import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
-import { CardItem } from "../../ui/Card/index";
 import { NavCategories } from "../../ui/NavCategories";
 import { StyledProfile } from "./style";
 import User from "../../../../public/images/woman.png";
@@ -73,46 +72,7 @@ export const ProfilePage = () => {
               <NavCategories />
             </Row>
             <Row>
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
-              <CardItem
-                title="Card title"
-                excerpt="Card short description"
-                c2a="Remove"
-              />
+              <p>Card</p>
             </Row>
           </Col>
           <Col xs={12} md={4} lg={3}>

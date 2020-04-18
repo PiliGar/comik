@@ -9,7 +9,7 @@ const router = express.Router();
 
 /* PROFESSIONAL  retrieve */
 router.get("/", async (req, res, next) => {
-  const professionals = await Professional.find().populate("issues");
+  const professionals = await Professional.find();
   return res.status(200).json({
     message: "All professionals retrieved successfully",
     professionals,
@@ -26,8 +26,7 @@ router.get("/:id", async (req, res, next) => {
   });
 });
 
-/* PROFESSIONAL Create */
-//TODO insert cloudinary
+/* PROFESSIONAL Create*/
 router.post(
   "/create",
   uploadCloud.single("picture"),
@@ -38,49 +37,22 @@ router.post(
       death,
       country,
       hometown,
-      issues,
       excerpt,
       description,
     } = req.body;
-    //   const imgSrc = req.file.url;
-    //   const imgName = req.file.originalname;
-    const imgSrc = "path.jpg";
-    const imgName = "picture";
-    const arrIssues = issues.split("|").map((title) => title.trim());
-    console.log("arrIssues--->>>", arrIssues);
-    const issuesObj = await Promise.all(
-      arrIssues
-        .filter((issue) => issue)
-        .map((issue) => {
-          return Issue.findOneAndUpdate(
-            { title: issue },
-            { title: issue },
-            {
-              new: true,
-              upsert: true,
-            }
-          );
-        })
-    );
-    console.log("issuesObj--->>>", issuesObj);
-
-    const arrIds = issuesObj.map((issue) => issue._id);
-    console.log("arrIds--->>>", arrIds);
-
-    const data = {
-      name: name,
-      birth: birth,
-      death: death,
-      country: country,
-      hometown: hometown,
-      issues: arrIds,
-      excerpt: excerpt,
-      description: description,
-    };
-    const professional = await Professional.create(data).populate("issues");
+    const newProfessional = await Professional.create({
+      name,
+      birth,
+      death,
+      country,
+      hometown,
+      excerpt,
+      description,
+      imageSrc: req.file.secure_url,
+    });
     return res.status(200).json({
-      message: `New professional ${professional.name} created successfully`,
-      professional,
+      message: `Professional ${newProfessional.name} created successfully`,
+      newProfessional,
     });
   })
 );
