@@ -2,10 +2,8 @@ const axios = require("axios");
 const withDbConnection = require("../withDbConnection");
 const Professional = require("../models/Professional");
 require("dotenv").config();
-const key = process.env.API_KEY;
-const url = process.env.API_URL;
 
-const apiURL = `${url}/people/?api_key=${key}&format=json&limit=30`;
+const apiURL = `${process.env.API_URL}/people/?api_key=${process.env.API_KEY}&format=json&limit=30`;
 getData(apiURL);
 
 function getData(url) {
