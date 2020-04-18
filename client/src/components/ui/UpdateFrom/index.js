@@ -34,10 +34,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
   const { register, handleSubmit, errors } = methods;
 
   const onSubmit = async (data) => {
-    console.log("--->>> data 🚀", data);
     const response = await doUpdate(data);
-    console.log("--->>> res 📦", response);
-    console.log("--->>> res status", response.status);
     if (response.status === 200) {
       setUser(data);
     }

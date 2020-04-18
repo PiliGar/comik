@@ -21,18 +21,7 @@ export const AddCharacterForm = withRouter(({ history, title, c2a }) => {
   });
   const { register, handleSubmit, errors } = methods;
 
-  const onSubmit = async (data) => {
-    const picture = data.picture[0];
-    console.log("picture", picture);
-    console.log("--->>> data 🚀", data);
-    // const response = await createProfessional(data);
-    // console.log("--->>> res 📦", response);
-    // if (response.status) {
-    //   return history.push("/login");
-    // }
-    // setUser(data);
-    // history.push("/profile");
-  };
+  const onSubmit = async (data) => {};
 
   return (
     <StyledForm>
