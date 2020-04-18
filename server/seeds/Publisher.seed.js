@@ -2,10 +2,8 @@ const axios = require("axios");
 const withDbConnection = require("../withDbConnection");
 const Publisher = require("../models/Publisher");
 require("dotenv").config();
-const key = process.env.API_KEY;
-const url = process.env.API_URL;
 
-const apiURL = `${url}/publishers/?api_key=${key}&format=json&limit=50`;
+const apiURL = `${process.env.API_URL}/publishers/?api_key=${process.env.API_KEY}&format=json&limit=50`;
 getData(apiURL);
 
 function getData(url) {

@@ -2,10 +2,8 @@ const axios = require("axios");
 const withDbConnection = require("../withDbConnection");
 const Character = require("../models/Character");
 require("dotenv").config();
-const key = process.env.API_KEY;
-const url = process.env.API_URL;
 
-const apiURL = `${url}/characters/?api_key=${key}&format=json`;
+const apiURL = `${process.env.API_URL}/characters/?api_key=${process.env.API_KEY}&format=json`;
 getData(apiURL);
 
 function getData(url) {

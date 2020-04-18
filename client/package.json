@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html"
+    "start": "serve dist",
+    "build": "parcel build index.html",
+    "start-dev": "parcel index.html"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,7 @@
     "react-feather": "^2.0.4",
     "react-hook-form": "^5.4.1",
     "react-router-dom": "^5.1.2",
+    "serve": "^11.3.0",
     "styled-components": "^5.0.1"
   }
 }
