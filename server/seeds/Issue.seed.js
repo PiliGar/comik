@@ -10,7 +10,6 @@ function getData(url) {
   axios
     .get(url)
     .then((response) => {
-      //console.log("--->>> RESPONSE", response.data.results);
       const res = response.data.results;
       res.forEach((issue) => {
         const newIssue = {

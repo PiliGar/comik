@@ -20,9 +20,7 @@ export const LoginForm = withRouter(({ history, title, c2a }) => {
   const { register, handleSubmit, errors } = methods;
 
   const onSubmit = async (data) => {
-    console.log("--->>> data 🚀", data);
     const response = await doLogin(data);
-    console.log("--->>> res 📦", response);
     if (response.status) {
       return history.push("/signup");
     }
@@ -30,7 +28,6 @@ export const LoginForm = withRouter(({ history, title, c2a }) => {
     history.push("/profile");
   };
   console.log("errors", errors);
-
   return (
     <StyledForm>
       <h2>{title}</h2>

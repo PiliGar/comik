@@ -73,12 +73,9 @@ router.put(
       excerpt,
       description,
     } = req.body;
-    //   const imgSrc = req.file.url;
-    //   const imgName = req.file.originalname;
     const imgSrc = "path.jpg";
     const imgName = "picture";
     const arrIssues = issues.split("|").map((title) => title.trim());
-    console.log("arrIssues--->>>", arrIssues);
     const issuesObj = await Promise.all(
       arrIssues
         .filter((issue) => issue)
@@ -93,10 +90,8 @@ router.put(
           );
         })
     );
-    console.log("issuesObj--->>>", issuesObj);
 
     const arrIds = issuesObj.map((issue) => issue._id);
-    console.log("arrIds--->>>", arrIds);
     const data = {
       name: name,
       birth: birth,

@@ -14,7 +14,6 @@ export const SingleIssuePage = (props) => {
 
   useEffect(() => {
     getOneIssue(id).then((res) => {
-      console.log("--->>> issue", res.obj);
       setIssue(res.obj);
     });
   }, []);

@@ -6,7 +6,6 @@ import { LinkTo } from "../Link/index";
 import { Trash2, PenTool } from "react-feather";
 
 export const BarUser = ({ userItem }) => {
-  console.log("user", userItem);
   return (
     <StyledUser>
       <Row>

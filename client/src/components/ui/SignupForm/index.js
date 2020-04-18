@@ -20,9 +20,7 @@ export const SignupForm = withRouter(({ history, title, c2a }) => {
   const { register, handleSubmit, errors } = methods;
 
   const onSubmit = async (data) => {
-    console.log("--->>> data 🚀", data);
     const response = await doSignup(data);
-    console.log("--->>> res 📦", response);
     if (response.status) {
       return history.push("/login");
     }

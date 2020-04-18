@@ -9,7 +9,6 @@ export const doSignup = async ({ name, alias, username, password }) => {
       username,
       password,
     });
-    // console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -22,7 +21,6 @@ export const doLogin = async ({ username, password }) => {
       username,
       password,
     });
-    // console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -37,7 +35,6 @@ export const doUpdate = async ({ name, alias, username, password }) => {
       username,
       password,
     });
-    // console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -46,12 +43,10 @@ export const doUpdate = async ({ name, alias, username, password }) => {
 
 export const doLogout = async () => {
   const res = await api.post(`${path}/logout`);
-  //   console.log("--->>>  DDBB ⭐", res.data);
   return res.data;
 };
 
 export const whoUser = async () => {
   const res = await api.post(`${path}/whoami`);
-  //   console.log("--->>>  DDBB ⭐", res.data);
   return res.data;
 };

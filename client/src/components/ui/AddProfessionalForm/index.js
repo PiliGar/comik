@@ -23,7 +23,6 @@ export const AddProfessionalForm = withRouter(({ history, title, c2a }) => {
   const onSubmit = async (data) => {
     const imageFile = data.picture[0];
     data.picture = imageFile;
-    console.log("--->>> data 🚀", data);
     const response = await createProfessional(data);
     if (response.status === 500) {
       return history.push("/login");

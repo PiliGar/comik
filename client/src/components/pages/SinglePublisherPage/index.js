@@ -18,7 +18,6 @@ export const SinglePublisherPage = (props) => {
 
   useEffect(() => {
     getOnePublisher(id).then((res) => {
-      //console.log("--->>> 🦄 publisher", res);
       setPublisher(res);
     });
   }, []);
