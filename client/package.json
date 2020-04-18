@@ -13,9 +13,18 @@
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-runtime": "^7.9.0",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "cloudinary-core": "^2.8.2",
+    "html-react-parser": "^0.10.3",
+    "lodash": "^4.17.15",
     "parcel": "^1.12.4",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
+    "react-feather": "^2.0.4",
+    "react-hook-form": "^5.4.1",
+    "react-router-dom": "^5.1.2",
     "styled-components": "^5.0.1"
   }
 }
