@@ -31,9 +31,7 @@ export const AdminPanelPage = () => {
               <Row>
                 <Col xs={12}>
                   <ListUser>
-                    {/* {console.log("que es totalusers", totalUsers)} */}
                     {users?.map((userItem, i) => (
-                      // <BarUser user />
                       <div id={userItem.name} key={i}>
                         <BarUser userItem={userItem} />
                       </div>

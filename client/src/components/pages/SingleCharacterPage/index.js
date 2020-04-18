@@ -16,7 +16,6 @@ export const SingleCharacterPage = (props) => {
 
   useEffect(() => {
     getOneCharacter(id).then((res) => {
-      console.log("--->>> 🦄 character", res);
       setCharacter(res);
     });
   }, []);

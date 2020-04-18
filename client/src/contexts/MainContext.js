@@ -23,27 +23,21 @@ export const MainContextProvider = ({ children }) => {
 
   useEffect(() => {
     whoUser().then((res) => {
-      //console.log("--->>> 🌎 whoUser", res);
       setUser(res);
     });
     getAllUsers().then((res) => {
-      //console.log("--->>> 🌎 users", res.users);
       setUsers(res.users);
     });
     getAllProfessionals().then((professionals) => {
-      //console.log("--->>> 🌎professionals", professionals);
       setProfessionals(professionals);
     });
     getAllIssues().then((issues) => {
-      //console.log("--->>> 🌎 issues", issues);
       setIssues(issues);
     });
     getAllPublishers().then((publishers) => {
-      //console.log("--->>> 🌎 publishers", publishers);
       setPublishers(publishers);
     });
     getAllCharacters().then((characters) => {
-      //console.log("--->>> 🌎 characters", characters);
       setCharacters(characters);
     });
   }, []);

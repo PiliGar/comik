@@ -4,7 +4,6 @@ const path = `/professional`;
 export const getAllProfessionals = async () => {
   try {
     const res = await api.get(`${path}/`);
-    // console.log("--->>>  DDBB ⭐", res.data.professionals);
     return res.data.professionals;
   } catch (error) {
     console.log(error);
@@ -14,7 +13,6 @@ export const getAllProfessionals = async () => {
 export const getOneProfessional = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
-    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -32,7 +30,6 @@ export const createProfessional = async (dataFile) => {
   data.append("excerpt", dataFile.excerpt);
   data.append("description", dataFile.description);
   const res = await api.post(`${path}/create`, data);
-  //console.log("--->>>  DDBB ⭐", res.data);
   return res.data;
 };
 
@@ -63,7 +60,6 @@ export const updateProfessional = async ({
       imageName,
       imageSrc,
     });
-    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -73,7 +69,6 @@ export const updateProfessional = async ({
 export const removeProfessional = async (id) => {
   try {
     const res = await api.delete(`${path}/delete/${id}`);
-    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -83,7 +78,6 @@ export const removeProfessional = async (id) => {
 export const getFavProfessionals = async () => {
   try {
     const res = await api.get(`${path}/favorite/list`);
-    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -93,7 +87,6 @@ export const getFavProfessionals = async () => {
 export const addFavProfessionals = async (id) => {
   try {
     const res = await api.post(`${path}/favorite/add/${id}`);
-    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -103,7 +96,6 @@ export const addFavProfessionals = async (id) => {
 export const removeFavProfessionals = async (id) => {
   try {
     const res = await api.delete(`${path}/favorite/remove/${id}`);
-    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);

@@ -63,7 +63,6 @@ const crudGenerator = (
         imgPath,
         imgName,
       };
-      console.log("--->>> Create data:", data);
       const obj = await Model.create(data);
       return res.status(200).json({ message: "Created successfully", obj });
     })
@@ -75,8 +74,6 @@ const crudGenerator = (
     uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
       const { id } = req.params;
-      //   const imgPath = req.file.url;
-      //   const imgName = req.file.originalname;
       const imgPath = "path.jpg";
       const imgName = "picture";
 
@@ -86,7 +83,6 @@ const crudGenerator = (
         imgPath,
         imgName,
       };
-      console.log("--->>> Create data:", data);
       const obj = await Model.findOneAndUpdate({ _id: id }, data, {
         new: true,
       });
