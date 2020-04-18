@@ -14,44 +14,26 @@ export const getAllProfessionals = async () => {
 export const getOneProfessional = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
-    console.log("--->>>  DDBB ⭐", res.data);
+    //console.log("--->>>  DDBB ⭐", res.data);
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-//TODO Include Cloudinary
-export const createProfessional = async ({
-  name,
-  birth,
-  death,
-  country,
-  hometown,
-  issues,
-  excerpt,
-  description,
-  imageName,
-  imageSrc,
-}) => {
-  try {
-    const res = await api.post(`${path}/create`, {
-      name,
-      birth,
-      death,
-      country,
-      hometown,
-      issues,
-      excerpt,
-      description,
-      imageName,
-      imageSrc,
-    });
-    // console.log("--->>>  DDBB ⭐", res.data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const createProfessional = async (dataFile) => {
+  const data = new FormData();
+  data.append("picture", dataFile.picture);
+  data.append("name", dataFile.name);
+  data.append("birth", dataFile.birth);
+  data.append("death", dataFile.death);
+  data.append("country", dataFile.country);
+  data.append("hometown", dataFile.hometown);
+  data.append("excerpt", dataFile.excerpt);
+  data.append("description", dataFile.description);
+  const res = await api.post(`${path}/create`, data);
+  //console.log("--->>>  DDBB ⭐", res.data);
+  return res.data;
 };
 
 //TODO Include Cloudinary

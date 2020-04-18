@@ -16,7 +16,6 @@ export const SingleProfessionalPage = (props) => {
 
   useEffect(() => {
     getOneProfessional(id).then((res) => {
-      //console.log("--->>> 🦄 professional", res);
       setProfessional(res.professional);
     });
   }, []);

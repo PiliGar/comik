@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
 import { createProfessional } from "../../../services/professional.api";
+import { changePicture } from "../../../services/professional.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";
@@ -12,28 +13,23 @@ import { TextAreaBox } from "../TextArea/index";
 import { Button } from "../Button/index";
 import { StyledForm } from "./style";
 
+const cloudinary = require("cloudinary-core");
+const cl = cloudinary.Cloudinary.new({ cloud_name: "comik" });
+
 export const AddProfessionalForm = withRouter(({ history, title, c2a }) => {
-  const { user, setUser } = useContext(MainContext);
-
-  const methods = useForm({
-    defaultValues: {
-      birth: "1985-11-23",
-      death: "1985-11-23",
-    },
-  });
+  const { professionals, setProfessionals } = useContext(MainContext);
+  const methods = useForm();
   const { register, handleSubmit, errors } = methods;
-
   const onSubmit = async (data) => {
-    const picture = data.picture[0];
-    console.log("picture", picture);
+    const imageFile = data.picture[0];
+    data.picture = imageFile;
     console.log("--->>> data 🚀", data);
-    // const response = await createProfessional(data);
-    // console.log("--->>> res 📦", response);
-    // if (response.status) {
-    //   return history.push("/login");
-    // }
-    // setUser(data);
-    // history.push("/profile");
+    const response = await createProfessional(data);
+    if (response.status === 500) {
+      return history.push("/login");
+    }
+    setProfessionals([...professionals, response.newProfessional]);
+    history.push("/gallery/professionals");
   };
 
   return (
@@ -72,16 +68,17 @@ export const AddProfessionalForm = withRouter(({ history, title, c2a }) => {
               />
             </div>
           </div>
-          <InputBox
-            type="text"
-            placeholder="Country"
-            name="country"
-            ref={register()}
-          />
+
           <InputBox
             type="text"
             placeholder="Hometown"
             name="hometown"
+            ref={register()}
+          />
+          <InputBox
+            type="text"
+            placeholder="Country"
+            name="country"
             ref={register()}
           />
           <TextAreaBox
@@ -107,6 +104,7 @@ export const AddProfessionalForm = withRouter(({ history, title, c2a }) => {
             c2a="Upload a picture"
             name="picture"
             ref={register()}
+            // onChange={handleChangeFile}
           />
 
           <Button to="/" variant="secondary">
