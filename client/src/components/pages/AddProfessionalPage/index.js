@@ -1,11 +1,12 @@
 import React from "react";
+import { withProtectedAdmin } from "../../../../lib/protectAdmin.hoc";
 
 import { AddProfessionalForm } from "../../ui/AddProfessionalForm/index";
 
 import { Container, Row } from "react-bootstrap";
 import { StyledPage } from "./style";
 
-export const AddProfessionalPage = () => {
+const Page = () => {
   return (
     <>
       <StyledPage>
@@ -19,3 +20,7 @@ export const AddProfessionalPage = () => {
     </>
   );
 };
+export const AddProfessionalPage = withProtectedAdmin(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

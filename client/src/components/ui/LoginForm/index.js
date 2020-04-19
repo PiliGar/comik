@@ -21,7 +21,7 @@ export const LoginForm = withRouter(({ history, title, c2a }) => {
 
   const onSubmit = async (data) => {
     const response = await doLogin(data);
-    if (response.status) {
+    if (response.status === 200) {
       return history.push("/signup");
     }
     setUser(response);
@@ -69,7 +69,7 @@ export const LoginForm = withRouter(({ history, title, c2a }) => {
           </Button>
           <div className="change">
             <p>Are you new?</p>
-            <LinkTo to="/signup" variant="primary">
+            <LinkTo to="/auth/signup" variant="primary">
               Sign up here <ChevronRight color="#76B5D7" size="13" />
             </LinkTo>
           </div>

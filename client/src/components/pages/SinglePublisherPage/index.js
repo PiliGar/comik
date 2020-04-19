@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { getOnePublisher } from "../../../services/publisher.api";
 import parse from "html-react-parser";
@@ -11,7 +12,7 @@ import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SinglePublisherPage = (props) => {
+const Page = (props) => {
   const { user } = useContext(MainContext);
   const [publisher, setPublisher] = useState({});
   const id = props.match.params.id;
@@ -120,3 +121,7 @@ export const SinglePublisherPage = (props) => {
     </>
   );
 };
+export const SinglePublisherPage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

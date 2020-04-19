@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { StyledGallery } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { CardCharacter } from "../../ui/CardCharacter/index";
 import { List } from "../../ui/List/index";
 
-export const GalleryCharactersPage = (props) => {
+const Page = (props) => {
   const { characters } = useContext(MainContext);
 
   return (
@@ -51,3 +52,7 @@ export const GalleryCharactersPage = (props) => {
     </>
   );
 };
+export const GalleryCharactersPage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});
