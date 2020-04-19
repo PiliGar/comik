@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { getOneCharacter } from "../../../services/character.api";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { MainContext } from "../../../contexts/MainContext";
 
@@ -9,7 +10,7 @@ import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleCharacterPage = (props) => {
+const Page = (props) => {
   const { user } = useContext(MainContext);
   const [character, setCharacter] = useState({});
   const id = props.match.params.id;
@@ -115,3 +116,7 @@ export const SingleCharacterPage = (props) => {
     </>
   );
 };
+export const SingleCharacterPage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

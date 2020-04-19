@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { getOneProfessional } from "../../../services/professional.api";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { MainContext } from "../../../contexts/MainContext";
 
@@ -9,7 +10,7 @@ import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleProfessionalPage = (props) => {
+const Page = (props) => {
   const { user } = useContext(MainContext);
   const [professional, setProfessional] = useState({});
   const id = props.match.params.id;
@@ -124,3 +125,7 @@ export const SingleProfessionalPage = (props) => {
     </>
   );
 };
+export const SingleProfessionalPage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

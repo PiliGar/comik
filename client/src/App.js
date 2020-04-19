@@ -30,6 +30,8 @@ import { AddIssuePage } from "./components/pages/AddIssuePage/index";
 import { AddPublisherPage } from "./components/pages/AddPublisherPage/index";
 import { AddCharacterPage } from "./components/pages/AddCharacterPage/index";
 
+import { NotFoundPage } from "./components/pages/NotFoundPage/index";
+
 export const App = withAuthentication(() => {
   return (
     <Router>
@@ -84,6 +86,7 @@ export const App = withAuthentication(() => {
           <Route path="/add-issue" exact component={AddIssuePage} />
           <Route path="/add-publisher" exact component={AddPublisherPage} />
           <Route path="/add-character" exact component={AddCharacterPage} />
+          <Route path="*" component={NotFoundPage} />
         </Switch>
       </Layout>
     </Router>

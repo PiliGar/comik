@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
+import { withProtectedAdmin } from "../../../../lib/protectAdmin.hoc";
 
 import { StyledAdminPanel } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
@@ -8,8 +9,8 @@ import { ListActions } from "../../ui/ListActions/index";
 
 import { BarUser } from "../../ui/BarUser/index";
 
-export const AdminPanelPage = () => {
-  const { users, setUsers } = useContext(MainContext);
+const Page = () => {
+  const { users } = useContext(MainContext);
   return (
     <>
       <StyledAdminPanel>
@@ -58,3 +59,7 @@ export const AdminPanelPage = () => {
     </>
   );
 };
+export const AdminPanelPage = withProtectedAdmin(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

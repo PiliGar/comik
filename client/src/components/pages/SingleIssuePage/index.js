@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { getOneIssue } from "../../../services/issue.api";
 import { MainContext } from "../../../contexts/MainContext";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
@@ -8,7 +9,7 @@ import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Book, Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleIssuePage = (props) => {
+const Page = (props) => {
   const [issue, setIssue] = useState({});
   const id = props.match.params.id;
 
@@ -111,3 +112,7 @@ export const SingleIssuePage = (props) => {
     </>
   );
 };
+export const SingleIssuePage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

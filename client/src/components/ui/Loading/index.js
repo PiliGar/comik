@@ -3,6 +3,11 @@ import { StyledLoading } from "./style";
 
 export const Loading = () => (
   <StyledLoading>
-    <p>Loading...</p>
+    <div className="loading">
+      <div className="multi-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </StyledLoading>
 );
