@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
-//import { createProfessional } from "../../../services/professional.api";
+import { createIssue } from "../../../services/issue.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";
@@ -13,18 +13,32 @@ import { Button } from "../Button/index";
 import { StyledForm } from "./style";
 
 export const AddIssueForm = withRouter(({ history, title, c2a }) => {
-  const { user, setUser } = useContext(MainContext);
+  const { issues, setIssues } = useContext(MainContext);
+  const { loading, setLoading } = useContext(MainContext);
 
   const methods = useForm({
     defaultValues: {
       issueNumber: 1,
-      coverDate: "1985-11-23",
     },
   });
   const { register, handleSubmit, errors } = methods;
 
+  useEffect(() => {
+    if (loading) {
+      setLoading(false);
+    }
+  }, []);
+
   const onSubmit = async (data) => {
-    const picture = data.picture[0];
+    setLoading(true);
+    const imageFile = data.picture[0];
+    data.picture = imageFile;
+    const response = await createIssue(data);
+    if (response.status === "200") {
+      setIssues([...issues, response.obj]);
+      setLoading(false);
+      history.push("/gallery/issues");
+    }
   };
 
   return (
