@@ -23,7 +23,7 @@ router.get("/:id", isLoggedIn(), async (req, res, next) => {
 });
 
 /* USER Get users */
-router.get("/", isAdminRole(), (req, res, next) => {
+router.get("/", (req, res, next) => {
   User.find()
     .populate("wantedIssues")
     .populate("favoritesIssues")

@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { StyledGallery } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { CardPublisher } from "../../ui/CardPublisher/index";
 import { List } from "../../ui/List/index";
 
-export const GalleryPublishersPage = (props) => {
+export const Page = (props) => {
   const { publishers } = useContext(MainContext);
 
   return (
@@ -51,3 +52,7 @@ export const GalleryPublishersPage = (props) => {
     </>
   );
 };
+export const GalleryPublishersPage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

@@ -3,7 +3,7 @@ const path = `/user`;
 
 export const getAllUsers = async () => {
   try {
-    const res = await api.get(`${path}/`);
+    const res = await api.get(`user/`);
     return res.data;
   } catch (error) {
     console.log(error);

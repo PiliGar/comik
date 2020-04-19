@@ -51,7 +51,7 @@ router.post("/login", (req, res, next) => {
         .json({ status: 500, message: "Autentication Error" });
     }
     if (!user) {
-      return res.status(401).json({ status: 401, message: "Unathorised" });
+      return res.status(401).json({ status: "401", message: "Unathorised" });
     }
     req.logIn(user, (err) => {
       if (err) {
@@ -59,7 +59,9 @@ router.post("/login", (req, res, next) => {
           .status(500)
           .json({ status: 500, message: "Session save went bad" });
       }
-      return res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      return res
+        .status(200)
+        .json(_.pick(req.user, ["name", "alias", "username", "_id"]));
     });
   })(req, res, next);
 });
@@ -83,7 +85,7 @@ router.put("/edit", isLoggedIn(), async (req, res, next) => {
 });
 
 /* AUTH Logout */
-router.post("/logout", isLoggedIn(), async (req, res, next) => {
+router.get("/logout", isLoggedIn(), async (req, res, next) => {
   if (req.user) {
     req.logout();
     return res.status(200).json({ message: "User logged out successfully" });
@@ -95,13 +97,12 @@ router.post("/logout", isLoggedIn(), async (req, res, next) => {
 });
 
 /* AUTH Whoami */
-router.post("/whoami", (req, res, next) => {
-  console.log(`--->>> Current user logged: 👽 ${req.user.username}`);
-  if (req.user)
+router.get("/whoami", (req, res, next) => {
+  if (req.user) {
+    console.log(`--->>> Current user logged: 👽 ${req.user.username}`);
     return res
       .status(200)
       .json(_.pick(req.user, ["name", "alias", "username", "role", "_id"]));
-  else return res.status(401).json({ status: "No user session present" });
+  } else return res.status(401).json({ status: "No user session present" });
 });
-
 module.exports = router;

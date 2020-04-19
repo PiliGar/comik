@@ -1,11 +1,12 @@
 import React from "react";
+import { withProtectedAdmin } from "../../../../lib/protectAdmin.hoc";
 
 import { AddCharacterForm } from "../../ui/AddCharacterForm/index";
 
 import { Container, Row } from "react-bootstrap";
 import { StyledPage } from "./style";
 
-export const AddCharacterPage = () => {
+const Page = () => {
   return (
     <>
       <StyledPage>
@@ -19,3 +20,7 @@ export const AddCharacterPage = () => {
     </>
   );
 };
+export const AddCharacterPage = withProtectedAdmin(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

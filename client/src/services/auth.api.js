@@ -42,11 +42,11 @@ export const doUpdate = async ({ name, alias, username, password }) => {
 };
 
 export const doLogout = async () => {
-  const res = await api.post(`${path}/logout`);
+  const res = await api.get(`${path}/logout`);
   return res.data;
 };
 
 export const whoUser = async () => {
-  const res = await api.post(`${path}/whoami`);
+  const res = await api.get(`${path}/whoami`);
   return res.data;
 };

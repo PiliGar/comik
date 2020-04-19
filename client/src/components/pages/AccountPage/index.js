@@ -2,8 +2,9 @@ import React from "react";
 import { StyledAccount } from "./style";
 import { Container, Row } from "react-bootstrap";
 import { UpdateForm } from "../../ui/UpdateFrom/index";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
-export const AccountPage = () => {
+const Page = () => {
   return (
     <>
       <StyledAccount>
@@ -17,3 +18,7 @@ export const AccountPage = () => {
     </>
   );
 };
+export const AccountPage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});

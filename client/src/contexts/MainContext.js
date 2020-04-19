@@ -3,7 +3,6 @@ export const MainContext = createContext();
 
 import { getAllUsers } from "../services/user.api";
 import { getAllProfessionals } from "../services/professional.api";
-import { whoUser } from "../services/auth.api";
 import { getAllIssues } from "../services/issue.api";
 import { getAllPublishers } from "../services/publisher.api";
 import { getAllCharacters } from "../services/character.api";
@@ -22,9 +21,6 @@ export const MainContextProvider = ({ children }) => {
   const [characters, setCharacters] = useState();
 
   useEffect(() => {
-    whoUser().then((res) => {
-      setUser(res);
-    });
     getAllUsers().then((res) => {
       setUsers(res.users);
     });

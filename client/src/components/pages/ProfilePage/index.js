@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
+import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { UserPlus, Heart, Settings } from "react-feather";
@@ -9,8 +10,8 @@ import { NavCategories } from "../../ui/NavCategories";
 import { StyledProfile } from "./style";
 import User from "../../../../public/images/woman.png";
 
-export const ProfilePage = () => {
-  const { user, setUser } = useContext(MainContext);
+export const Page = () => {
+  const { user } = useContext(MainContext);
 
   return (
     <StyledProfile>
@@ -92,3 +93,7 @@ export const ProfilePage = () => {
     </StyledProfile>
   );
 };
+export const ProfilePage = withProtected(Page, {
+  redirect: true,
+  redirectTo: "/auth/login",
+});
