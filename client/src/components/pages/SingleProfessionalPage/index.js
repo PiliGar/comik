@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import { getOneProfessional } from "../../../services/professional.api";
+import { removeProfessional } from "../../../services/professional.api";
+import { getAllProfessionals } from "../../../services/professional.api";
 
 import { MainContext } from "../../../contexts/MainContext";
 import { Redirect } from "react-router-dom";
@@ -12,7 +15,13 @@ import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
 export const SingleProfessionalPage = (props) => {
-  const { user, loading } = useContext(MainContext);
+  const {
+    user,
+    loading,
+    setLoading,
+    professionals,
+    setProfessionals,
+  } = useContext(MainContext);
   const [professional, setProfessional] = useState({});
   const id = props.match.params.id;
 
@@ -21,6 +30,37 @@ export const SingleProfessionalPage = (props) => {
       setProfessional(res.professional);
     });
   }, []);
+
+  const handleRemove = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    console.log("CLICK");
+    removeProfessional(id)
+      .then((data) => {
+        console.log("QUE ES DATA", data);
+        getAllProfessionals().then((allProfessionals) => {
+          setProfessionals(allProfessionals);
+        });
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.error("No able to remove");
+      });
+  };
+
+  //   const handleRemove = async (e) => {
+  //     e.preventDefault();
+  //     setLoading(true);
+  //     console.log("CLICK");
+  //     const response = await removeProfessional(id);
+  //     if (response.status === "200") {
+  //       getAllProfessionals().then((allProfessionals) => {
+  //         setProfessionals(allProfessionals);
+  //       });
+  //       setLoading(false);
+  //       history.push("/gallery/professionals");
+  //     }
+  //   };
 
   if (user) {
     return (
@@ -89,7 +129,8 @@ export const SingleProfessionalPage = (props) => {
                                 </LinkBtn>
                               </li>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
+                                <button onClick={handleRemove}>hola</button>
+                                <LinkBtn variant="secondary">
                                   <Trash2 /> Delete
                                 </LinkBtn>
                               </li>
