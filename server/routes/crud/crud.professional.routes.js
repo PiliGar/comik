@@ -50,10 +50,13 @@ router.post(
       description,
       imageSrc: req.file.secure_url,
     });
-    return res.status(200).json({
-      message: `Professional ${newProfessional.name} created successfully`,
-      newProfessional,
-    });
+    return res
+      .status(200)
+      .json({
+        status: "200",
+        message: `Professional ${newProfessional.name} created successfully`,
+        newProfessional,
+      });
   })
 );
 

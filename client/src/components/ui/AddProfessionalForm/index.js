@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
 import { createProfessional } from "../../../services/professional.api";
-import { changePicture } from "../../../services/professional.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";
@@ -13,22 +12,29 @@ import { TextAreaBox } from "../TextArea/index";
 import { Button } from "../Button/index";
 import { StyledForm } from "./style";
 
-const cloudinary = require("cloudinary-core");
-const cl = cloudinary.Cloudinary.new({ cloud_name: "comik" });
-
 export const AddProfessionalForm = withRouter(({ history, title, c2a }) => {
   const { professionals, setProfessionals } = useContext(MainContext);
+  const { loading, setLoading } = useContext(MainContext);
+
   const methods = useForm();
   const { register, handleSubmit, errors } = methods;
+
+  useEffect(() => {
+    if (loading) {
+      setLoading(false);
+    }
+  }, []);
+
   const onSubmit = async (data) => {
+    setLoading(true);
     const imageFile = data.picture[0];
     data.picture = imageFile;
     const response = await createProfessional(data);
-    if (response.status === 500) {
-      return history.push("/login");
+    if (response.status === "200") {
+      setProfessionals([...professionals, response.newProfessional]);
+      setLoading(false);
+      history.push("/gallery/professionals");
     }
-    setProfessionals([...professionals, response.newProfessional]);
-    history.push("/gallery/professionals");
   };
 
   return (
@@ -103,7 +109,6 @@ export const AddProfessionalForm = withRouter(({ history, title, c2a }) => {
             c2a="Upload a picture"
             name="picture"
             ref={register()}
-            // onChange={handleChangeFile}
           />
 
           <Button to="/" variant="secondary">

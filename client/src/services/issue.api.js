@@ -19,32 +19,17 @@ export const getOneIssue = async (id) => {
   }
 };
 
-//TODO Include Cloudinary
-export const createIssue = async ({
-  title,
-  issueNumber,
-  coverDate,
-  volume,
-  excerpt,
-  description,
-  imageName,
-  imageSrc,
-}) => {
-  try {
-    const res = await api.post(`${path}/create`, {
-      title,
-      issueNumber,
-      coverDate,
-      volume,
-      excerpt,
-      description,
-      imageName,
-      imageSrc,
-    });
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const createIssue = async (dataFile) => {
+  const data = new FormData();
+  data.append("picture", dataFile.picture);
+  data.append("title", dataFile.title);
+  data.append("issueNumber", dataFile.issueNumber);
+  data.append("coverDate", dataFile.coverDate);
+  data.append("volume", dataFile.volume);
+  data.append("excerpt", dataFile.excerpt);
+  data.append("description", dataFile.description);
+  const res = await api.post(`${path}/create`, data);
+  return res.data;
 };
 
 //TODO Include Cloudinary

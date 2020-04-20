@@ -33,6 +33,20 @@ export const createProfessional = async (dataFile) => {
   return res.data;
 };
 
+// export const updateProfessional = async (dataFile) => {
+//     const data = new FormData();
+//     data.append("picture", dataFile.picture);
+//     data.append("name", dataFile.name);
+//     data.append("birth", dataFile.birth);
+//     data.append("death", dataFile.death);
+//     data.append("country", dataFile.country);
+//     data.append("hometown", dataFile.hometown);
+//     data.append("excerpt", dataFile.excerpt);
+//     data.append("description", dataFile.description);
+//     const res = await api.post(`${path}/create`, data);
+//     return res.data;
+//   };
+
 //TODO Include Cloudinary
 export const updateProfessional = async ({
   name,

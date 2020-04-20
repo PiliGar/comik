@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
-import { createIssue } from "../../../services/issue.api";
+import { updateProfessional } from "../../../services/professional.api";
+import { getOneProfessional } from "../../../services/professional.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";
@@ -12,33 +13,57 @@ import { TextAreaBox } from "../TextArea/index";
 import { Button } from "../Button/index";
 import { StyledForm } from "./style";
 
-export const AddIssueForm = withRouter(({ history, title, c2a }) => {
-  const { issues, setIssues } = useContext(MainContext);
+export const EditProfessionalForm = withRouter(({ history, title, c2a }) => {
+  const { professional, setProfessional } = useContext(MainContext);
   const { loading, setLoading } = useContext(MainContext);
 
+  //const { id } = req.params;
+  //console.log("EXISTE?", id);
+
   const methods = useForm({
+    mode: "onBlur",
     defaultValues: {
-      issueNumber: 1,
+      name: professional?.name,
+      birth: professional?.birth,
+      death: professional?.death,
+      hometown: professional?.hometown,
+      country: professional?.country,
+      excerpt: professional?.excerpt,
+      description: professional?.description,
     },
   });
   const { register, handleSubmit, errors } = methods;
-
   useEffect(() => {
     if (loading) {
       setLoading(false);
     }
-  }, []);
+    // getOneProfessional(id).then((res) => {
+    //   setProfessional(res);
+    // });
+    methods.reset({
+      name: professional?.name,
+      birth: professional?.birth,
+      death: professional?.death,
+      hometown: professional?.hometown,
+      country: professional?.country,
+      excerpt: professional?.excerpt,
+      description: professional?.description,
+    });
+  }, [professional]);
 
   const onSubmit = async (data) => {
     setLoading(true);
     const imageFile = data.picture[0];
     data.picture = imageFile;
-    const response = await createIssue(data);
-    if (response.status === "200") {
-      setIssues([...issues, response.obj]);
-      setLoading(false);
-      history.push("/gallery/issues");
-    }
+    const { id } = req.params;
+    const formData = { ...data, id };
+    console.log("WOW", formData);
+    // const response = await updateProfessional(data);
+    // if (response.status === "200") {
+    //   setProfessionals([...professionals, response.updatedProfessional]);
+    //   setLoading(false);
+    //   //history.push("/gallery/professionals");
+    // }
   };
 
   return (
@@ -48,8 +73,8 @@ export const AddIssueForm = withRouter(({ history, title, c2a }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputBox
             type="text"
-            placeholder="Title"
-            name="title"
+            placeholder="Name"
+            name="name"
             ref={register({
               required: {
                 value: true,
@@ -57,21 +82,22 @@ export const AddIssueForm = withRouter(({ history, title, c2a }) => {
               },
             })}
           />
-
           <div className="form-row">
             <div>
               <InputBox
-                label="Issue number"
-                type="number"
-                name="issueNumber"
+                label="Birth date"
+                type="date"
+                placeholder="Birth date"
+                name="birth"
                 ref={register()}
               />
             </div>
             <div>
               <InputBox
-                label="Cover date"
+                label="Death date"
                 type="date"
-                name="coverDate"
+                placeholder="Death date"
+                name="death"
                 ref={register()}
               />
             </div>
@@ -79,8 +105,14 @@ export const AddIssueForm = withRouter(({ history, title, c2a }) => {
 
           <InputBox
             type="text"
-            placeholder="Volume"
-            name="volume"
+            placeholder="Hometown"
+            name="hometown"
+            ref={register()}
+          />
+          <InputBox
+            type="text"
+            placeholder="Country"
+            name="country"
             ref={register()}
           />
           <TextAreaBox

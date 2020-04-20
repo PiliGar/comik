@@ -48,23 +48,19 @@ const crudGenerator = (
   });
 
   /* CRUD Create */
-  //TODO insert cloudinary
   router.post(
     "/create",
     uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
-      //   const imgPath = req.file.url;
-      //   const imgName = req.file.originalname;
-      const imgPath = "path.jpg";
-      const imgName = "picture";
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
-        imgPath,
-        imgName,
+        imageSrc: req.file.secure_url,
       };
       const obj = await Model.create(data);
-      return res.status(200).json({ message: "Created successfully", obj });
+      return res
+        .status(200)
+        .json({ status: "200", message: "Created successfully", obj });
     })
   );
 
