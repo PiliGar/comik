@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
-//import { createProfessional } from "../../../services/professional.api";
+import { createPublisher } from "../../../services/publisher.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";
@@ -13,13 +13,28 @@ import { Button } from "../Button/index";
 import { StyledForm } from "./style";
 
 export const AddPublisherForm = withRouter(({ history, title, c2a }) => {
-  const { user, setUser } = useContext(MainContext);
+  const { publishers, setPublisers } = useContext(MainContext);
+  const { loading, setLoading } = useContext(MainContext);
 
   const methods = useForm();
   const { register, handleSubmit, errors } = methods;
 
+  useEffect(() => {
+    if (loading) {
+      setLoading(false);
+    }
+  }, []);
+
   const onSubmit = async (data) => {
-    const picture = data.picture[0];
+    setLoading(true);
+    const imageFile = data.picture[0];
+    data.picture = imageFile;
+    const response = await createPublisher(data);
+    if (response.status === "200") {
+      setPublisers([...publishers, response.obj]);
+      setLoading(false);
+      history.push("/gallery/publishers");
+    }
   };
 
   return (

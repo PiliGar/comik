@@ -39,7 +39,7 @@ export const CardProfessional = ({ item }) => {
             <LinkTo to="/signup" variant="primary">
               <Trash2 />
             </LinkTo>
-            <LinkTo to="/signup" variant="primary">
+            <LinkTo to={`/edit-professional/${item?.id}`} variant="primary">
               <PenTool />
             </LinkTo>
           </div>
