@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { ProtectedPage } from "../ProtectedPage/index";
 
-import { EditProfessionalForm } from "../../ui/EditProfessionalForm/index";
+import { EditCharacterForm } from "../../ui/EditCharacterForm/index";
 import { Container, Row } from "react-bootstrap";
 import { StyledPage } from "./style";
 
-export const EditProfessionalPage = (match) => {
+export const EditCharacterPage = (match) => {
   const { user, loading } = useContext(MainContext);
   if (user?.role === "admin") {
     return (
@@ -15,10 +15,10 @@ export const EditProfessionalPage = (match) => {
         <StyledPage>
           <Container fluid className="wrapper">
             <Row>
-              <h1>Update professional:</h1>
-              <EditProfessionalForm
+              <h1>Update character:</h1>
+              <EditCharacterForm
                 title="Data:"
-                c2a="Update"
+                c2a="Create"
                 itemId={match.itemId}
               />
             </Row>

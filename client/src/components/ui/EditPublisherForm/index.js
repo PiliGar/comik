@@ -3,9 +3,9 @@ import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
 import {
-  updateProfessional,
-  getOneProfessional,
-} from "../../../services/professional.api";
+  updatePublisher,
+  getOnePublisher,
+} from "../../../services/publisher.api";
 
 import { useForm, FormContext } from "react-hook-form";
 import { ArrowRight } from "react-feather";
@@ -15,39 +15,40 @@ import { TextAreaBox } from "../TextArea/index";
 import { Button } from "../Button/index";
 import { StyledForm } from "./style";
 
-export const EditProfessionalForm = withRouter(
+export const EditPublisherForm = withRouter(
   ({ history, title, c2a, itemId }) => {
     const {
-      professional,
-      setProfessional,
-      professionals,
-      setProfessionals,
+      publisher,
+      setPublisher,
+      publishers,
+      setPublishers,
       loading,
       setLoading,
     } = useContext(MainContext);
 
     const id = itemId;
+
     useEffect(() => {
-      getOneProfessional(id)
+      getOnePublisher(id)
         .then((data) => {
-          const currentProfessional = data.professional;
-          setProfessional(currentProfessional);
+          const currentPublisher = data.obj;
+          setPublisher(currentPublisher);
         })
         .catch((e) => {
-          console.error("Imposible to get current professional");
+          console.error("Imposible to get current publisher");
         })
         .finally(() => setLoading(false));
     }, []);
 
     const methods = useForm({
       defaultValues: {
-        name: professional?.name,
-        birth: professional?.birth,
-        death: professional?.death,
-        hometown: professional?.hometown,
-        country: professional?.country,
-        excerpt: professional?.excerpt,
-        description: professional?.description,
+        name: publisher?.name,
+        locationAddress: publisher?.locationAddress,
+        locationCity: publisher?.locationCity,
+        locationState: publisher?.locationState,
+        excerpt: publisher?.excerpt,
+        description: publisher?.description,
+        imageSrc: publisher?.imageSrc,
       },
     });
     const { register, handleSubmit, errors } = methods;
@@ -57,15 +58,15 @@ export const EditProfessionalForm = withRouter(
         setLoading(false);
       }
       methods.reset({
-        name: professional?.name,
-        birth: professional?.birth,
-        death: professional?.death,
-        hometown: professional?.hometown,
-        country: professional?.country,
-        excerpt: professional?.excerpt,
-        description: professional?.description,
+        name: publisher?.name,
+        locationAddress: publisher?.locationAddress,
+        locationCity: publisher?.locationCity,
+        locationState: publisher?.locationState,
+        excerpt: publisher?.excerpt,
+        description: publisher?.description,
+        imageSrc: publisher?.imageSrc,
       });
-    }, [professional]);
+    }, [publisher]);
 
     const onSubmit = async (data) => {
       setLoading(true);
@@ -73,12 +74,12 @@ export const EditProfessionalForm = withRouter(
       data.picture = imageFile;
       const id = itemId;
       const formData = { ...data, id };
-      const response = await updateProfessional(formData);
+      const response = await updatePublisher(formData);
       if (response.status === 200) {
-        setProfessional(response.updatedProfessional);
-        setProfessionals([...professionals, response.updatedProfessional]);
+        setPublisher(response.obj);
+        setPublishers([...publishers, response.obj]);
         setLoading(false);
-        history.push("/gallery/professionals");
+        history.push("/gallery/publishers");
       }
     };
 
@@ -98,56 +99,29 @@ export const EditProfessionalForm = withRouter(
                 },
               })}
             />
-            <div className="form-row">
-              <div>
-                <InputBox
-                  label="Birth date"
-                  type="date"
-                  placeholder="Birth date"
-                  name="birth"
-                  ref={register()}
-                />
-              </div>
-              <div>
-                <InputBox
-                  label="Death date"
-                  type="date"
-                  placeholder="Death date"
-                  name="death"
-                  ref={register()}
-                />
-              </div>
-            </div>
-
             <InputBox
               type="text"
-              placeholder="Hometown"
-              name="hometown"
+              placeholder="Location address"
+              name="locationAddress"
               ref={register()}
             />
             <InputBox
               type="text"
-              placeholder="Country"
-              name="country"
+              placeholder="Location City"
+              name="locationCity"
               ref={register()}
             />
             <TextAreaBox
               name="excerpt"
               placeholder="Excerpt"
               rowsNumber="1"
-              ref={register({
-                maxLength: 200,
-                message: "Max length 200 characters.",
-              })}
+              ref={register()}
             />
             <TextAreaBox
               name="description"
               placeholder="Description"
               rowsNumber="3"
-              ref={register({
-                maxLength: 3000,
-                message: "Max length 3000 characters.",
-              })}
+              ref={register()}
             />
             <InputUpload
               type="file"

@@ -40,7 +40,11 @@ export const CardIssue = ({ item }) => {
             <LinkTo to="/signup" variant="primary">
               <Trash2 />
             </LinkTo>
-            <LinkTo to="/signup" variant="primary">
+            <LinkTo
+              to={`/edit-issue/${item?.id}`}
+              itemId={item?.id}
+              variant="primary"
+            >
               <PenTool />
             </LinkTo>
           </div>
