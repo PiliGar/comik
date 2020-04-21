@@ -32,33 +32,17 @@ export const createIssue = async (dataFile) => {
   return res.data;
 };
 
-//TODO Include Cloudinary
-export const updateIssue = async ({
-  title,
-  issueNumber,
-  coverDate,
-  volume,
-  excerpt,
-  description,
-  imageName,
-  imageSrc,
-  id,
-}) => {
-  try {
-    const res = await api.put(`${path}/edit/${id}`, {
-      title,
-      issueNumber,
-      coverDate,
-      volume,
-      excerpt,
-      description,
-      imageName,
-      imageSrc,
-    });
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const updateIssue = async (dataFile) => {
+  const data = new FormData();
+  data.append("picture", dataFile.picture);
+  data.append("title", dataFile.title);
+  data.append("issueNumber", dataFile.issueNumber);
+  data.append("coverDate", dataFile.coverDate);
+  data.append("volume", dataFile.volume);
+  data.append("excerpt", dataFile.excerpt);
+  data.append("description", dataFile.description);
+  const res = await api.put(`${path}/edit/${dataFile.id}`, data);
+  return res.data;
 };
 
 export const removeIssue = async (id) => {

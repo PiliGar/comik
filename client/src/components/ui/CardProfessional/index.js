@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 
 import { Link } from "react-router-dom";
+
 import { StyledCard } from "./style";
 import { Card } from "react-bootstrap";
 import { LinkTo } from "../Link/index";
@@ -39,7 +40,12 @@ export const CardProfessional = ({ item }) => {
             <LinkTo to="/signup" variant="primary">
               <Trash2 />
             </LinkTo>
-            <LinkTo to={`/edit-professional/${item?.id}`} variant="primary">
+
+            <LinkTo
+              to={`/edit-professional/${item?.id}`}
+              itemId={item?.id}
+              variant="primary"
+            >
               <PenTool />
             </LinkTo>
           </div>

@@ -31,6 +31,9 @@ import { AddPublisherPage } from "./components/pages/AddPublisherPage/index";
 import { AddCharacterPage } from "./components/pages/AddCharacterPage/index";
 
 import { EditProfessionalPage } from "./components/pages/EditProfessionalPage/index";
+import { EditIssuePage } from "./components/pages/EditIssuePage/index";
+import { EditPublisherPage } from "./components/pages/EditPublisherPage/index";
+import { EditCharacterPage } from "./components/pages/EditCharacterPage/index";
 
 import { NotFoundPage } from "./components/pages/NotFoundPage/index";
 
@@ -91,7 +94,28 @@ export const App = withAuthentication(() => {
           <Route
             path="/edit-professional/:id"
             exact
-            component={EditProfessionalPage}
+            render={({ match }) => (
+              <EditProfessionalPage itemId={match.params.id} />
+            )}
+          />
+          <Route
+            path="/edit-issue/:id"
+            exact
+            render={({ match }) => <EditIssuePage itemId={match.params.id} />}
+          />
+          <Route
+            path="/edit-publisher/:id"
+            exact
+            render={({ match }) => (
+              <EditPublisherPage itemId={match.params.id} />
+            )}
+          />
+          <Route
+            path="/edit-character/:id"
+            exact
+            render={({ match }) => (
+              <EditCharacterPage itemId={match.params.id} />
+            )}
           />
           <Route path="*" component={NotFoundPage} />
         </Switch>

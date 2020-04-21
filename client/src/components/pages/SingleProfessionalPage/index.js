@@ -37,7 +37,6 @@ export const SingleProfessionalPage = (props) => {
     console.log("CLICK");
     removeProfessional(id)
       .then((data) => {
-        console.log("QUE ES DATA", data);
         getAllProfessionals().then((allProfessionals) => {
           setProfessionals(allProfessionals);
         });

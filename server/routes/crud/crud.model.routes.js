@@ -70,19 +70,19 @@ const crudGenerator = (
     uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
       const { id } = req.params;
-      const imgPath = "path.jpg";
-      const imgName = "picture";
-
+      console.log("req.file", req.file);
+      console.log("ID", id);
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
-        imgPath,
-        imgName,
+        imageSrc: req.file.secure_url,
       };
-      const obj = await Model.findOneAndUpdate({ _id: id }, data, {
+      const obj = await Model.findOneAndUpdate(id, data, {
         new: true,
       });
-      return res.status(200).json({ message: "Updated successfully", obj });
+      return res
+        .status(200)
+        .json({ status: 200, message: "Updated successfully", obj });
     })
   );
 
