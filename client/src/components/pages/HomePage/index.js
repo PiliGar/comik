@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledHome } from "./style";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Collapse } from "react-bootstrap";
 import Picture from "../../../../public/images/cafu.png";
 
 export const HomePage = () => {
@@ -9,9 +9,9 @@ export const HomePage = () => {
       <StyledHome>
         <Container fluid>
           <Row>
-            <Col xs={12} md={6} className="right">
+            <Collapse xs={12} md={6} className="right">
               <h1>The comic fans community</h1>
-            </Col>
+            </Collapse>
             <Col xs={12} md={6} className="left">
               <img src={Picture} alt="Character"></img>
             </Col>

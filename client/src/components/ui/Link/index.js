@@ -11,7 +11,15 @@ export const LinkTo = (props) => {
 
 export const LinkBtn = (props) => {
   return (
-    <StyledLinkBtn variant={props.variant} to={props.to}>
+    <StyledLinkBtn
+      onClick={() => {
+        if (props.method) {
+          props.method();
+        }
+      }}
+      variant={props.variant}
+      to={props.to}
+    >
       {props.children}
     </StyledLinkBtn>
   );

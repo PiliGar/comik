@@ -1,14 +1,95 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
+import { Link, withRouter } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import {
+  removeIssue,
+  addFavIssue,
+  removeFavIssue,
+  getAllIssues,
+  getFavIssues,
+  addWantedIssue,
+  removeWantedIssue,
+  getWantedIssues,
+} from "../../../services/issue.api";
+
 import { StyledCard } from "./style";
 import { Card } from "react-bootstrap";
-import { LinkTo } from "../Link/index";
-import { Book, Heart, PenTool, Trash2 } from "react-feather";
+import { LinkTo, LinkBtn } from "../Link/index";
+import { Bookmark, Heart, PenTool, Trash2 } from "react-feather";
 
-export const CardIssue = ({ item }) => {
-  const { user } = useContext(MainContext);
+export const CardIssue = withRouter(({ history, item }) => {
+  const {
+    user,
+    setLoading,
+    setIssues,
+    favIssues,
+    setFavIssues,
+    wantedIssues,
+    setWantedIssues,
+  } = useContext(MainContext);
+
+  const id = item?.id;
+
+  const handleRemove = async () => {
+    setLoading(true);
+    const response = await removeIssue(id);
+    if (response.status === 200) {
+      getAllIssues().then((allIssues) => {
+        setIssues(allIssues);
+      });
+      setLoading(false);
+      history.push("/gallery/issues");
+    }
+  };
+
+  const handleFavorites = async () => {
+    setLoading(true);
+    const favorites = [...favIssues];
+    if (!favorites.some((alreadyFavorite) => alreadyFavorite.id === id)) {
+      const response = await addFavIssue(id);
+      if (response.status === 200) {
+        getFavIssues().then((favs) => {
+          setFavIssues(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    } else {
+      const response = await removeFavIssue(id);
+      if (response.status === 200) {
+        getFavIssues().then((favs) => {
+          setFavIssues(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    }
+  };
+
+  const handleWanted = async () => {
+    setLoading(true);
+    const wanted = [...wantedIssues];
+    if (!wanted.some((alreadyWanted) => alreadyWanted.id === id)) {
+      const response = await addWantedIssue(id);
+      if (response.status === 200) {
+        getWantedIssues().then((wanties) => {
+          setWantedIssues(wanties);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    } else {
+      const response = await removeWantedIssue(id);
+      if (response.status === 200) {
+        getWantedIssues().then((wanties) => {
+          setWantedIssues(wanties);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    }
+  };
   return (
     <StyledCard xs={12} md={8} lg={3}>
       <Card>
@@ -25,21 +106,25 @@ export const CardIssue = ({ item }) => {
             <Card.Text>{item?.excerpt}</Card.Text>
           </LinkTo>
         </Card.Body>
-        {user?.role === "suscriber" && (
+        {user?.role === "subscriber" && (
           <div className="actions">
-            <LinkTo to="/signup" variant="primary">
-              <Book />
-            </LinkTo>
-            <LinkTo to="/signup" variant="primary">
-              <Heart />
-            </LinkTo>
+            <div className="actions">
+              <div className="actions">
+                <LinkBtn method={(e) => handleWanted(e)} variant="primary">
+                  <Bookmark />
+                </LinkBtn>
+              </div>
+              <LinkBtn method={(e) => handleFavorites(e)} variant="primary">
+                <Heart />
+              </LinkBtn>
+            </div>
           </div>
         )}
         {user?.role === "admin" && (
           <div className="actions">
-            <LinkTo to="/signup" variant="primary">
+            <LinkBtn method={(e) => handleRemove(e)} variant="primary">
               <Trash2 />
-            </LinkTo>
+            </LinkBtn>
             <LinkTo
               to={`/edit-issue/${item?.id}`}
               itemId={item?.id}
@@ -52,4 +137,4 @@ export const CardIssue = ({ item }) => {
       </Card>
     </StyledCard>
   );
-};
+});

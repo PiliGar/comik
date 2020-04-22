@@ -68,6 +68,7 @@ export const getFavProfessionals = async () => {
 export const addFavProfessionals = async (id) => {
   try {
     const res = await api.post(`${path}/favorite/add/${id}`);
+    console.log("API", res.data);
     return res.data;
   } catch (error) {
     console.log(error);

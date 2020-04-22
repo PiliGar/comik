@@ -141,9 +141,7 @@ export const SingleProfessionalPage = (props) => {
                     <Row>
                       <Col xs={12} className="description">
                         <h3>Description</h3>
-                        <p>
-                          {professional?.description || professional?.excerpt}
-                        </p>
+                        <p>{professional?.excerpt}</p>
                       </Col>
                     </Row>
                   </Col>

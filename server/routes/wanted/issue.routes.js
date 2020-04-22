@@ -14,9 +14,10 @@ router.post("/add/:wantedid", isLoggedIn(), async (req, res, next) => {
     await User.findByIdAndUpdate(id, {
       $addToSet: { wantedIssues: issue },
     });
-    return res
-      .status(200)
-      .json({ message: "Issue added successfully to user wanted." });
+    return res.status(200).json({
+      status: 200,
+      message: "Issue added successfully to user wanted.",
+    });
   } catch (error) {
     return res.status(500).json({
       message: "Internal server error adding issue to wanted",
@@ -40,7 +41,8 @@ router.delete("/remove/:wantedid", isLoggedIn(), async (req, res, next) => {
           wantedIssues: updatedArr.map((issue) => issue._id),
         });
         return res.status(200).json({
-          status: "Issue removed successfully from user wanted arr.",
+          status: 200,
+          message: "Issue removed successfully from user wanted arr.",
         });
       })
       .catch((err) => res.status(401).json({ status: "User not found" }));

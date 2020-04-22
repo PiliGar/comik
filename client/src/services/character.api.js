@@ -57,7 +57,7 @@ export const removeCharacter = async (id) => {
   }
 };
 
-export const getFavCharacter = async () => {
+export const getFavCharacters = async () => {
   try {
     const res = await api.get(`${path}/favorite/list`);
     return res.data;

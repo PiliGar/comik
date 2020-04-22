@@ -15,6 +15,7 @@
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-runtime": "^7.9.0",
+    "aos": "^2.3.4",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "cloudinary-core": "^2.8.2",

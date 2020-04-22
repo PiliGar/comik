@@ -1,15 +1,68 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
+import { Link, withRouter } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import {
+  removeProfessional,
+  addFavProfessionals,
+  removeFavProfessionals,
+  getAllProfessionals,
+  getFavProfessionals,
+} from "../../../services/professional.api";
 
 import { StyledCard } from "./style";
 import { Card } from "react-bootstrap";
-import { LinkTo } from "../Link/index";
-import { Book, Heart, PenTool, Trash2 } from "react-feather";
+import { LinkTo, LinkBtn } from "../Link/index";
+import { ButtonLink } from "../Button/index";
+import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const CardProfessional = ({ item }) => {
-  const { user } = useContext(MainContext);
+export const CardProfessional = withRouter(({ history, item }) => {
+  const {
+    user,
+    loading,
+    setLoading,
+    professionals,
+    setProfessionals,
+    favProfessionals,
+    setFavProfessionals,
+  } = useContext(MainContext);
+
+  const id = item?.id;
+
+  const handleRemove = async () => {
+    setLoading(true);
+    const response = await removeProfessional(id);
+    if (response.status === 200) {
+      getAllProfessionals().then((allProfessionals) => {
+        setProfessionals(allProfessionals);
+      });
+      setLoading(false);
+      history.push("/gallery/professionals");
+    }
+  };
+  const handleFavorites = async () => {
+    setLoading(true);
+    const favorites = [...favProfessionals];
+    if (!favorites.some((alreadyFavorite) => alreadyFavorite.id === id)) {
+      const response = await addFavProfessionals(id);
+      if (response.status === 200) {
+        getFavProfessionals().then((favs) => {
+          setFavProfessionals(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    } else {
+      const response = await removeFavProfessionals(id);
+      if (response.status === 200) {
+        getFavProfessionals().then((favs) => {
+          setFavProfessionals(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    }
+  };
   return (
     <StyledCard xs={12} md={8} lg={3}>
       <Card>
@@ -25,22 +78,18 @@ export const CardProfessional = ({ item }) => {
             <h4 className="truncate">{item?.name}</h4>
           </LinkTo>
         </Card.Body>
-        {user?.role === "suscriber" && (
+        {user?.role === "subscriber" && (
           <div className="actions">
-            <LinkTo to="/signup" variant="primary">
-              <Book />
-            </LinkTo>
-            <LinkTo to="/signup" variant="primary">
+            <LinkBtn method={(e) => handleFavorites(e)} variant="primary">
               <Heart />
-            </LinkTo>
+            </LinkBtn>
           </div>
         )}
         {user?.role === "admin" && (
           <div className="actions">
-            <LinkTo to="/signup" variant="primary">
+            <LinkBtn method={(e) => handleRemove(e)} variant="primary">
               <Trash2 />
-            </LinkTo>
-
+            </LinkBtn>
             <LinkTo
               to={`/edit-professional/${item?.id}`}
               itemId={item?.id}
@@ -53,4 +102,4 @@ export const CardProfessional = ({ item }) => {
       </Card>
     </StyledCard>
   );
-};
+});

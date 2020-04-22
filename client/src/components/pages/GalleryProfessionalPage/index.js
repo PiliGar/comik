@@ -9,7 +9,6 @@ import { List } from "../../ui/List/index";
 
 const Page = (props) => {
   const { professionals } = useContext(MainContext);
-
   return (
     <>
       <StyledGallery>

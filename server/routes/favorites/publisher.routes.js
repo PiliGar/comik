@@ -14,9 +14,10 @@ router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
     await User.findByIdAndUpdate(id, {
       $addToSet: { favoritesPublishers: publisher },
     });
-    return res
-      .status(200)
-      .json({ message: "Publisher added successfully to user favorites." });
+    return res.status(200).json({
+      status: 200,
+      message: "Publisher added successfully to user favorites.",
+    });
   } catch (error) {
     return res.status(500).json({
       message: "Internal server error adding publisher to favorites",
@@ -40,6 +41,7 @@ router.delete("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
           favoritesPublishers: updatedArr.map((publisher) => publisher._id),
         });
         return res.status(200).json({
+          status: 200,
           message: "Publisher removed successfully to user favorites.",
         });
       })
