@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const StyledProtectedPage = styled.div`
-  width: auto;
-  height: 50px;
-  display: block;
-  background: orange;
-  color: white;
+  width: 100%;
+  .image {
+    text-align: center;
+    img {
+      margin: 0 auto;
+      display: block;
+    }
+  }
 `;

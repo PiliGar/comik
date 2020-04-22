@@ -35,6 +35,8 @@ import { EditIssuePage } from "./components/pages/EditIssuePage/index";
 import { EditPublisherPage } from "./components/pages/EditPublisherPage/index";
 import { EditCharacterPage } from "./components/pages/EditCharacterPage/index";
 
+import { ProtectedPage } from "./components/pages/ProtectedPage/index";
+
 import { NotFoundPage } from "./components/pages/NotFoundPage/index";
 
 export const App = withAuthentication(() => {
@@ -49,7 +51,6 @@ export const App = withAuthentication(() => {
           <Route path="/account" exact component={AccountPage} />
           <Route path="/adminpanel" exact component={AdminPanelPage} />
           <Route path="/profile" exact component={ProfilePage} />
-
           <Route
             path="/gallery/professionals"
             exact
@@ -117,6 +118,7 @@ export const App = withAuthentication(() => {
               <EditCharacterPage itemId={match.params.id} />
             )}
           />
+          <Route path="/protected" exact component={ProtectedPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </Layout>

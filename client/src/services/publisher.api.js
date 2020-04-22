@@ -55,7 +55,7 @@ export const removePublisher = async (id) => {
   }
 };
 
-export const getFavPublisher = async () => {
+export const getFavPublishers = async () => {
   try {
     const res = await api.get(`${path}/favorite/list`);
     return res.data;

@@ -101,6 +101,7 @@ router.delete(
     const { id } = req.params;
     await Professional.findByIdAndRemove(id);
     return res.status(200).json({
+      status: 200,
       message: `Professional: ${id} was successfully deleted`,
       id,
     });

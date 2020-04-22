@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withProtected } from "../../../../lib/protectRoute.hoc";
 
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { CardProfessional } from "../../ui/CardProfessional/index";
+import { Container, Row, Col, Image, Tabs, Tab, Sonnet } from "react-bootstrap";
 import { UserPlus, Heart, Settings } from "react-feather";
 import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
@@ -11,7 +12,14 @@ import { StyledProfile } from "./style";
 import User from "../../../../public/images/woman.png";
 
 export const Page = () => {
-  const { user } = useContext(MainContext);
+  const {
+    user,
+    favProfessionals,
+    favIssues,
+    favPublishers,
+    favCharacters,
+  } = useContext(MainContext);
+  const [isActive, setActive] = useState("professionals");
 
   return (
     <StyledProfile>
@@ -39,22 +47,19 @@ export const Page = () => {
                   <Col xs={6}>
                     <h3>Info</h3>
                     <p>
-                      <b>Data:</b> data
+                      <b>Name:</b> {user?.name}
                     </p>
                     <p>
-                      <b>Data:</b> data
-                    </p>
-                    <p>
-                      <b>Data:</b> data
-                    </p>
-                    <p>
-                      <b>Data:</b> data
+                      <b>AKA:</b> {user?.alias}
                     </p>
                   </Col>
                   <Col xs={6}>
                     <ul className="actions">
                       <li>
-                        <LinkBtn to="/signup" variant="secondary">
+                        <LinkBtn
+                          to="/gallery/professionals"
+                          variant="secondary"
+                        >
                           <Settings /> Modify your preferences
                         </LinkBtn>
                       </li>
@@ -70,10 +75,16 @@ export const Page = () => {
               </Col>
             </Row>
             <Row>
-              <NavCategories />
+              {/* <NavCategories /> */}
+              <button>professionals</button>
+              <button>favIssues</button>
+              <button>publishers</button>
+              <button>characters</button>
             </Row>
             <Row>
-              <p>Card</p>
+              {favProfessionals?.map((item, i) => (
+                <CardProfessional item={item} key={i} />
+              ))}
             </Row>
           </Col>
           <Col xs={12} md={4} lg={3}>

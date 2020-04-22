@@ -92,7 +92,9 @@ const crudGenerator = (
     asyncController(async (req, res, next) => {
       const { id } = req.params;
       await Model.findByIdAndRemove(id);
-      return res.status(200).json({ message: "Deleted successfully", id });
+      return res
+        .status(200)
+        .json({ status: 200, message: "Deleted successfully", id });
     })
   );
 
