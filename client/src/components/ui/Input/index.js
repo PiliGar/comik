@@ -11,7 +11,7 @@ export const InputBox = React.forwardRef(
         <StyledInput
           className={errors[name] ? `form-group errors` : `form-group`}
         >
-          <input type={type} placeholder={placeholder} name={name} ref={ref}/>
+          <input type={type} placeholder={placeholder} name={name} ref={ref} />
           {errors[name] && <span>{errors[name].message}</span>}
         </StyledInput>
       </>

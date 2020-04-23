@@ -6,9 +6,10 @@ import { StyledGallery } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { CardCharacter } from "../../ui/CardCharacter/index";
 import { List } from "../../ui/List/index";
+import { BarContact } from "../../ui/BarContact/index";
 
 const Page = (props) => {
-  const { characters } = useContext(MainContext);
+  const { characters, users } = useContext(MainContext);
 
   return (
     <>
@@ -42,7 +43,15 @@ const Page = (props) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <List />
+                  <List>
+                    {users?.map((userItem, i) => {
+                      return (
+                        <div id={userItem.name} key={i}>
+                          <BarContact userItem={userItem} />
+                        </div>
+                      );
+                    })}
+                  </List>
                 </Col>
               </Row>
             </Col>

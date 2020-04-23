@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withProtected } from "../../../../lib/protectRoute.hoc";
 
@@ -6,9 +6,10 @@ import { StyledGallery } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { CardProfessional } from "../../ui/CardProfessional/index";
 import { List } from "../../ui/List/index";
+import { BarContact } from "../../ui/BarContact/index";
 
 const Page = (props) => {
-  const { professionals } = useContext(MainContext);
+  const { professionals, users } = useContext(MainContext);
   return (
     <>
       <StyledGallery>
@@ -41,7 +42,15 @@ const Page = (props) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <List />
+                  <List>
+                    {users?.map((userItem, i) => {
+                      return (
+                        <div id={userItem.name} key={i}>
+                          <BarContact userItem={userItem} />
+                        </div>
+                      );
+                    })}
+                  </List>
                 </Col>
               </Row>
             </Col>

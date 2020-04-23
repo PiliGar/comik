@@ -21,10 +21,11 @@ export const SignupForm = withRouter(({ history, title, c2a }) => {
 
   const onSubmit = async (data) => {
     const response = await doSignup(data);
-    if (response.status) {
+    console.log("data form", response);
+    if (response.status !== 200) {
       return history.push("/login");
     }
-    setUser(data);
+    setUser(response.newUser);
     history.push("/profile");
   };
 

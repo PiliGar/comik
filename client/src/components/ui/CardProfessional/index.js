@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { Link, withRouter } from "react-router-dom";
 
@@ -13,15 +13,12 @@ import {
 import { StyledCard } from "./style";
 import { Card } from "react-bootstrap";
 import { LinkTo, LinkBtn } from "../Link/index";
-import { ButtonLink } from "../Button/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
 export const CardProfessional = withRouter(({ history, item }) => {
   const {
     user,
-    loading,
     setLoading,
-    professionals,
     setProfessionals,
     favProfessionals,
     setFavProfessionals,

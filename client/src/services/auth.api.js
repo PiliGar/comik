@@ -9,6 +9,7 @@ export const doSignup = async ({ name, alias, username, password }) => {
       username,
       password,
     });
+    console.log("API", res);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -21,6 +22,7 @@ export const doLogin = async ({ username, password }) => {
       username,
       password,
     });
+    console.log("API", res);
     return res.data;
   } catch (error) {
     console.log(error);

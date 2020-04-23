@@ -3,13 +3,22 @@ import { MainContext } from "../../../contexts/MainContext";
 import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { CardProfessional } from "../../ui/CardProfessional/index";
-import { Container, Row, Col, Image, Tabs, Tab, Sonnet } from "react-bootstrap";
-import { UserPlus, Heart, Settings } from "react-feather";
+import { CardIssue } from "../../ui/CardIssue/index";
+import { CardPublisher } from "../../ui/CardPublisher/index";
+import { CardCharacter } from "../../ui/CardCharacter/index";
+
+import { Container, Row, Col, Image } from "react-bootstrap";
+import { UserPlus, Settings } from "react-feather";
+import { BarFriend } from "../../ui/BarFriend/index";
 import { List } from "../../ui/List/index";
 import { LinkBtn } from "../../ui/Link/index";
-import { NavCategories } from "../../ui/NavCategories";
 import { StyledProfile } from "./style";
 import User from "../../../../public/images/woman.png";
+
+const cloudinary = require("cloudinary-core");
+const cl = cloudinary.Cloudinary.new({ cloud_name: "driuopbnh" });
+
+const types = ["Professionals", "Issues", "Publishers", "Characters", "Wanted"];
 
 export const Page = () => {
   const {
@@ -18,8 +27,10 @@ export const Page = () => {
     favIssues,
     favPublishers,
     favCharacters,
+    wantedIssues,
+    contacts,
   } = useContext(MainContext);
-  const [isActive, setActive] = useState("professionals");
+  const [active, setActive] = useState(types[0]);
 
   return (
     <StyledProfile>
@@ -74,18 +85,45 @@ export const Page = () => {
                 </Row>
               </Col>
             </Row>
+
+            {/* hola */}
             <Row>
-              {/* <NavCategories /> */}
-              <button>professionals</button>
-              <button>favIssues</button>
-              <button>publishers</button>
-              <button>characters</button>
+              <div>
+                {types.map((type) => (
+                  <button
+                    key={type}
+                    className={active === type ? "active" : ""}
+                    // active={active === type}
+                    onClick={() => setActive(type)}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
             </Row>
+
             <Row>
-              {favProfessionals?.map((item, i) => (
-                <CardProfessional item={item} key={i} />
-              ))}
+              {active == "Wanted" &&
+                wantedIssues?.map((item, i) => (
+                  <CardIssue item={item} key={i} />
+                ))}
+              {active == "Issues" &&
+                favIssues?.map((item, i) => <CardIssue item={item} key={i} />)}
+              {active == "Professionals" &&
+                favProfessionals?.map((item, i) => (
+                  <CardProfessional item={item} key={i} />
+                ))}
+              {active == "Publishers" &&
+                favPublishers?.map((item, i) => (
+                  <CardPublisher item={item} key={i} />
+                ))}
+              {active == "Characters" &&
+                favCharacters?.map((item, i) => (
+                  <CardCharacter item={item} key={i} />
+                ))}
             </Row>
+
+            {/* hola */}
           </Col>
           <Col xs={12} md={4} lg={3}>
             <Row>
@@ -97,6 +135,16 @@ export const Page = () => {
               <Col xs={12}>
                 <List />
               </Col>
+
+              <List>
+                {contacts?.map((userItem, i) => {
+                  return (
+                    <div id={userItem.name} key={i}>
+                      <BarFriend userItem={userItem} />
+                    </div>
+                  );
+                })}
+              </List>
             </Row>
           </Col>
         </Row>
