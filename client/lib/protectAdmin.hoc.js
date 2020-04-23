@@ -14,7 +14,7 @@ export const withProtectedAdmin = (
   const { user, loading } = useContext(MainContext);
 
   if (user?.role === "admin") {
-    return <Component />;
+    return <Component props />;
   } else {
     if (loading) return <ProtectedPage />;
     else {

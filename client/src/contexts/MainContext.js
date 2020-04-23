@@ -13,6 +13,7 @@ import {
 } from "../services/issue.api";
 import { getAllPublishers, getFavPublishers } from "../services/publisher.api";
 import { getAllCharacters, getFavCharacters } from "../services/character.api";
+import { getAllContacts } from "../services/contact.api";
 
 export const MainContextProvider = ({ children }) => {
   //ui
@@ -40,16 +41,19 @@ export const MainContextProvider = ({ children }) => {
   const [characters, setCharacters] = useState();
   const [favCharacters, setFavCharacters] = useState();
 
+  //contact
+  const [contacts, setContacts] = useState();
+
   const handleBurger = (e) => {
     e.preventDefault();
     burgerOpen ? setBurguerOpen(false) : setBurguerOpen(true);
   };
 
   useEffect(() => {
+    //users
     getAllUsers().then((res) => {
       setUsers(res.users);
     });
-
     //professionals
     getAllProfessionals().then((professionals) => {
       setProfessionals(professionals);
@@ -83,6 +87,11 @@ export const MainContextProvider = ({ children }) => {
     });
     getFavCharacters().then((favs) => {
       setFavCharacters(favs);
+    });
+
+    //contacts
+    getAllContacts().then((friends) => {
+      setContacts(friends);
     });
   }, []);
 
@@ -124,6 +133,8 @@ export const MainContextProvider = ({ children }) => {
         setCharacters,
         favCharacters,
         setFavCharacters,
+        contacts,
+        setContacts,
       }}
     >
       {children}

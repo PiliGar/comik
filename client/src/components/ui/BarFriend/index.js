@@ -11,9 +11,9 @@ import { LinkBtn } from "../Link/index";
 import { StyledContact } from "./style";
 import { Row, Col, Image } from "react-bootstrap";
 import User from "../../../../public/images/man.png";
-import { UserPlus } from "react-feather";
+import { UserMinus } from "react-feather";
 
-export const BarContact = withRouter(({ history, userItem }) => {
+export const BarFriend = withRouter(({ history, userItem }) => {
   const { setLoading, contacts, setContacts } = useContext(MainContext);
 
   const id = userItem.id;
@@ -34,9 +34,9 @@ export const BarContact = withRouter(({ history, userItem }) => {
     setIsFriend(relation);
   }, []);
 
-  const addFriend = async () => {
+  const removeFriend = async () => {
     setLoading(true);
-    const response = await addContact(id);
+    const response = await removeContact(id);
     if (response.status === 200) {
       getAllContacts().then((contacts) => {
         setContacts(contacts);
@@ -48,7 +48,7 @@ export const BarContact = withRouter(({ history, userItem }) => {
 
   return (
     <>
-      {!isFriend && (
+      {isFriend && (
         <StyledContact>
           <Row>
             <Col xs={4} className="avatar">
@@ -57,8 +57,8 @@ export const BarContact = withRouter(({ history, userItem }) => {
             <Col xs={8} className="name">
               <p>{userItem.name}</p>
 
-              <LinkBtn method={(e) => addFriend(e)} variant="primary">
-                <UserPlus />
+              <LinkBtn method={(e) => removeFriend(e)} variant="primary">
+                <UserMinus />
               </LinkBtn>
             </Col>
           </Row>

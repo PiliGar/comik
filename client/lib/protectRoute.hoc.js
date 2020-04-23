@@ -15,7 +15,7 @@ export const withProtected = (
   const { user, loading } = useContext(MainContext);
 
   if (user) {
-    return <Component {...props} />;
+    return <Component props />;
   } else {
     if (loading) return <ProtectedPage />;
     else {

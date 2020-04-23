@@ -9,9 +9,9 @@ export const HomePage = () => {
       <StyledHome>
         <Container fluid>
           <Row>
-            <Collapse xs={12} md={6} className="right">
+            <Col xs={12} md={6} className="right">
               <h1>The comic fans community</h1>
-            </Collapse>
+            </Col>
             <Col xs={12} md={6} className="left">
               <img src={Picture} alt="Character"></img>
             </Col>

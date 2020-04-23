@@ -1,15 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter, Link } from "react-router-dom";
 
-import { doLogout } from "../../../services/auth.api";
+import { doLogout, whoUser } from "../../../services/auth.api";
 
 import { StyledNavbar } from "./style";
 import { LinkAnimated } from "../Button/index";
 import { LinkTo } from "../Link/index";
 
 export const NavBar = withRouter(({ history }) => {
-  const { user, setUser } = useContext(MainContext);
+  const { user, setUser, loading, setLoading } = useContext(MainContext);
 
   const onClickLogout = async (e) => {
     e.preventDefault();

@@ -1,25 +1,21 @@
-//React
 import React, { useEffect, useContext } from "react";
 
-//Context
 import { MainContext } from "../src/contexts/MainContext";
 
-//Functional & Services
 import { whoUser } from "../src/services/auth.api";
 
-//Compoments
 import { Loading } from "../src/components/ui/Loading/index";
 
-// THIS is a HOC
-export const withAuthentication = (Component) => () => {
-  const { setUser, loading, setLoading } = useContext(MainContext);
+// HOC
+export const withAuthentication = (Component) => (props) => {
+  const { user, setUser, loading, setLoading } = useContext(MainContext);
 
   useEffect(() => {
     console.log("Welcome to app! 👨🏼‍💻");
     whoUser()
-      .then((user) => {
-        console.error(`Welcome again user ${user.username}!`);
-        setUser(user);
+      .then((currentUser) => {
+        console.error(`Welcome again user ${currentUser.username}!`);
+        setUser(currentUser);
       })
       .catch((e) => {
         console.error("No user logged in here...");

@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import { MainContext } from "../../../contexts/MainContext";
+
 import { StyledUser } from "./style";
 import { Row, Col, Image } from "react-bootstrap";
 import User from "../../../../public/images/man.png";
@@ -31,12 +34,7 @@ export const BarUser = ({ userItem }) => {
         <Col xs={12} md={2} className="vertical">
           <Row>
             <Col xs={6}>
-              <LinkTo to="/signup" variant="secondary">
-                <PenTool />
-              </LinkTo>
-            </Col>
-            <Col xs={6}>
-              <LinkTo to="/signup" variant="secondary">
+              <LinkTo to="/" variant="secondary">
                 <Trash2 />
               </LinkTo>
             </Col>

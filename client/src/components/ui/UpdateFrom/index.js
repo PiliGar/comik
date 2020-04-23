@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { doUpdate } from "../../../services/auth.api";
 
 import { useForm, FormContext } from "react-hook-form";
+
 import { ChevronRight, ArrowRight } from "react-feather";
 import { InputBox } from "../Input/index";
 import { Button } from "../Button/index";
@@ -48,6 +49,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
       <FormContext {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputBox
+            label="Name:"
             type="text"
             placeholder="Name"
             name="name"
@@ -59,6 +61,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
             })}
           />
           <InputBox
+            label="Alias:"
             type="text"
             placeholder="Alias"
             name="alias"
@@ -70,6 +73,7 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
             })}
           />
           <InputBox
+            label="Email:"
             type="email"
             placeholder="Email"
             name="username"
@@ -85,8 +89,8 @@ export const UpdateForm = withRouter(({ history, title, c2a }) => {
             })}
           />
           <InputBox
+            label="Password:"
             type="password"
-            placeholder="Password"
             name="password"
             ref={register({
               required: {

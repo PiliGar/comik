@@ -3,8 +3,8 @@ const path = `/contact`;
 
 export const getAllContacts = async () => {
   try {
-    const res = await api.get(`${path}/`);
-    return res.data.user[contacts];
+    const res = await api.get(`${path}/list`);
+    return res.data.user.contacts;
   } catch (error) {
     console.log(error);
   }
