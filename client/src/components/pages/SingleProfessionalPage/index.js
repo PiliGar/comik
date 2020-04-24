@@ -1,6 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { MainContext } from "../../../contexts/MainContext";
-import { Redirect } from "react-router-dom";
 
 import {
   getOneProfessional,
@@ -11,7 +9,11 @@ import {
   getFavProfessionals,
 } from "../../../services/professional.api";
 
+import { MainContext } from "../../../contexts/MainContext";
+import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { ProtectedPage } from "../ProtectedPage/index";
+
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
@@ -19,7 +21,7 @@ import { BarContact } from "../../ui/BarContact/index";
 import { LinkTo, LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleProfessionalPage = (props) => {
+export const SingleProfessionalPage = withRouter(({ history, ...props }) => {
   const { user, users, loading, setLoading, setProfessionals } = useContext(
     MainContext
   );
@@ -40,7 +42,7 @@ export const SingleProfessionalPage = (props) => {
         setProfessionals(allProfessionals);
       });
       setLoading(false);
-      //history.push("/gallery/professionals");
+      history.push("/gallery/professionals");
     }
   };
   const handleFavorites = async () => {
@@ -52,7 +54,7 @@ export const SingleProfessionalPage = (props) => {
         getFavProfessionals().then((favs) => {
           setFavProfessionals(favs);
           setLoading(false);
-          //history.push("/profile");
+          history.push("/profile");
         });
       }
     } else {
@@ -61,7 +63,7 @@ export const SingleProfessionalPage = (props) => {
         getFavProfessionals().then((favs) => {
           setFavProfessionals(favs);
           setLoading(false);
-          ///history.push("/profile");
+          history.push("/profile");
         });
       }
     }
@@ -187,4 +189,4 @@ export const SingleProfessionalPage = (props) => {
       return <Redirect to="/auth/login" />;
     }
   }
-};
+});

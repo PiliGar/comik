@@ -26,6 +26,10 @@ export const StyledProfile = styled.section`
   .list-group {
     width: 100%;
   }
+  .picture-btn {
+    border: none;
+    outline: none;
+  }
   svg {
     margin-right: 1rem;
   }

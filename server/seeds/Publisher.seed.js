@@ -3,7 +3,7 @@ const withDbConnection = require("../withDbConnection");
 const Publisher = require("../models/Publisher");
 require("dotenv").config();
 
-const apiURL = `${process.env.API_URL}/publishers/?api_key=${process.env.API_KEY}&format=json&limit=50`;
+const apiURL = `${process.env.API_URL}/publishers/?api_key=${process.env.API_KEY}&format=json&limit=70`;
 getData(apiURL);
 
 function getData(url) {

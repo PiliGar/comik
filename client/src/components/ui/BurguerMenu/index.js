@@ -68,6 +68,9 @@ export const BurgerMenu = withRouter(({ history }) => {
               <button onClick={() => onGoTo("/adminpanel")}>Admin panel</button>
             </li>
             <li>
+              <button onClick={() => onGoTo("/profile")}>Profile</button>
+            </li>
+            <li>
               <button onClick={() => onGoTo("/gallery/professionals")}>
                 Content
               </button>

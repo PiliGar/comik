@@ -35,6 +35,7 @@ const crudGenerator = (
   /* CRUD Retrieve */
   router.get("/", async (req, res, next) => {
     const objs = await Model.find().populate(populateFields);
+
     return res
       .status(200)
       .json({ message: "All retrieved successfully", objs });
@@ -44,6 +45,7 @@ const crudGenerator = (
   router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
     const obj = await Model.findById(id).populate(populateFields);
+    console.log("CRUD", obj);
     return res.status(200).json({ message: "Retrieved one successfully", obj });
   });
 

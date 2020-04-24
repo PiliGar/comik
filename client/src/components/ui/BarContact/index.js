@@ -52,7 +52,7 @@ export const BarContact = withRouter(({ history, userItem }) => {
         <StyledContact>
           <Row>
             <Col xs={4} className="avatar">
-              <Image src={User} roundedCircle fluid />
+              <Image src={userItem.imageSrc} roundedCircle fluid />
             </Col>
             <Col xs={8} className="name">
               <p>{userItem.name}</p>

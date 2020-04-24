@@ -8,17 +8,21 @@ const { isAdminRole } = require("../../middleware/isRole");
 const uploadCloud = require("../../config/cloudinary.js");
 
 /* USER Avatar */
+
 router.post(
   "/profilepic",
   uploadCloud.single("picture"),
-  asyncController(async (req, res, next) => {
-    const id = req.user.id;
-    console.log("ID", id);
-    console.log("URL", req.file);
+  async (req, res, next) => {
+    console.log(req.file);
+    const user = req.user;
+    console.log("QUIEN", user.name);
+    console.log("ID", user.id);
+    //user.imageSrc = req.file.secure_url;
+    //const updatedUser = await user.save();
     const data = {
       imageSrc: req.file.secure_url,
     };
-    const updatedUser = await User.findOneAndUpdate(id, data, {
+    const updatedUser = await User.findOneAndUpdate({ _id: user.id }, data, {
       new: true,
     });
     console.log("BACK", updatedUser);
@@ -27,7 +31,7 @@ router.post(
       message: "Uploaded completed",
       user: updatedUser,
     });
-  })
+  }
 );
 
 /* USER Get single user */

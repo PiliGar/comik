@@ -54,6 +54,7 @@ export const Page = () => {
     const imageFile = data.picture[0];
     data.picture = imageFile;
     const id = user.id;
+    console.log("FRONT USER", user.id);
     const formData = { ...data, id };
     const response = await changeAvatar(formData);
     if (response.status === 200) {
@@ -119,10 +120,14 @@ export const Page = () => {
                         })}
                       />
                     </div>
-                    <button type="submit">
+                    <LinkBtn
+                      className="picture-btn"
+                      type="submit"
+                      variant="secondary"
+                    >
                       <Camera />
                       Change picture
-                    </button>
+                    </LinkBtn>
                   </form>
                 </FormContext>
               </Col>

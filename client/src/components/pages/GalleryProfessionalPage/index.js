@@ -9,7 +9,7 @@ import { List } from "../../ui/List/index";
 import { BarContact } from "../../ui/BarContact/index";
 
 const Page = (props) => {
-  const { professionals, users } = useContext(MainContext);
+  const { user, professionals, users } = useContext(MainContext);
   return (
     <>
       <StyledGallery>
@@ -43,13 +43,15 @@ const Page = (props) => {
               <Row>
                 <Col xs={12}>
                   <List>
-                    {users?.map((userItem, i) => {
-                      return (
-                        <div id={userItem.name} key={i}>
-                          <BarContact userItem={userItem} />
-                        </div>
-                      );
-                    })}
+                    {users
+                      ?.filter((contact) => contact.name !== user.name)
+                      .map((userItem, i) => {
+                        return (
+                          <div id={userItem.name} key={i}>
+                            <BarContact userItem={userItem} />
+                          </div>
+                        );
+                      })}
                   </List>
                 </Col>
               </Row>
