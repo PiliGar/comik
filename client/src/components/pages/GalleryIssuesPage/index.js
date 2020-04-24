@@ -6,9 +6,10 @@ import { StyledGallery } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { CardIssue } from "../../ui/CardIssue/index";
 import { List } from "../../ui/List/index";
+import { BarContact } from "../../ui/BarContact/index";
 
 const Page = (props) => {
-  const { issues } = useContext(MainContext);
+  const { user, issues, users } = useContext(MainContext);
 
   return (
     <>
@@ -22,7 +23,7 @@ const Page = (props) => {
         </Container>
         <Container fluid>
           <Row>
-            <Col xs={12} md={8} lg={9}>
+            <Col xs={12} sm={12} md={6} lg={8} xl={9}>
               <Row>
                 <Col xs={12}>
                   <h2>Issues</h2>
@@ -34,7 +35,7 @@ const Page = (props) => {
                 ))}
               </Row>
             </Col>
-            <Col xs={12} md={4} lg={3}>
+            <Col xs={12} sm={12} md={6} lg={4} xl={3}>
               <Row>
                 <Col xs={12}>
                   <h3>Meet other fans</h3>
@@ -42,7 +43,17 @@ const Page = (props) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <List />
+                  <List>
+                    {users
+                      ?.filter((contact) => contact.name !== user.name)
+                      .map((userItem, i) => {
+                        return (
+                          <div id={userItem.name} key={i}>
+                            <BarContact userItem={userItem} />
+                          </div>
+                        );
+                      })}
+                  </List>
                 </Col>
               </Row>
             </Col>

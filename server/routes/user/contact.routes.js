@@ -9,7 +9,9 @@ router.get("/list", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
     const user = await User.findById(id).populate("contacts");
-    return res.status(200).json({ message: "Retrieved user contacts", user });
+    return res
+      .status(200)
+      .json({ status: 200, message: "Retrieved user contacts", user });
   } catch (error) {
     return res
       .status(401)
@@ -27,7 +29,8 @@ router.post("/add/:contactid", isLoggedIn(), async (req, res, next) => {
       $addToSet: { contacts: contact },
     });
     return res.status(200).json({
-      status: `Contact ${contactid} added to user contacts arr.`,
+      status: 200,
+      message: `Contact ${contactid} added to user contacts arr.`,
     });
   } catch (error) {
     return res.status(500).json({
@@ -52,7 +55,8 @@ router.delete("/remove/:contactid", isLoggedIn(), async (req, res, next) => {
           contacts: updatedArr.map((contact) => contact._id),
         });
         return res.status(200).json({
-          status: `Contact ${contactid} removed from user contacts arr.`,
+          status: 200,
+          message: `Contact ${contactid} removed from user contacts arr.`,
         });
       })
       .catch((error) => res.status(401).json({ status: "Not found.", error }));

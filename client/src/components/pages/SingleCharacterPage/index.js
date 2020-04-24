@@ -1,18 +1,36 @@
 import React, { useContext, useState, useEffect } from "react";
-import { getOneCharacter } from "../../../services/character.api";
+
+import {
+  getOneCharacter,
+  removeCharacter,
+  addFavCharacter,
+  removeFavCharacter,
+  getAllCharacters,
+  getFavCharacters,
+} from "../../../services/character.api";
 
 import { MainContext } from "../../../contexts/MainContext";
+import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { ProtectedPage } from "../ProtectedPage/index";
 
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
-import { LinkBtn } from "../../ui/Link/index";
+import { BarContact } from "../../ui/BarContact/index";
+import { LinkTo, LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleCharacterPage = (props) => {
-  const { user, loading } = useContext(MainContext);
+export const SingleCharacterPage = withRouter(({ history, ...props }) => {
+  const {
+    user,
+    users,
+    loading,
+    setLoading,
+    setCharacters,
+    favCharacters,
+    setFavCharacters,
+  } = useContext(MainContext);
   const [character, setCharacter] = useState({});
   const id = props.match.params.id;
 
@@ -21,6 +39,42 @@ export const SingleCharacterPage = (props) => {
       setCharacter(res);
     });
   }, []);
+
+  const handleRemove = async () => {
+    setLoading(true);
+    const response = await removeCharacter(id);
+    if (response.status === 200) {
+      getAllCharacters().then((allCharacters) => {
+        setCharacters(allCharacters);
+      });
+      setLoading(false);
+      history.push("/gallery/characters");
+    }
+  };
+
+  const handleFavorites = async () => {
+    setLoading(true);
+    const favorites = [...favCharacters];
+    if (!favorites.some((alreadyFavorite) => alreadyFavorite.id === id)) {
+      const response = await addFavCharacter(id);
+      if (response.status === 200) {
+        getFavCharacters().then((favs) => {
+          setFavCharacters(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    } else {
+      const response = await removeFavCharacter(id);
+      if (response.status === 200) {
+        getFavCharacters().then((favs) => {
+          setFavCharacters(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    }
+  };
 
   if (user) {
     return (
@@ -54,13 +108,16 @@ export const SingleCharacterPage = (props) => {
                       <Col xs={6}>
                         <h3>Info</h3>
                         <p>
-                          <b>Alias: {character?.alias}</b>
+                          <b>Alias: </b>
+                          {character?.alias}
                         </p>
                         <p>
-                          <b>Real name: {character?.realName}</b>
+                          <b>Real name: </b>
+                          {character?.realName}
                         </p>
                         <p>
-                          <b>Publisher: {character?.publisher}</b>
+                          <b>Publisher: </b>
+                          {character?.publisher}
                         </p>
                       </Col>
                       <Col xs={6}>
@@ -68,8 +125,11 @@ export const SingleCharacterPage = (props) => {
                           {user?.role === "suscriber" && (
                             <>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <Heart /> Save as favorite
+                                <LinkBtn
+                                  method={(e) => handleFavorites(e)}
+                                  variant="primary"
+                                >
+                                  <Heart />
                                 </LinkBtn>
                               </li>
                             </>
@@ -77,14 +137,21 @@ export const SingleCharacterPage = (props) => {
                           {user?.role === "admin" && (
                             <>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <PenTool /> Edit
+                                <LinkBtn
+                                  method={(e) => handleRemove(e)}
+                                  variant="primary"
+                                >
+                                  <Trash2 />
                                 </LinkBtn>
                               </li>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <Trash2 /> Delete
-                                </LinkBtn>
+                                <LinkTo
+                                  to={`/edit-character/${character?.id}`}
+                                  itemId={character?.id}
+                                  variant="primary"
+                                >
+                                  <PenTool />
+                                </LinkTo>
                               </li>
                             </>
                           )}
@@ -108,7 +175,17 @@ export const SingleCharacterPage = (props) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <List />
+                    <List>
+                      {users
+                        ?.filter((contact) => contact.name !== user.name)
+                        .map((userItem, i) => {
+                          return (
+                            <div id={userItem.name} key={i}>
+                              <BarContact userItem={userItem} />
+                            </div>
+                          );
+                        })}
+                    </List>
                   </Col>
                 </Row>
               </Col>
@@ -123,4 +200,4 @@ export const SingleCharacterPage = (props) => {
       return <Redirect to="/auth/login" />;
     }
   }
-};
+});

@@ -18,7 +18,17 @@ export const StyledHeader = styled.header`
         margin: ${({ theme: { space } }) => space.s};
       }
     }
+    .col-burguer {
+      position: absolute;
+      top: 3.3rem;
+      right: 2rem;
+    }
+    .col-categories ul {
+      display: flex;
+      flex-flow: column nowrap;
+    }
   }
+
   @media ${({ theme: { media } }) => media.md} {
     .wrapper {
       display: flex;
@@ -32,6 +42,19 @@ export const StyledHeader = styled.header`
           height: 6rem;
           margin: 0;
         }
+      }
+    }
+  }
+  @media ${({ theme: { media } }) => media.lg} {
+    .wrapper {
+      .col-burguer {
+        position: relative;
+        top: initial;
+        right: initial;
+      }
+      .col-categories ul {
+        display: flex;
+        flex-flow: row nowrap;
       }
     }
   }

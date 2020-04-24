@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter, Link } from "react-router-dom";
 
@@ -48,11 +48,6 @@ export const NavBar = withRouter(({ history }) => {
         {user?.role === "subscriber" && (
           <>
             <li>
-              <LinkTo to="/account" variant="primary">
-                Account
-              </LinkTo>
-            </li>
-            <li>
               <LinkTo to="/gallery/professionals" variant="primary">
                 Professionals
               </LinkTo>
@@ -71,27 +66,12 @@ export const NavBar = withRouter(({ history }) => {
               <LinkTo to="/gallery/characters" variant="primary">
                 Characters
               </LinkTo>
-            </li>
-            <li>
-              <LinkTo to="/profile" variant="primary">
-                Profile
-              </LinkTo>
-            </li>
-            <li>
-              <Link to="/" variant="primary" onClick={(e) => onClickLogout(e)}>
-                Log out
-              </Link>
             </li>
           </>
         )}
         {user?.role === "admin" && (
           <>
             <li>
-              <LinkTo to="/account" variant="primary">
-                Account
-              </LinkTo>
-            </li>
-            <li>
               <LinkTo to="/gallery/professionals" variant="primary">
                 Professionals
               </LinkTo>
@@ -110,21 +90,6 @@ export const NavBar = withRouter(({ history }) => {
               <LinkTo to="/gallery/characters" variant="primary">
                 Characters
               </LinkTo>
-            </li>
-            <li>
-              <LinkTo to="/profile" variant="primary">
-                Profile
-              </LinkTo>
-            </li>
-            <li>
-              <LinkTo to="/adminpanel" variant="primary">
-                Admin panel
-              </LinkTo>
-            </li>
-            <li>
-              <Link to="/" variant="primary" onClick={(e) => onClickLogout(e)}>
-                Log out
-              </Link>
             </li>
           </>
         )}

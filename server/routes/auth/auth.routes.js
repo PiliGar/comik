@@ -15,6 +15,7 @@ router.post("/signup", async (req, res, next) => {
 
   if (username === "" || password === "") {
     res.status(400).json({
+      status: 400,
       message: "Please enter both, username and password to sign up.",
     });
     return;
@@ -28,12 +29,24 @@ router.post("/signup", async (req, res, next) => {
       alias,
       username,
       password,
+      imageSrc:
+        "https://res.cloudinary.com/dqhtqecup/image/upload/v1587754843/comik/avatar-default_cl3gjh.png",
     });
     //Directly login user
     req.logIn(newUser, (err) => {
-      res.json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      const newUser = _.pick(req.user, [
+        "name",
+        "alias",
+        "username",
+        "role",
+        "imageSrc",
+        "_id",
+      ]);
+      res.json({
+        status: 200,
+        newUser,
+      });
     });
-    console.log(`--->>> New user registered: ${name}`);
   } else {
     res.status(400).json({
       message: "Not able to create a new user because this user already exists",
@@ -45,7 +58,6 @@ router.post("/signup", async (req, res, next) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err) {
-      console.log(`--->>> Login ERROR: ${err}`);
       return res
         .status(500)
         .json({ status: 500, message: "Autentication Error" });
@@ -54,20 +66,29 @@ router.post("/login", (req, res, next) => {
       return res.status(401).json({ status: "401", message: "Unathorised" });
     }
     req.logIn(user, (err) => {
+      const loggedUser = _.pick(req.user, [
+        "name",
+        "alias",
+        "username",
+        "role",
+        "imageSrc",
+        "_id",
+      ]);
+      //const loggedUser = user;
       if (err) {
         return res
           .status(500)
           .json({ status: 500, message: "Session save went bad" });
       }
-      return res
-        .status(200)
-        .json(_.pick(req.user, ["name", "alias", "username", "_id"]));
+      return res.status(200).json({
+        status: 200,
+        loggedUser,
+      });
     });
   })(req, res, next);
 });
 
 /* AUTH Edit */
-//--->>> TODO Can't edit with email hashed
 router.put("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
@@ -102,7 +123,16 @@ router.get("/whoami", (req, res, next) => {
     console.log(`--->>> Current user logged: 👽 ${req.user.username}`);
     return res
       .status(200)
-      .json(_.pick(req.user, ["name", "alias", "username", "role", "_id"]));
+      .json(
+        _.pick(req.user, [
+          "name",
+          "alias",
+          "username",
+          "role",
+          "imageSrc",
+          "_id",
+        ])
+      );
   } else return res.status(401).json({ status: "No user session present" });
 });
 module.exports = router;

@@ -33,35 +33,18 @@ export const createCharacter = async (dataFile) => {
   return res.data;
 };
 
-//TODO Include Cloudinary
-export const updateCharacter = async ({
-  name,
-  alias,
-  realName,
-  gender,
-  publisher,
-  excerpt,
-  description,
-  imageName,
-  imageSrc,
-  id,
-}) => {
-  try {
-    const res = await api.put(`${path}/edit/${id}`, {
-      name,
-      alias,
-      realName,
-      gender,
-      publisher,
-      excerpt,
-      description,
-      imageName,
-      imageSrc,
-    });
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const updateCharacter = async (dataFile) => {
+  const data = new FormData();
+  data.append("picture", dataFile.picture);
+  data.append("name", dataFile.name);
+  data.append("alias", dataFile.alias);
+  data.append("realName", dataFile.realName);
+  data.append("gender", dataFile.gender);
+  data.append("publisher", dataFile.publisher);
+  data.append("excerpt", dataFile.excerpt);
+  data.append("description", dataFile.description);
+  const res = await api.put(`${path}/edit/${dataFile.id}`, data);
+  return res.data;
 };
 
 export const removeCharacter = async (id) => {
@@ -73,7 +56,7 @@ export const removeCharacter = async (id) => {
   }
 };
 
-export const getFavCharacter = async () => {
+export const getFavCharacters = async () => {
   try {
     const res = await api.get(`${path}/favorite/list`);
     return res.data;

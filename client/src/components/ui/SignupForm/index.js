@@ -12,7 +12,7 @@ import { LinkTo } from "../Link/index";
 import { StyledForm } from "./style";
 
 export const SignupForm = withRouter(({ history, title, c2a }) => {
-  const { user, setUser } = useContext(MainContext);
+  const { setUser } = useContext(MainContext);
 
   const methods = useForm({
     mode: "onBlur",
@@ -21,10 +21,10 @@ export const SignupForm = withRouter(({ history, title, c2a }) => {
 
   const onSubmit = async (data) => {
     const response = await doSignup(data);
-    if (response.status) {
+    if (response.status !== 200) {
       return history.push("/login");
     }
-    setUser(data);
+    setUser(response.newUser);
     history.push("/profile");
   };
 

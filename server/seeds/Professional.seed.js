@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const newProfessionals = [];
 
-const apiURL = `${process.env.API_URL}/people/?api_key=${process.env.API_KEY}&format=json&limit=1`;
+const apiURL = `${process.env.API_URL}/people/?api_key=${process.env.API_KEY}&format=json&limit=70`;
 getData(apiURL);
 
 function getData(url) {

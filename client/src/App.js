@@ -10,6 +10,7 @@ import { Header } from "./components/layouts/Header/index";
 
 //Pages
 import { HomePage } from "./components/pages/HomePage/index";
+import { HomePageSlider } from "./components/pages/HomePageSlider/index";
 import { LoginPage } from "./components/pages/LoginPage/index";
 import { SignupPage } from "./components/pages/SignupPage/index";
 import { AccountPage } from "./components/pages/AccountPage/index";
@@ -31,6 +32,11 @@ import { AddPublisherPage } from "./components/pages/AddPublisherPage/index";
 import { AddCharacterPage } from "./components/pages/AddCharacterPage/index";
 
 import { EditProfessionalPage } from "./components/pages/EditProfessionalPage/index";
+import { EditIssuePage } from "./components/pages/EditIssuePage/index";
+import { EditPublisherPage } from "./components/pages/EditPublisherPage/index";
+import { EditCharacterPage } from "./components/pages/EditCharacterPage/index";
+
+import { ProtectedPage } from "./components/pages/ProtectedPage/index";
 
 import { NotFoundPage } from "./components/pages/NotFoundPage/index";
 
@@ -40,13 +46,13 @@ export const App = withAuthentication(() => {
       <Layout>
         <Header />
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          {/* <Route path="/" exact component={HomePage} /> */}
+          <Route path="/" exact component={HomePageSlider} />
           <Route path="/auth/signup" exact component={SignupPage} />
           <Route path="/auth/login" exact component={LoginPage} />
           <Route path="/account" exact component={AccountPage} />
           <Route path="/adminpanel" exact component={AdminPanelPage} />
           <Route path="/profile" exact component={ProfilePage} />
-
           <Route
             path="/gallery/professionals"
             exact
@@ -91,8 +97,30 @@ export const App = withAuthentication(() => {
           <Route
             path="/edit-professional/:id"
             exact
-            component={EditProfessionalPage}
+            render={({ match }) => (
+              <EditProfessionalPage itemId={match.params.id} />
+            )}
           />
+          <Route
+            path="/edit-issue/:id"
+            exact
+            render={({ match }) => <EditIssuePage itemId={match.params.id} />}
+          />
+          <Route
+            path="/edit-publisher/:id"
+            exact
+            render={({ match }) => (
+              <EditPublisherPage itemId={match.params.id} />
+            )}
+          />
+          <Route
+            path="/edit-character/:id"
+            exact
+            render={({ match }) => (
+              <EditCharacterPage itemId={match.params.id} />
+            )}
+          />
+          <Route path="/protected" exact component={ProtectedPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </Layout>

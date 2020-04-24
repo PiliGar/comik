@@ -1,27 +1,69 @@
-import React from "react";
-import { StyledContact } from "./style";
-import { Container, Row, Col, ListGroup, Image } from "react-bootstrap";
-import User from "../../../../public/images/man.png";
-import { LinkTo } from "../Link/index";
-import { UserPlus, UserMinus, Eye } from "react-feather";
+import React, { useContext, useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import { MainContext } from "../../../contexts/MainContext";
+import {
+  addContact,
+  removeContact,
+  getAllContacts,
+} from "../../../services/contact.api";
 
-export const BarContact = () => {
+import { LinkBtn } from "../Link/index";
+import { StyledContact } from "./style";
+import { Row, Col, Image } from "react-bootstrap";
+import User from "../../../../public/images/man.png";
+import { UserPlus } from "react-feather";
+
+export const BarContact = withRouter(({ history, userItem }) => {
+  const { setLoading, contacts, setContacts } = useContext(MainContext);
+
+  const id = userItem.id;
+
+  const [isFriend, setIsFriend] = useState();
+
+  const isItFriend = () => {
+    //const alreadyFriends = [...contacts];
+    if (contacts?.some((alreadyFriend) => alreadyFriend.id === id)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    const relation = isItFriend();
+    setIsFriend(relation);
+  }, []);
+
+  const addFriend = async () => {
+    setLoading(true);
+    const response = await addContact(id);
+    if (response.status === 200) {
+      getAllContacts().then((contacts) => {
+        setContacts(contacts);
+        setLoading(false);
+        history.push("/profile");
+      });
+    }
+  };
+
   return (
-    <StyledContact>
-      <Row>
-        <Col xs={4} className="avatar">
-          <Image src={User} roundedCircle fluid />
-        </Col>
-        <Col xs={8} className="name">
-          <p>Name contact</p>
-          <LinkTo to="/signup" variant="secondary">
-            <UserMinus />
-          </LinkTo>
-          <LinkTo to="/signup" variant="secondary">
-            <UserPlus />
-          </LinkTo>
-        </Col>
-      </Row>
-    </StyledContact>
+    <>
+      {!isFriend && (
+        <StyledContact>
+          <Row>
+            <Col xs={4} className="avatar">
+              <Image src={userItem.imageSrc} roundedCircle fluid />
+            </Col>
+            <Col xs={8} className="name">
+              <p>{userItem.name}</p>
+
+              <LinkBtn method={(e) => addFriend(e)} variant="primary">
+                <UserPlus />
+              </LinkBtn>
+            </Col>
+          </Row>
+        </StyledContact>
+      )}
+    </>
   );
-};
+});

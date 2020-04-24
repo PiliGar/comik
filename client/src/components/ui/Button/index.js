@@ -7,7 +7,15 @@ export const Button = (props) => {
 
 export const ButtonLink = (props) => {
   return (
-    <StyledBtn variant={props.variant} to={props.to}>
+    <StyledBtn
+      onClick={() => {
+        if (props.method) {
+          props.method();
+        }
+      }}
+      variant={props.variant}
+      to={props.to}
+    >
       {props.children}
     </StyledBtn>
   );

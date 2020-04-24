@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const StyledHome = styled.section`
   width: 100%;
-  h1 {
+  /* h1 {
     font-size: 10rem;
-  }
+  } */
   .right {
     min-height: 65rem;
     display: flex;

@@ -35,6 +35,7 @@ const crudGenerator = (
   /* CRUD Retrieve */
   router.get("/", async (req, res, next) => {
     const objs = await Model.find().populate(populateFields);
+
     return res
       .status(200)
       .json({ message: "All retrieved successfully", objs });
@@ -70,19 +71,17 @@ const crudGenerator = (
     uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
       const { id } = req.params;
-      const imgPath = "path.jpg";
-      const imgName = "picture";
-
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),
-        imgPath,
-        imgName,
+        imageSrc: req.file.secure_url,
       };
-      const obj = await Model.findOneAndUpdate({ _id: id }, data, {
+      const obj = await Model.findOneAndUpdate(id, data, {
         new: true,
       });
-      return res.status(200).json({ message: "Updated successfully", obj });
+      return res
+        .status(200)
+        .json({ status: 200, message: "Updated successfully", obj });
     })
   );
 
@@ -92,7 +91,9 @@ const crudGenerator = (
     asyncController(async (req, res, next) => {
       const { id } = req.params;
       await Model.findByIdAndRemove(id);
-      return res.status(200).json({ message: "Deleted successfully", id });
+      return res
+        .status(200)
+        .json({ status: 200, message: "Deleted successfully", id });
     })
   );
 

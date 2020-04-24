@@ -3,7 +3,7 @@ const withDbConnection = require("../withDbConnection");
 const Issue = require("../models/Issue");
 require("dotenv").config();
 
-const apiURL = `${process.env.API_URL}/issues/?api_key=${process.env.API_KEY}&format=json`;
+const apiURL = `${process.env.API_URL}/issues/?api_key=${process.env.API_KEY}&format=json&limit=70`;
 getData(apiURL);
 
 function getData(url) {

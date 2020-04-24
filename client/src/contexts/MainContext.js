@@ -2,10 +2,18 @@ import React, { createContext, useState, useEffect } from "react";
 export const MainContext = createContext();
 
 import { getAllUsers } from "../services/user.api";
-import { getAllProfessionals } from "../services/professional.api";
-import { getAllIssues } from "../services/issue.api";
-import { getAllPublishers } from "../services/publisher.api";
-import { getAllCharacters } from "../services/character.api";
+import {
+  getAllProfessionals,
+  getFavProfessionals,
+} from "../services/professional.api";
+import {
+  getAllIssues,
+  getFavIssues,
+  getWantedIssues,
+} from "../services/issue.api";
+import { getAllPublishers, getFavPublishers } from "../services/publisher.api";
+import { getAllCharacters, getFavCharacters } from "../services/character.api";
+import { getAllContacts } from "../services/contact.api";
 
 export const MainContextProvider = ({ children }) => {
   //ui
@@ -15,33 +23,78 @@ export const MainContextProvider = ({ children }) => {
   //content
   const [user, setUser] = useState();
   const [users, setUsers] = useState();
+
+  const [professional, setProfessional] = useState();
   const [professionals, setProfessionals] = useState();
+  const [favProfessionals, setFavProfessionals] = useState();
+
+  const [issue, setIssue] = useState();
   const [issues, setIssues] = useState();
+  const [favIssues, setFavIssues] = useState();
+  const [wantedIssues, setWantedIssues] = useState();
+
+  const [publisher, setPublisher] = useState();
   const [publishers, setPublishers] = useState();
+  const [favPublishers, setFavPublishers] = useState();
+
+  const [character, setCharacter] = useState();
   const [characters, setCharacters] = useState();
+  const [favCharacters, setFavCharacters] = useState();
 
-  useEffect(() => {
-    getAllUsers().then((res) => {
-      setUsers(res.users);
-    });
-    getAllProfessionals().then((professionals) => {
-      setProfessionals(professionals);
-    });
-    getAllIssues().then((issues) => {
-      setIssues(issues);
-    });
-    getAllPublishers().then((publishers) => {
-      setPublishers(publishers);
-    });
-    getAllCharacters().then((characters) => {
-      setCharacters(characters);
-    });
-  }, []);
+  //contact
+  const [contacts, setContacts] = useState();
 
-  const handleBurger = (e) => {
-    e.preventDefault();
+  const handleBurger = () => {
     burgerOpen ? setBurguerOpen(false) : setBurguerOpen(true);
   };
+
+  useEffect(() => {
+    if (user) {
+      //users
+      getAllUsers().then((res) => {
+        setUsers(res.users);
+      });
+      //professionals
+      getAllProfessionals().then((professionals) => {
+        setProfessionals(professionals);
+      });
+      getFavProfessionals().then((favs) => {
+        setFavProfessionals(favs);
+      });
+
+      //issues
+      getAllIssues().then((issues) => {
+        setIssues(issues);
+      });
+      getFavIssues().then((favs) => {
+        setFavIssues(favs);
+      });
+      getWantedIssues().then((wanties) => {
+        setWantedIssues(wanties);
+      });
+
+      //publishers
+      getAllPublishers().then((publishers) => {
+        setPublishers(publishers);
+      });
+      getFavPublishers().then((favs) => {
+        setFavPublishers(favs);
+      });
+
+      //characters
+      getAllCharacters().then((characters) => {
+        setCharacters(characters);
+      });
+      getFavCharacters().then((favs) => {
+        setFavCharacters(favs);
+      });
+
+      //contacts
+      getAllContacts().then((friends) => {
+        setContacts(friends);
+      });
+    }
+  }, [user]);
 
   return (
     <MainContext.Provider
@@ -50,19 +103,39 @@ export const MainContextProvider = ({ children }) => {
         setLoading,
         burgerOpen,
         setBurguerOpen,
+        handleBurger,
         user,
         setUser,
         users,
         setUsers,
-        handleBurger,
+        professional,
+        setProfessional,
         professionals,
         setProfessionals,
+        favProfessionals,
+        setFavProfessionals,
+        issue,
+        setIssue,
         issues,
         setIssues,
+        favIssues,
+        setFavIssues,
+        wantedIssues,
+        setWantedIssues,
+        publisher,
+        setPublisher,
         publishers,
         setPublishers,
+        favPublishers,
+        setFavPublishers,
+        character,
+        setCharacter,
         characters,
         setCharacters,
+        favCharacters,
+        setFavCharacters,
+        contacts,
+        setContacts,
       }}
     >
       {children}

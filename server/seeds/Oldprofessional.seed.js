@@ -3,7 +3,7 @@ const withDbConnection = require("../withDbConnection");
 const Professional = require("../models/Professional");
 require("dotenv").config();
 
-const apiURL = `${process.env.API_URL}/people/?api_key=${process.env.API_KEY}&format=json&limit=30`;
+const apiURL = `${process.env.API_URL}/people/?api_key=${process.env.API_KEY}&format=json&limit=70`;
 getData(apiURL);
 
 function getData(url) {

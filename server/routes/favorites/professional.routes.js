@@ -14,9 +14,10 @@ router.post("/add/:favoriteid", isLoggedIn(), async (req, res, next) => {
     await User.findByIdAndUpdate(id, {
       $addToSet: { favoritesProfessionals: professional },
     });
-    return res
-      .status(200)
-      .json({ message: "Professional added successfully to user favorites." });
+    return res.status(200).json({
+      status: 200,
+      message: "Professional added successfully to user favorites.",
+    });
   } catch (error) {
     return res.status(500).json({
       message: "Internal server error adding professional to favorites",
@@ -42,7 +43,8 @@ router.delete("/remove/:favoriteid", isLoggedIn(), async (req, res, next) => {
           ),
         });
         return res.status(200).json({
-          status: "Professional removed successfully from user favorites arr.",
+          status: 200,
+          message: "Professional removed successfully from user favorites arr.",
         });
       })
       .catch((err) => res.status(401).json({ status: "User not found" }));
@@ -67,7 +69,5 @@ router.get("/list", async (req, res, next) => {
     });
   }
 });
-
-/* CRUD */
 
 module.exports = router;

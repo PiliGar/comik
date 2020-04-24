@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledHome } from "./style";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Collapse } from "react-bootstrap";
 import Picture from "../../../../public/images/cafu.png";
 
 export const HomePage = () => {

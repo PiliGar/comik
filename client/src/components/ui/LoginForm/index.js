@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MainContext } from "../../../contexts/MainContext";
 import { withRouter } from "react-router-dom";
 
 import { doLogin } from "../../../services/auth.api";
 
 import { useForm, FormContext } from "react-hook-form";
+import { Alert } from "react-bootstrap";
 import { ChevronRight, ArrowRight } from "react-feather";
 import { InputBox } from "../Input/index";
 import { Button } from "../Button/index";
@@ -13,6 +14,7 @@ import { StyledForm } from "./style";
 
 export const LoginForm = withRouter(({ history, title, c2a }) => {
   const { user, setUser } = useContext(MainContext);
+  const { error, setError } = useState();
 
   const methods = useForm({
     mode: "onBlur",
@@ -21,13 +23,13 @@ export const LoginForm = withRouter(({ history, title, c2a }) => {
 
   const onSubmit = async (data) => {
     const response = await doLogin(data);
-    if (response.status === 200) {
-      return history.push("/signup");
+    if (response.status !== 200) {
+      return history.push("/login");
     }
-    setUser(response);
+    setUser(response.loggedUser);
     history.push("/profile");
   };
-  console.log("errors", errors);
+
   return (
     <StyledForm>
       <h2>{title}</h2>
