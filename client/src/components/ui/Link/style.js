@@ -40,6 +40,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledLinkBtn = styled.button`
+  outline: none;
   text-decoration: none;
   background: none;
   border: none;

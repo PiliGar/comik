@@ -1,29 +1,82 @@
 import React, { useContext, useState, useEffect } from "react";
-import { withProtected } from "../../../../lib/protectRoute.hoc";
 
-import { getOnePublisher } from "../../../services/publisher.api";
+import {
+  removePublisher,
+  addFavPublisher,
+  removeFavPublisher,
+  getOnePublisher,
+  getAllPublishers,
+  getFavPublishers,
+} from "../../../services/publisher.api";
 import parse from "html-react-parser";
 
 import { MainContext } from "../../../contexts/MainContext";
+import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { ProtectedPage } from "../ProtectedPage/index";
 
+import { LinkTo, LinkBtn } from "../../ui/Link/index";
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
-import { LinkBtn } from "../../ui/Link/index";
+import { BarContact } from "../../ui/BarContact/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SinglePublisherPage = (props) => {
-  const { user, loading } = useContext(MainContext);
+export const SinglePublisherPage = withRouter(({ history, ...props }) => {
+  const {
+    user,
+    users,
+    loading,
+    setLoading,
+    setPublishers,
+    favPublishers,
+    setFavPublishers,
+  } = useContext(MainContext);
   const [publisher, setPublisher] = useState({});
   const id = props.match.params.id;
 
   useEffect(() => {
     getOnePublisher(id).then((res) => {
-      setPublisher(res);
+      setPublisher(res.obj);
     });
   }, []);
+
+  const handleRemove = async () => {
+    setLoading(true);
+    const response = await removePublisher(id);
+    if (response.status === 200) {
+      getAllPublishers().then((allPublishers) => {
+        setPublishers(allPublishers);
+      });
+      setLoading(false);
+      history.push("/gallery/publishers");
+    }
+  };
+
+  const handleFavorites = async () => {
+    setLoading(true);
+    const favorites = [...favPublishers];
+    if (!favorites.some((alreadyFavorite) => alreadyFavorite.id === id)) {
+      const response = await addFavPublisher(id);
+      if (response.status === 200) {
+        getFavPublishers().then((favs) => {
+          setFavPublishers(favs);
+          setLoading(false);
+          //history.push("/profile");
+        });
+      }
+    } else {
+      const response = await removeFavPublisher(id);
+      if (response.status === 200) {
+        getFavPublishers().then((favs) => {
+          setFavPublishers(favs);
+          setLoading(false);
+          //history.push("/profile");
+        });
+      }
+    }
+  };
+
   if (user) {
     return (
       <>
@@ -70,8 +123,11 @@ export const SinglePublisherPage = (props) => {
                           {user?.role === "suscriber" && (
                             <>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <Heart /> Save as favorite
+                                <LinkBtn
+                                  method={(e) => handleFavorites(e)}
+                                  variant="primary"
+                                >
+                                  <Heart />
                                 </LinkBtn>
                               </li>
                             </>
@@ -79,14 +135,21 @@ export const SinglePublisherPage = (props) => {
                           {user?.role === "admin" && (
                             <>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <PenTool /> Edit
+                                <LinkBtn
+                                  method={(e) => handleRemove(e)}
+                                  variant="primary"
+                                >
+                                  <Trash2 />
                                 </LinkBtn>
                               </li>
                               <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <Trash2 /> Delete
-                                </LinkBtn>
+                                <LinkTo
+                                  to={`/edit-publisher/${id}`}
+                                  itemId={id}
+                                  variant="primary"
+                                >
+                                  <PenTool />
+                                </LinkTo>
                               </li>
                             </>
                           )}
@@ -113,7 +176,17 @@ export const SinglePublisherPage = (props) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <List />
+                    <List>
+                      {users
+                        ?.filter((contact) => contact.name !== user.name)
+                        .map((userItem, i) => {
+                          return (
+                            <div id={userItem.name} key={i}>
+                              <BarContact userItem={userItem} />
+                            </div>
+                          );
+                        })}
+                    </List>
                   </Col>
                 </Row>
               </Col>
@@ -128,4 +201,4 @@ export const SinglePublisherPage = (props) => {
       return <Redirect to="/auth/login" />;
     }
   }
-};
+});

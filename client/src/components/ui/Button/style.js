@@ -2,11 +2,12 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledBtnAnimated = styled.button`
+  outline: none;
   border-radius: 5rem;
   font-size: 1.8rem;
   line-height: 1.8rem;
   position: relative;
-  padding: 0 2em;
+  padding: 0 2rem;
   margin: 0.5rem 0;
   overflow: hidden;
   -webkit-transition: background-color 0.3s;
@@ -143,7 +144,7 @@ export const StyledLinkAnimated = styled(Link)`
   font-size: 1.8rem;
   line-height: 1.8rem;
   position: relative;
-  padding: 1.7rem 2em;
+  padding: 1.7rem 2rem;
   text-align: center;
   overflow: hidden !important;
   -webkit-transition: background-color 0.3s;
@@ -274,6 +275,7 @@ export const StyledLinkAnimated = styled(Link)`
 // export const StyledButtonAnimated = StyledLinkAnimated.withComponent("button");
 
 export const StyledBtn = styled.button`
+  outline: none;
   display: inline-block;
   border-radius: 5rem;
   padding: 0.5rem 0;

@@ -1,27 +1,30 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import { getOneProfessional } from "../../../services/professional.api";
-import { removeProfessional } from "../../../services/professional.api";
-import { getAllProfessionals } from "../../../services/professional.api";
+import {
+  getOneProfessional,
+  removeProfessional,
+  getAllProfessionals,
+  addFavProfessionals,
+  removeFavProfessionals,
+  getFavProfessionals,
+} from "../../../services/professional.api";
 
 import { MainContext } from "../../../contexts/MainContext";
+import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { ProtectedPage } from "../ProtectedPage/index";
 
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
-import { LinkBtn } from "../../ui/Link/index";
+import { BarContact } from "../../ui/BarContact/index";
+import { LinkTo, LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
-export const SingleProfessionalPage = (props) => {
-  const {
-    user,
-    loading,
-    setLoading,
-    professionals,
-    setProfessionals,
-  } = useContext(MainContext);
+export const SingleProfessionalPage = withRouter(({ history, ...props }) => {
+  const { user, users, loading, setLoading, setProfessionals } = useContext(
+    MainContext
+  );
   const [professional, setProfessional] = useState({});
   const id = props.match.params.id;
 
@@ -31,35 +34,40 @@ export const SingleProfessionalPage = (props) => {
     });
   }, []);
 
-  const handleRemove = (e) => {
-    e.preventDefault();
+  const handleRemove = async () => {
     setLoading(true);
-    console.log("CLICK");
-    removeProfessional(id)
-      .then((data) => {
-        getAllProfessionals().then((allProfessionals) => {
-          setProfessionals(allProfessionals);
-        });
-        setLoading(false);
-      })
-      .catch((e) => {
-        console.error("No able to remove");
+    const response = await removeProfessional(id);
+    if (response.status === 200) {
+      getAllProfessionals().then((allProfessionals) => {
+        setProfessionals(allProfessionals);
       });
+      setLoading(false);
+      history.push("/gallery/professionals");
+    }
   };
-
-  //   const handleRemove = async (e) => {
-  //     e.preventDefault();
-  //     setLoading(true);
-  //     console.log("CLICK");
-  //     const response = await removeProfessional(id);
-  //     if (response.status === "200") {
-  //       getAllProfessionals().then((allProfessionals) => {
-  //         setProfessionals(allProfessionals);
-  //       });
-  //       setLoading(false);
-  //       history.push("/gallery/professionals");
-  //     }
-  //   };
+  const handleFavorites = async () => {
+    setLoading(true);
+    const favorites = [...favProfessionals];
+    if (!favorites.some((alreadyFavorite) => alreadyFavorite.id === id)) {
+      const response = await addFavProfessionals(id);
+      if (response.status === 200) {
+        getFavProfessionals().then((favs) => {
+          setFavProfessionals(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    } else {
+      const response = await removeFavProfessionals(id);
+      if (response.status === 200) {
+        getFavProfessionals().then((favs) => {
+          setFavProfessionals(favs);
+          setLoading(false);
+          history.push("/profile");
+        });
+      }
+    }
+  };
 
   if (user) {
     return (
@@ -111,29 +119,32 @@ export const SingleProfessionalPage = (props) => {
                       </Col>
                       <Col xs={6}>
                         <ul className="actions">
-                          {user?.role === "suscriber" && (
-                            <>
-                              <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <Heart /> Save as favorite
-                                </LinkBtn>
-                              </li>
-                            </>
+                          {user?.role === "subscriber" && (
+                            <div className="actions">
+                              <LinkBtn
+                                method={(e) => handleFavorites(e)}
+                                variant="primary"
+                              >
+                                <Heart />
+                              </LinkBtn>
+                            </div>
                           )}
                           {user?.role === "admin" && (
-                            <>
-                              <li>
-                                <LinkBtn to="/signup" variant="secondary">
-                                  <PenTool /> Edit
-                                </LinkBtn>
-                              </li>
-                              <li>
-                                <button onClick={handleRemove}>hola</button>
-                                <LinkBtn variant="secondary">
-                                  <Trash2 /> Delete
-                                </LinkBtn>
-                              </li>
-                            </>
+                            <div className="actions">
+                              <LinkBtn
+                                method={(e) => handleRemove(e)}
+                                variant="primary"
+                              >
+                                <Trash2 />
+                              </LinkBtn>
+                              <LinkTo
+                                to={`/edit-professional/${id}`}
+                                itemId={id}
+                                variant="primary"
+                              >
+                                <PenTool />
+                              </LinkTo>
+                            </div>
                           )}
                         </ul>
                       </Col>
@@ -155,7 +166,17 @@ export const SingleProfessionalPage = (props) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <List />
+                    <List>
+                      {users
+                        ?.filter((contact) => contact.name !== user.name)
+                        .map((userItem, i) => {
+                          return (
+                            <div id={userItem.name} key={i}>
+                              <BarContact userItem={userItem} />
+                            </div>
+                          );
+                        })}
+                    </List>
                   </Col>
                 </Row>
               </Col>
@@ -170,4 +191,4 @@ export const SingleProfessionalPage = (props) => {
       return <Redirect to="/auth/login" />;
     }
   }
-};
+});

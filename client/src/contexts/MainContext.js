@@ -44,56 +44,57 @@ export const MainContextProvider = ({ children }) => {
   //contact
   const [contacts, setContacts] = useState();
 
-  const handleBurger = (e) => {
-    e.preventDefault();
+  const handleBurger = () => {
     burgerOpen ? setBurguerOpen(false) : setBurguerOpen(true);
   };
 
   useEffect(() => {
-    //users
-    getAllUsers().then((res) => {
-      setUsers(res.users);
-    });
-    //professionals
-    getAllProfessionals().then((professionals) => {
-      setProfessionals(professionals);
-    });
-    getFavProfessionals().then((favs) => {
-      setFavProfessionals(favs);
-    });
+    if (user) {
+      //users
+      getAllUsers().then((res) => {
+        setUsers(res.users);
+      });
+      //professionals
+      getAllProfessionals().then((professionals) => {
+        setProfessionals(professionals);
+      });
+      getFavProfessionals().then((favs) => {
+        setFavProfessionals(favs);
+      });
 
-    //issues
-    getAllIssues().then((issues) => {
-      setIssues(issues);
-    });
-    getFavIssues().then((favs) => {
-      setFavIssues(favs);
-    });
-    getWantedIssues().then((wanties) => {
-      setWantedIssues(wanties);
-    });
+      //issues
+      getAllIssues().then((issues) => {
+        setIssues(issues);
+      });
+      getFavIssues().then((favs) => {
+        setFavIssues(favs);
+      });
+      getWantedIssues().then((wanties) => {
+        setWantedIssues(wanties);
+      });
 
-    //publishers
-    getAllPublishers().then((publishers) => {
-      setPublishers(publishers);
-    });
-    getFavPublishers().then((favs) => {
-      setFavPublishers(favs);
-    });
+      //publishers
+      getAllPublishers().then((publishers) => {
+        setPublishers(publishers);
+      });
+      getFavPublishers().then((favs) => {
+        setFavPublishers(favs);
+      });
 
-    //characters
-    getAllCharacters().then((characters) => {
-      setCharacters(characters);
-    });
-    getFavCharacters().then((favs) => {
-      setFavCharacters(favs);
-    });
+      //characters
+      getAllCharacters().then((characters) => {
+        setCharacters(characters);
+      });
+      getFavCharacters().then((favs) => {
+        setFavCharacters(favs);
+      });
 
-    //contacts
-    getAllContacts().then((friends) => {
-      setContacts(friends);
-    });
-  }, []);
+      //contacts
+      getAllContacts().then((friends) => {
+        setContacts(friends);
+      });
+    }
+  }, [user]);
 
   return (
     <MainContext.Provider

@@ -2,8 +2,31 @@ const express = require("express");
 const User = require("../../models/User");
 const router = express.Router();
 const _ = require("lodash");
+const { asyncController } = require("../../middleware/asyncController");
 const { isLoggedIn } = require("../../middleware/isLogged");
 const { isAdminRole } = require("../../middleware/isRole");
+const uploadCloud = require("../../config/cloudinary.js");
+
+/* USER Avatar */
+
+router.post(
+  "/profilepic",
+  uploadCloud.single("picture"),
+  async (req, res, next) => {
+    const user = req.user;
+    const data = {
+      imageSrc: req.file.secure_url,
+    };
+    const updatedUser = await User.findOneAndUpdate({ _id: user.id }, data, {
+      new: true,
+    });
+    return res.json({
+      status: 200,
+      message: "Uploaded completed",
+      user: updatedUser,
+    });
+  }
+);
 
 /* USER Get single user */
 router.get("/:id", isLoggedIn(), async (req, res, next) => {

@@ -13,7 +13,12 @@ export const BarUser = ({ userItem }) => {
     <StyledUser>
       <Row>
         <Col xs={12} md={2} className="vertical">
-          <Image className="avatar" src={User} roundedCircle fluid />
+          <Image
+            className="avatar"
+            src={userItem?.imageSrc}
+            roundedCircle
+            fluid
+          />
         </Col>
         <Col xs={12} md={2} className="vertical">
           <span>Name</span>

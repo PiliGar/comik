@@ -15,7 +15,11 @@ export const Header = () => {
       <StyledHeader>
         <Navbar>
           <Row className="wrapper">
-            <Col xs={2}>
+            <Col
+              className="col-logo"
+              xs={{ span: 6, order: 1 }}
+              md={{ span: 2, order: 1 }}
+            >
               <Row>
                 <Link to="/" className="logo-container">
                   <img
@@ -26,10 +30,18 @@ export const Header = () => {
                 </Link>
               </Row>
             </Col>
-            <Col xs={8}>
+            <Col
+              className="col-categories"
+              xs={{ span: 12, order: 3 }}
+              md={{ span: 8, order: 2 }}
+            >
               <NavBar />
             </Col>
-            <Col xs={2}>
+            <Col
+              className="col-burguer"
+              xs={{ span: 6, order: 2 }}
+              md={{ span: 2, order: 3 }}
+            >
               <Burger className="top-nav-bar" />
             </Col>
           </Row>

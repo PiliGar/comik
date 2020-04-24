@@ -63,7 +63,7 @@ export const CardPublisher = withRouter(({ history, item }) => {
   };
 
   return (
-    <StyledCard xs={12} md={8} lg={3}>
+    <StyledCard xs={12} sm={6} md={6} lg={4} xl={3}>
       <Card>
         <Link className="img-container" to={`/gallery/publisher/${item?.id}`}>
           <Card.Img
@@ -78,7 +78,7 @@ export const CardPublisher = withRouter(({ history, item }) => {
           </LinkTo>
         </Card.Body>
         {user?.role === "subscriber" && (
-          <div className="actions">
+          <div className="actions full">
             <LinkBtn method={(e) => handleFavorites(e)} variant="primary">
               <Heart />
             </LinkBtn>

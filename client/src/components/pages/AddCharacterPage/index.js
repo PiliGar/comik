@@ -3,8 +3,9 @@ import { withProtectedAdmin } from "../../../../lib/protectAdmin.hoc";
 
 import { AddCharacterForm } from "../../ui/AddCharacterForm/index";
 
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { StyledPage } from "./style";
+import { ListActions } from "../../ui/ListActions/index";
 
 const Page = () => {
   return (
@@ -12,8 +13,20 @@ const Page = () => {
       <StyledPage>
         <Container fluid className="wrapper">
           <Row>
-            <h1>Add a new character</h1>
-            <AddCharacterForm title="Data:" c2a="Create" />
+            <Col xs={12} md={8} lg={6}>
+              <h1>Add a new character</h1>
+              <AddCharacterForm title="Data:" c2a="Create" />
+            </Col>
+            <Col className="right" xs={12} md={4} lg={{ span: 3, offset: 3 }}>
+              <Row>
+                <Col xs={12}>
+                  <h3>Add more content:</h3>
+                </Col>
+              </Row>
+              <Row xs={12}>
+                <ListActions />
+              </Row>
+            </Col>
           </Row>
         </Container>
       </StyledPage>
