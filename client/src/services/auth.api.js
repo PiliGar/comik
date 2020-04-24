@@ -45,6 +45,7 @@ export const doUpdate = async ({ name, alias, username, password }) => {
 
 export const doLogout = async () => {
   const res = await api.get(`${path}/logout`);
+  console.log("LOGOUT", res);
   return res.data;
 };
 

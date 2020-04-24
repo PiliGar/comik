@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { withProtected } from "../../../../lib/protectRoute.hoc";
 
 import { getOnePublisher } from "../../../services/publisher.api";
 import parse from "html-react-parser";
@@ -11,11 +10,12 @@ import { ProtectedPage } from "../ProtectedPage/index";
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
+import { BarContact } from "../../ui/BarContact/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
 export const SinglePublisherPage = (props) => {
-  const { user, loading } = useContext(MainContext);
+  const { user, loading, users } = useContext(MainContext);
   const [publisher, setPublisher] = useState({});
   const id = props.match.params.id;
 
@@ -113,7 +113,15 @@ export const SinglePublisherPage = (props) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <List />
+                    <List>
+                      {users?.map((userItem, i) => {
+                        return (
+                          <div id={userItem.name} key={i}>
+                            <BarContact userItem={userItem} />
+                          </div>
+                        );
+                      })}
+                    </List>
                   </Col>
                 </Row>
               </Col>

@@ -96,6 +96,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: ${({ theme: { fontSize } }) => fontSize.s};
         line-height: ${({ theme: { lineHeight } }) => lineHeight.s};
         font-family: ${({ theme: { font } }) => font.primary};
+        cursor: pointer;
     }
     label{
         font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
@@ -114,6 +115,9 @@ export const GlobalStyle = createGlobalStyle`
         font-size: ${({ theme: { fontSize } }) => fontSize.xxs};
         line-height: ${({ theme: { lineHeight } }) => lineHeight.xs};
         font-family: ${({ theme: { font } }) => font.secondary};
+    }
+    b{
+        font-weight: bold;
     }
     
 `;

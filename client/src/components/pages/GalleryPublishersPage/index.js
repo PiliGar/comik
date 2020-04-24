@@ -22,7 +22,7 @@ export const Page = (props) => {
         </Container>
         <Container fluid>
           <Row>
-            <Col xs={12} md={8} lg={9}>
+            <Col xs={12} sm={12} md={6} lg={8} xl={9}>
               <Row>
                 <Col xs={12}>
                   <h2>Publishers</h2>
@@ -34,7 +34,7 @@ export const Page = (props) => {
                 ))}
               </Row>
             </Col>
-            <Col xs={12} md={4} lg={3}>
+            <Col xs={12} sm={12} md={6} lg={4} xl={3}>
               <Row>
                 <Col xs={12}>
                   <h3>Meet other fans</h3>

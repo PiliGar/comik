@@ -8,11 +8,12 @@ import { ProtectedPage } from "../ProtectedPage/index";
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
+import { BarContact } from "../../ui/BarContact/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Book, Heart, PenTool, Trash2 } from "react-feather";
 
 export const SingleIssuePage = (props) => {
-  const { user, loading } = useContext(MainContext);
+  const { user, users, loading } = useContext(MainContext);
   const [issue, setIssue] = useState({});
   const id = props.match.params.id;
 
@@ -106,7 +107,15 @@ export const SingleIssuePage = (props) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <List />
+                    <List>
+                      {users?.map((userItem, i) => {
+                        return (
+                          <div id={userItem.name} key={i}>
+                            <BarContact userItem={userItem} />
+                          </div>
+                        );
+                      })}
+                    </List>
                   </Col>
                 </Row>
               </Col>

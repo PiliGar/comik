@@ -8,11 +8,12 @@ import { ProtectedPage } from "../ProtectedPage/index";
 import { StyledGalleryItem } from "./style";
 import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
+import { BarContact } from "../../ui/BarContact/index";
 import { LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
 export const SingleCharacterPage = (props) => {
-  const { user, loading } = useContext(MainContext);
+  const { user, users, loading } = useContext(MainContext);
   const [character, setCharacter] = useState({});
   const id = props.match.params.id;
 
@@ -54,13 +55,16 @@ export const SingleCharacterPage = (props) => {
                       <Col xs={6}>
                         <h3>Info</h3>
                         <p>
-                          <b>Alias: {character?.alias}</b>
+                          <b>Alias: </b>
+                          {character?.alias}
                         </p>
                         <p>
-                          <b>Real name: {character?.realName}</b>
+                          <b>Real name: </b>
+                          {character?.realName}
                         </p>
                         <p>
-                          <b>Publisher: {character?.publisher}</b>
+                          <b>Publisher: </b>
+                          {character?.publisher}
                         </p>
                       </Col>
                       <Col xs={6}>
@@ -108,7 +112,15 @@ export const SingleCharacterPage = (props) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    <List />
+                    <List>
+                      {users?.map((userItem, i) => {
+                        return (
+                          <div id={userItem.name} key={i}>
+                            <BarContact userItem={userItem} />
+                          </div>
+                        );
+                      })}
+                    </List>
                   </Col>
                 </Row>
               </Col>

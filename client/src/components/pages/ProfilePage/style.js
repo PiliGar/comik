@@ -7,11 +7,29 @@ export const StyledProfile = styled.section`
   }
   .actions {
     list-style: none;
+    a {
+      padding-left: 0px;
+    }
   }
   .description {
     margin-top: 4rem;
     p {
       line-height: 2.4rem;
+    }
+  }
+  .list-group {
+    width: 100%;
+  }
+  .tabs-navigation {
+    margin: 5rem 0;
+    div {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        outline: none;
+      }
     }
   }
 `;

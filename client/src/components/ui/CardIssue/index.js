@@ -91,7 +91,7 @@ export const CardIssue = withRouter(({ history, item }) => {
     }
   };
   return (
-    <StyledCard xs={12} md={8} lg={3}>
+    <StyledCard xs={12} sm={6} md={6} lg={4} xl={3}>
       <Card>
         <Link to={`/gallery/issue/${item?.id}`}>
           <Card.Img
@@ -113,10 +113,10 @@ export const CardIssue = withRouter(({ history, item }) => {
                 <LinkBtn method={(e) => handleWanted(e)} variant="primary">
                   <Bookmark />
                 </LinkBtn>
+                <LinkBtn method={(e) => handleFavorites(e)} variant="primary">
+                  <Heart />
+                </LinkBtn>
               </div>
-              <LinkBtn method={(e) => handleFavorites(e)} variant="primary">
-                <Heart />
-              </LinkBtn>
             </div>
           </div>
         )}

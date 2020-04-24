@@ -10,6 +10,7 @@ import { Header } from "./components/layouts/Header/index";
 
 //Pages
 import { HomePage } from "./components/pages/HomePage/index";
+import { HomePageSlider } from "./components/pages/HomePageSlider/index";
 import { LoginPage } from "./components/pages/LoginPage/index";
 import { SignupPage } from "./components/pages/SignupPage/index";
 import { AccountPage } from "./components/pages/AccountPage/index";
@@ -45,7 +46,8 @@ export const App = withAuthentication(() => {
       <Layout>
         <Header />
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          {/* <Route path="/" exact component={HomePage} /> */}
+          <Route path="/" exact component={HomePageSlider} />
           <Route path="/auth/signup" exact component={SignupPage} />
           <Route path="/auth/login" exact component={LoginPage} />
           <Route path="/account" exact component={AccountPage} />

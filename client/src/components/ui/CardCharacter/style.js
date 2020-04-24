@@ -25,12 +25,20 @@ export const StyledCard = styled(Col)`
       }
     }
     .actions {
-      a {
+      a,
+      button {
         width: 50%;
         display: inline-block;
         padding: 1.25rem;
+        text-align: center;
         svg {
           margin-top: -4px;
+        }
+      }
+      &.full {
+        a,
+        button {
+          width: 100%;
         }
       }
     }
