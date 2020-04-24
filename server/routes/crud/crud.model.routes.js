@@ -45,7 +45,6 @@ const crudGenerator = (
   router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
     const obj = await Model.findById(id).populate(populateFields);
-    console.log("CRUD", obj);
     return res.status(200).json({ message: "Retrieved one successfully", obj });
   });
 
@@ -72,8 +71,6 @@ const crudGenerator = (
     uploadCloud.single("picture"),
     asyncController(async (req, res, next) => {
       const { id } = req.params;
-      console.log("req.file", req.file);
-      console.log("ID", id);
       const data = {
         ..._.pick(req.body, createFields),
         ...extraFieldsCreate(req),

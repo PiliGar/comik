@@ -177,13 +177,15 @@ export const SinglePublisherPage = withRouter(({ history, ...props }) => {
                 <Row>
                   <Col xs={12}>
                     <List>
-                      {users?.map((userItem, i) => {
-                        return (
-                          <div id={userItem.name} key={i}>
-                            <BarContact userItem={userItem} />
-                          </div>
-                        );
-                      })}
+                      {users
+                        ?.filter((contact) => contact.name !== user.name)
+                        .map((userItem, i) => {
+                          return (
+                            <div id={userItem.name} key={i}>
+                              <BarContact userItem={userItem} />
+                            </div>
+                          );
+                        })}
                     </List>
                   </Col>
                 </Row>

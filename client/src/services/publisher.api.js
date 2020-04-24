@@ -13,7 +13,6 @@ export const getAllPublishers = async () => {
 export const getOnePublisher = async (id) => {
   try {
     const res = await api.get(`${path}/${id}`);
-    console.log("API", res);
     return res.data;
   } catch (error) {
     console.log(error);

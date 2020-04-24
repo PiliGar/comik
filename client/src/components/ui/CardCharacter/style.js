@@ -31,6 +31,7 @@ export const StyledCard = styled(Col)`
         display: inline-block;
         padding: 1.25rem;
         text-align: center;
+        outline: none;
         svg {
           margin-top: -4px;
         }

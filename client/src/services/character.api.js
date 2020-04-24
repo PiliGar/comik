@@ -44,7 +44,6 @@ export const updateCharacter = async (dataFile) => {
   data.append("excerpt", dataFile.excerpt);
   data.append("description", dataFile.description);
   const res = await api.put(`${path}/edit/${dataFile.id}`, data);
-  console.log("API", res);
   return res.data;
 };
 

@@ -13,19 +13,13 @@ router.post(
   "/profilepic",
   uploadCloud.single("picture"),
   async (req, res, next) => {
-    console.log(req.file);
     const user = req.user;
-    console.log("QUIEN", user.name);
-    console.log("ID", user.id);
-    //user.imageSrc = req.file.secure_url;
-    //const updatedUser = await user.save();
     const data = {
       imageSrc: req.file.secure_url,
     };
     const updatedUser = await User.findOneAndUpdate({ _id: user.id }, data, {
       new: true,
     });
-    console.log("BACK", updatedUser);
     return res.json({
       status: 200,
       message: "Uploaded completed",

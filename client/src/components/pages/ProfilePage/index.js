@@ -54,11 +54,9 @@ export const Page = () => {
     const imageFile = data.picture[0];
     data.picture = imageFile;
     const id = user.id;
-    console.log("FRONT USER", user.id);
     const formData = { ...data, id };
     const response = await changeAvatar(formData);
     if (response.status === 200) {
-      console.log("RESPONSE", response.user);
       setUser(response.user);
       setLoading(false);
     }

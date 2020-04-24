@@ -5,7 +5,6 @@ export const changeAvatar = async (dataFile) => {
   const data = new FormData();
   data.append("picture", dataFile.picture);
   const res = await api.post(`${path}/profilepic`, data);
-  console.log("API", res);
   return res.data;
 };
 

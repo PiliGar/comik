@@ -9,7 +9,6 @@ export const doSignup = async ({ name, alias, username, password }) => {
       username,
       password,
     });
-    console.log("API", res);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -22,7 +21,6 @@ export const doLogin = async ({ username, password }) => {
       username,
       password,
     });
-    console.log("API", res);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -45,7 +43,6 @@ export const doUpdate = async ({ name, alias, username, password }) => {
 
 export const doLogout = async () => {
   const res = await api.get(`${path}/logout`);
-  console.log("LOGOUT", res);
   return res.data;
 };
 
