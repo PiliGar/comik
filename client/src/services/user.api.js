@@ -1,6 +1,14 @@
 import { api } from "./api";
 const path = `/user`;
 
+export const changeAvatar = async (dataFile) => {
+  const data = new FormData();
+  data.append("picture", dataFile.picture);
+  const res = await api.post(`${path}/profilepic`, data);
+  console.log("API", res);
+  return res.data;
+};
+
 export const getAllUsers = async () => {
   try {
     const res = await api.get(`user/`);

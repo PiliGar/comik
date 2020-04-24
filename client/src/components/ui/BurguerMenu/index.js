@@ -11,7 +11,6 @@ export const BurgerMenu = withRouter(({ history }) => {
   const { user, setUser } = useContext(MainContext);
 
   const onClickLogout = async () => {
-    console.log("hola");
     handleBurger();
     await doLogout();
     setUser(null);
@@ -19,7 +18,6 @@ export const BurgerMenu = withRouter(({ history }) => {
   };
 
   const onGoTo = (route) => {
-    console.log("hola 2");
     handleBurger();
     history.push(route);
   };

@@ -36,7 +36,7 @@ const userSchema = new Schema(
     imageSrc: {
       type: String,
       default:
-        "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg",
+        "https://res.cloudinary.com/dqhtqecup/image/upload/v1587754843/comik/avatar-default_cl3gjh.png",
     },
     role: { type: String, default: "subscriber" },
     wantedIssues: {

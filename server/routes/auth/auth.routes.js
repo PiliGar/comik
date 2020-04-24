@@ -29,10 +29,19 @@ router.post("/signup", async (req, res, next) => {
       alias,
       username,
       password,
+      imageSrc:
+        "https://res.cloudinary.com/dqhtqecup/image/upload/v1587754843/comik/avatar-default_cl3gjh.png",
     });
     //Directly login user
     req.logIn(newUser, (err) => {
-      //const newUser = _.pick(req.user, ["name", "alias", "username", "_id"]);
+      const newUser = _.pick(req.user, [
+        "name",
+        "alias",
+        "username",
+        "role",
+        "imageSrc",
+        "_id",
+      ]);
       res.json({
         status: 200,
         newUser,
@@ -57,8 +66,15 @@ router.post("/login", (req, res, next) => {
       return res.status(401).json({ status: "401", message: "Unathorised" });
     }
     req.logIn(user, (err) => {
-      //const loggedUser = _.pick(req.user, ["name", "alias", "username", "_id"]);
-      const loggedUser = user;
+      const loggedUser = _.pick(req.user, [
+        "name",
+        "alias",
+        "username",
+        "role",
+        "imageSrc",
+        "_id",
+      ]);
+      //const loggedUser = user;
       if (err) {
         return res
           .status(500)
@@ -107,7 +123,16 @@ router.get("/whoami", (req, res, next) => {
     console.log(`--->>> Current user logged: 👽 ${req.user.username}`);
     return res
       .status(200)
-      .json(_.pick(req.user, ["name", "alias", "username", "role", "_id"]));
+      .json(
+        _.pick(req.user, [
+          "name",
+          "alias",
+          "username",
+          "role",
+          "imageSrc",
+          "_id",
+        ])
+      );
   } else return res.status(401).json({ status: "No user session present" });
 });
 module.exports = router;

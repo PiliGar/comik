@@ -4,7 +4,7 @@ export const StyledLoading = styled.div`
   width: auto;
   height: 50px;
   display: block;
-  background: rgba(241, 240, 239, 0.9);
+  background: rgba(241, 240, 239, 1);
   color: white;
   left: 0;
   top: 0;

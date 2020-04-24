@@ -5,6 +5,12 @@ export const StyledProfile = styled.section`
   .avatar {
     max-width: 25rem;
   }
+  .profile-pic {
+    height: 23rem;
+    width: 23rem;
+    border: solid 0.2rem ${({ theme: { color } }) => color.primary};
+    margin-bottom: 4rem;
+  }
   .actions {
     list-style: none;
     a {
@@ -19,6 +25,9 @@ export const StyledProfile = styled.section`
   }
   .list-group {
     width: 100%;
+  }
+  svg {
+    margin-right: 1rem;
   }
   .tabs-navigation {
     margin: 5rem 0;
