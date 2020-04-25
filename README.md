@@ -20,13 +20,14 @@ Para convertirte en administrador deberás solicitar permisos a creador de la we
 
 ---
 
-Proyecto realizado con NODE.JS, EXPRESS, NPM PACKAGES, MONGODB, HTML, SASS, JAVASCRIPT, ES6, REACT JS .
+Proyecto realizado con NODE.JS, EXPRESS, NPM, MONGODB, HTML, SASS, JAVASCRIPT, ES6, REACT JS, REACT BOOTSTRAP, STYLED COMPONENTS.
 
 **La estructura del proyecto es la siguiente**
 
 - **MODELS:** Existen 5 schemas de Moongose: User, Professional, Issue, Publisher y Character. El modelo User se encuentra relaccionado con los otros 4 de modo que el usuario puede almacenar listas de favoritos y de comics que busca para completar su coleccion.
 - **CLIENT:** Proyecto en REACT JS, construido con componentes gestiona la parte visual y los servicios que solicitan información a la base de datos.
-- **SERVER:** Servidor EXPRESS y MONGODB. Gestiona las distintas llamadas para las peticiones a la base de datos (CRUD). -**DDBB:**El contenido inicial de aplicación proviene de la API [Comik Vine](https://comicvine.gamespot.com/api/), y se construye con seeds. La base de datos se encuentra alojada en [Mongo DB Atlas](https://www.mongodb.com/cloud/atlas).
+- **SERVER:** Servidor EXPRESS y MONGODB. Gestiona las distintas llamadas para las peticiones a la base de datos (CRUD). 
+- **DDBB:** El contenido inicial de aplicación proviene de la API [Comik Vine](https://comicvine.gamespot.com/api/), y se construye con seeds. La base de datos se encuentra alojada en [Mongo DB Atlas](https://www.mongodb.com/cloud/atlas).
 - **CDN:** Se utiliza el servicio de [Cloudinary](https://cloudinary.com/) para servir los ficheros estáticos.
 
 ### Cómo contribuir
