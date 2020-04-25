@@ -1,5 +1,7 @@
 # comik 🤓📖
 
+![comik](https://res.cloudinary.com/dqhtqecup/image/upload/v1587774742/comik/Captura_de_pantalla_2020-04-25_a_las_2.30.43_yn65et.png)
+
 ### Descripción
 
 ---
