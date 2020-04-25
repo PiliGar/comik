@@ -46,7 +46,7 @@ Existen varias **líneas de mejora**, algunas de ellas son:
 
 ---
 
-En el siguiente enlace se muestra el [Código de Conducta](https://github.com/Cookin-Team/cookin/blob/master/CODE_OF_CONDUCT.md).
+En el siguiente enlace se muestra el [Código de Conducta](https://github.com/PiliGar/comik/blob/master/CODE_OF_CONDUCT.md).
 
 ### Autor
 
@@ -58,4 +58,4 @@ En el siguiente enlace se muestra el [Código de Conducta](https://github.com/Co
 
 ---
 
-Aquí se puede consultar la [Licencia](https://github.com/Cookin-Team/cookin/blob/master/LICENSE.md) para este repositorio.
+Aquí se puede consultar la [Licencia](https://github.com/PiliGar/comik/blob/master/LICENSE) para este repositorio.
