@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyledHome } from "./style";
 import { Carousel, Container, Row, Col, Collapse } from "react-bootstrap";
-import { Button } from "../../ui/Button/index";
+import { LinkTo } from "../../ui/Link/index";
 import Cafu from "../../../../public/images/cafu.png";
 import BookFav from "../../../../public/images/book-1.png";
 import BookSearch from "../../../../public/images/book-2.png";
@@ -24,9 +24,9 @@ export const HomePageSlider = () => {
               <Row>
                 <Col xs={12} md={6} className="right">
                   <h1>The comic fans community</h1>
-                  <Button to="/auth/signup" variant="secondary">
+                  <LinkTo to="/auth/signup" variant="secondary">
                     Let start! <ArrowRight size="18" />
-                  </Button>
+                  </LinkTo>
                 </Col>
                 <Col xs={12} md={6} className="left">
                   <img src={Cafu} alt="Character"></img>
