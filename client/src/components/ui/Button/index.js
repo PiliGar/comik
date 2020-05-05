@@ -24,6 +24,11 @@ export const ButtonLink = (props) => {
 export const ButtonAnimated = (props) => {
   return (
     <StyledBtnAnimated
+      onClick={() => {
+        if (props.method) {
+          props.method();
+        }
+      }}
       variant={props.variant}
       data-text={props.text}
       className={props.design}

@@ -22,7 +22,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { List } from "../../ui/List/index";
 import { BarContact } from "../../ui/BarContact/index";
 import { LinkTo, LinkBtn } from "../../ui/Link/index";
-import { Book, Heart, PenTool, Trash2 } from "react-feather";
+import { Bookmark, Heart, PenTool, Trash2 } from "react-feather";
 
 export const SingleIssuePage = withRouter(({ history, ...props }) => {
   const {

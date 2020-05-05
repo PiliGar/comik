@@ -22,9 +22,15 @@ import { LinkTo, LinkBtn } from "../../ui/Link/index";
 import { Heart, PenTool, Trash2 } from "react-feather";
 
 export const SingleProfessionalPage = withRouter(({ history, ...props }) => {
-  const { user, users, loading, setLoading, setProfessionals } = useContext(
-    MainContext
-  );
+  const {
+    user,
+    users,
+    loading,
+    favProfessionals,
+    setFavProfessionals,
+    setLoading,
+    setProfessionals,
+  } = useContext(MainContext);
   const [professional, setProfessional] = useState({});
   const id = props.match.params.id;
 

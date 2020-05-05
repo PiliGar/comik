@@ -4,7 +4,7 @@ import orkneyRegular from "../../../public/fonts/orkneyRegular.woff";
 export const GlobalStyle = createGlobalStyle`
 @font-face {
     font-family: orkneyRegular;
-    font: normal 10px/1.45rem "orkneyRegular";
+    font: normal 10px/1.45rem ${({ theme: { font } }) => font.primary};
     src: url(${orkneyRegular}) format('woff');
     font-weight: normal;
     font-style: normal;
@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
         background: ${({ theme: { color } }) => color.accent};
     }
   html {
-    font: normal 10px/1.45rem "orkneyRegular";
+    font: normal 10px/1.45rem ${({ theme: { font } }) => font.primary};
     height: 100vh;
     box-sizing: border-box;
     -webkit-box-shadow:${({ theme: { shadow } }) => shadow.global};
@@ -62,18 +62,6 @@ export const GlobalStyle = createGlobalStyle`
         left: initial;
         right: 0;
     }
-    /* @media ${({ theme: { media } }) => media.xs} {
-        background: greenyellow;
-    }
-    @media ${({ theme: { media } }) => media.sm} {
-        background: lightblue;
-    }
-    @media ${({ theme: { media } }) => media.md} {
-        background: cadetblue;
-    }
-    @media ${({ theme: { media } }) => media.lg} {
-        background: firebrick;
-    } */
   }
     h1{
         font-family: ${({ theme: { font } }) => font.primary};

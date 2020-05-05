@@ -64,6 +64,7 @@ router.put(
   uploadCloud.single("picture"),
   asyncController(async (req, res, next) => {
     const { id } = req.params;
+    console.log("QUE ES", req.file);
     const {
       name,
       birth,
